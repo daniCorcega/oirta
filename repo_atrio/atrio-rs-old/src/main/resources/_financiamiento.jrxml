@@ -1,0 +1,161 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="_coberturas" pageWidth="528" pageHeight="792" whenNoDataType="AllSectionsNoDetail" columnWidth="528" leftMargin="0" rightMargin="0" topMargin="0" bottomMargin="0" uuid="1eb8d608-521e-4154-8d4c-c3c5cc9d8e30">
+	<property name="ireport.zoom" value="1.8150000000000004"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<style name="Normal" vAlign="Middle" fontName="SansSerif" fontSize="8">
+		<box leftPadding="5" rightPadding="5">
+			<pen lineWidth="0.0"/>
+			<topPen lineWidth="0.0"/>
+			<leftPen lineWidth="0.0"/>
+			<bottomPen lineWidth="0.0"/>
+			<rightPen lineWidth="0.0"/>
+		</box>
+	</style>
+	<style name="Título" style="Normal" hAlign="Center" vAlign="Middle" fontName="SansSerif" fontSize="12" isBold="true" isItalic="false" isUnderline="false" isStrikeThrough="false"/>
+	<style name="Titulo Campo" style="Normal" isBold="true" pdfFontName="Helvetica-Bold">
+		<box leftPadding="5" rightPadding="5">
+			<pen lineWidth="0.0"/>
+			<topPen lineWidth="0.0"/>
+			<leftPen lineWidth="0.0"/>
+			<bottomPen lineWidth="0.0"/>
+			<rightPen lineWidth="0.0"/>
+		</box>
+	</style>
+	<style name="Titulo Sección" style="Normal" mode="Opaque" backcolor="#CCCCCC" hAlign="Center" isBold="true" pdfFontName="Helvetica-Bold">
+		<box>
+			<pen lineWidth="0.25"/>
+			<topPen lineWidth="1.0" lineColor="#000000"/>
+			<leftPen lineWidth="1.0" lineColor="#000000"/>
+			<bottomPen lineWidth="1.0" lineColor="#000000"/>
+			<rightPen lineWidth="1.0" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="Número" style="Normal" hAlign="Right" pattern="#,##0.00;-#,##0.00"/>
+	<style name="Total" style="Titulo Campo">
+		<box leftPadding="5" rightPadding="5">
+			<pen lineWidth="1.0"/>
+			<topPen lineWidth="1.0"/>
+			<leftPen lineWidth="0.0"/>
+			<bottomPen lineWidth="0.0"/>
+			<rightPen lineWidth="0.0"/>
+		</box>
+	</style>
+	<style name="Total Número" style="Número">
+		<box leftPadding="5" rightPadding="5">
+			<topPen lineWidth="0.0"/>
+			<bottomPen lineWidth="1.0"/>
+		</box>
+	</style>
+	<style name="Titulo Campo Izquierdo" style="Normal" isBold="true" pdfFontName="Helvetica-Bold">
+		<box leftPadding="5" rightPadding="5">
+			<leftPen lineWidth="1.0"/>
+		</box>
+	</style>
+	<style name="Titulo Campo Derecho" style="Normal" isBold="true" pdfFontName="Helvetica-Bold">
+		<box leftPadding="5" rightPadding="5">
+			<leftPen lineWidth="0.0"/>
+			<bottomPen lineWidth="0.0"/>
+			<rightPen lineWidth="1.0"/>
+		</box>
+	</style>
+	<style name="Normal Borde Izquierdo" vAlign="Middle" fontName="SansSerif" fontSize="8">
+		<box leftPadding="5" rightPadding="5">
+			<leftPen lineWidth="1.0"/>
+		</box>
+	</style>
+	<style name="Normal Borde Derecho" vAlign="Middle" fontName="SansSerif" fontSize="8">
+		<box leftPadding="5" rightPadding="5">
+			<rightPen lineWidth="1.0"/>
+		</box>
+	</style>
+	<style name="Total Número Izquierdo" style="Número">
+		<box leftPadding="5" rightPadding="5">
+			<topPen lineWidth="0.0"/>
+			<leftPen lineWidth="1.0"/>
+			<bottomPen lineWidth="1.0"/>
+		</box>
+	</style>
+	<style name="Total Número Derecho" style="Número">
+		<box leftPadding="5" rightPadding="5">
+			<topPen lineWidth="0.0"/>
+			<bottomPen lineWidth="1.0"/>
+			<rightPen lineWidth="1.0"/>
+		</box>
+	</style>
+	<parameter name="NROSOLICITUD" class="java.lang.Integer"/>
+	<queryString>
+		<![CDATA[SELECT P.NROSOLIC, F.PORCINICIAL, F.MTOINICIAL, F.MTOGIROS, F.CANTGIROS, pr_cotizacion.devuelve_prima($P{NROSOLICITUD}) prima
+  FROM CT_PRINCIPAL P LEFT JOIN CT_FINANCIAMIENTO F ON P.NROSOLIC =
+                                                       F.NROSOLIC
+ WHERE P.NROSOLIC  = $P{NROSOLICITUD}]]>
+	</queryString>
+	<field name="NROSOLIC" class="java.math.BigDecimal"/>
+	<field name="PORCINICIAL" class="java.math.BigDecimal"/>
+	<field name="MTOINICIAL" class="java.math.BigDecimal"/>
+	<field name="MTOGIROS" class="java.math.BigDecimal"/>
+	<field name="CANTGIROS" class="java.math.BigDecimal"/>
+	<field name="PRIMA" class="java.math.BigDecimal"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<columnHeader>
+		<band height="35">
+			<staticText>
+				<reportElement style="Titulo Sección" x="0" y="0" width="528" height="20" uuid="e12fe47a-3d6c-470d-963e-2659e15fc856"/>
+				<text><![CDATA[PLAN DE FINANCIAMIENTO]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="Titulo Campo Izquierdo" x="0" y="20" width="228" height="15" uuid="58472eb9-4e4a-405c-b8ec-cb98967cd24b"/>
+				<text><![CDATA[NOMBRE]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="Titulo Campo" x="228" y="20" width="100" height="15" uuid="357787d1-9e70-4eed-aa9e-c0acdc96ab3d"/>
+				<textElement textAlignment="Right"/>
+				<text><![CDATA[INICIAL]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="Titulo Campo" x="328" y="20" width="100" height="15" uuid="f4b7f8c9-e657-4a37-a9ab-262ffdac04b0"/>
+				<textElement textAlignment="Right"/>
+				<text><![CDATA[N° GIROS]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="Titulo Campo Derecho" x="428" y="20" width="100" height="15" uuid="7b640712-3c54-4453-ae47-3e44229bbda9"/>
+				<textElement textAlignment="Right"/>
+				<text><![CDATA[MONTO X GIRO]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="12" splitType="Stretch">
+			<textField>
+				<reportElement style="Total Número" mode="Opaque" x="228" y="0" width="100" height="12" uuid="4966b0db-41b2-4178-ac98-47a9e2e8eff0"/>
+				<textElement>
+					<font size="7"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{MTOINICIAL} == null ? $F{PRIMA} : $F{MTOINICIAL}]]></textFieldExpression>
+			</textField>
+			<textField pattern="#,##0;-#,##0">
+				<reportElement style="Total Número" x="328" y="0" width="100" height="12" uuid="b4587c67-8d92-477c-b5aa-608a4c722f44"/>
+				<textElement>
+					<font size="7"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{CANTGIROS} == null ? 0 : $F{CANTGIROS}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement style="Total Número Derecho" x="428" y="0" width="100" height="12" uuid="7aaa058d-591a-4741-b4c1-626652066b0e"/>
+				<textElement>
+					<font size="7"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{MTOGIROS} == null ? 0 : $F{MTOGIROS}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement style="Total Número Izquierdo" x="0" y="0" width="228" height="12" uuid="b026caf6-084b-48d8-86d5-9d8ba86fa3ea"/>
+				<textElement textAlignment="Left">
+					<font size="7"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{MTOINICIAL} == null ? "CONTADO" : "PLAN 1 DOMICILADO AUTO"]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+</jasperReport>

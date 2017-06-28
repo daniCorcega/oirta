@@ -1,0 +1,15 @@
+<div class="modal-header">
+    <h3 translate>Coberturas Adicionales</h3>
+</div>
+<div class="modal-body" translate>
+    Seleccione las coberturas adicionales que desea agregar:
+    <br>
+    <div class="checkbox-custom checkbox-default" ng-repeat="cobertura in ambientePlan.planSeleccionado.coberturasAdicionales">
+      <input type="checkbox" id="checkboxExample{{$index}}"  ng-model="ambientePlan.planSeleccionado.seleccion[cobertura.codcompleto]" ng-click="actualizarCoberturas(cobertura)">
+      <label for="checkboxExample{{$index}}">{{cobertura.desccobert}}</label>
+    </div>
+</div>
+<div class="modal-footer">
+    <button class="btn btn-primary" ng-click="ok()">OK</button>
+</div>
+

@@ -1,0 +1,87 @@
+<div class="row" cambio-fondo="auto">
+  <div id="w1-cliente" class="tab-pane">
+    <section = "panel" id="w1">
+      <header class="panel-heading">
+	<div class="panel-actions">
+          <!--
+	      <a href="#" class="fa fa-caret-down"></a> <a href="#" class="fa fa-times"></a>
+              -->
+	</div>
+	<h2 class="panel-title">
+	  <img src="assets/images/automovil.png" height="50px"> Lista de Siniestros
+	</h2>
+      </header>
+      <div class="tab-content">
+        <h4>B&uacute;squeda</h4>
+        <form novalidate="novalidate">
+          <div class="form-group">
+            <div class="radio-custom radio-primary col-md-offset-2 col-md-2">
+              <input type="radio" id="cedula" value="cedula" ng-model="tipoBusqueda" name="tipoBusqueda" ng-click="limpiarDatos()" ng-change="verificarData()">
+            <label for="cedula" class="control-label">Cédula de identidad o RIF:  </label>
+          </div>
+          <div class="col-md-2">
+            <select class="form-control" ng-options="tipoId for tipoId in tiposId" ng-model="datosBusqueda.tipoId" ng-disabled="tipoBusqueda != 'cedula'" name="tipoId" ng-change="verificarData()">
+            </select>
+          </div>
+          <div class="col-md-2">
+            <input type="text" class="form-control" ng-disabled="tipoBusqueda != 'cedula'" ng-model="datosBusqueda.cedula" name="cedula" solo-numeros maxlength="10" ng-change="verificarData()">
+          </div>
+          </div>
+          <div class="form-group">
+            <div class="radio-custom radio-primary col-md-offset-2 col-md-2">
+              <input type="radio" id="placa" value="placa" ng-model="tipoBusqueda" name="tipoBusqueda" ng-click="limpiarDatos()"  ng-change="verificarData()">
+              <label for="placa" class="control-label">Placa: </label>
+          </div>
+            <div class="col-md-4">
+              <input type="text" class="form-control" ng-disabled="tipoBusqueda != 'placa'" name="placa" ng-model="datosBusqueda.placa" capitalizar maxlength=7 ng-change="verificarData()"> 
+            </div>
+          </div>
+          <div class="form-group">
+            <div class="radio-custom radio-primary col-md-offset-2 col-md-2">
+              <input type="radio" id="poliza" value="poliza" ng-model="tipoBusqueda" name="tipoBusqueda" ng-click="limpiarDatos()" ng-change="verificarData()">
+              <label for="poliza" class="control-label">Póliza: </label>
+            </div>
+            <div class="col-md-4">
+              <input type="text" class="form-control" name="poliza" ng-disabled="tipoBusqueda != 'poliza'" ng-model="datosBusqueda.poliza" solo-numeros maxlength="10" ng-change="verificarData()">
+            </div>
+          </div>
+          <hr>
+        </form>
+        <div class="col-md-offset-5">
+          <button class="btn btn-primary" ng-click="obtenerSiniestros()" >Consultar </button>
+        </div>
+        <hr>
+         <div class="col-md-2" ng-show="mostrar" style="margin-left: 355px;">
+          <div class="form-group">
+            <div class="input-group input-group-icon">
+              <input type="text" class="form-control" ng-model="datosFiltro.numsiniestro"  ng-change="filtrar()" placeholder="Nro poliza">
+                <span class="input-group-addon">
+                  <span class="icon"><i class="fa fa-search"></i></span>
+                </span>
+            </div>
+          </div> 
+        </div>   
+        <br>
+        <div class="tab-content table-responsive" ng-show="mostrar">
+          <h4>Resultados</h4>
+          <table ng-table="tableParams" class="table">
+	    <tr ng-repeat="siniestro in $data">
+              <td data-title="'Nro.'" sortable="'numsiniestro'" class="text-center">{{siniestro.numsiniestro}}</td>
+              <td data-title="'Cliente'" sortable="'cliente'" class="text-center" >{{siniestro.cliente}}</td>
+              <td data-title="'Póliza'" sortable="'poliza'" class="text-center">{{siniestro.poliza}}</td>
+              <td data-title="'Placa'" sortable="'placa'" class="text-center">{{siniestro.placa}}</td>
+              <td data-title="'Fec. Siniestro'" sortable="'fechasiniestro'" class="text-center">{{siniestro.fechasiniestro}}</td>
+              <td data-title="'Fec. Declaración'" sortable="'fechadeclaracion'" class="text-center">{{siniestro.fechadeclaracion}}</td>              
+              <td data-title="'Tipo de Daño'" sortable="'anoveh'" class="text-center">{{siniestro.tipo}}</td>
+	      
+              <td data-title="'Acciones'" class="text-center">
+                <!-- Falta crear el servicio para descargar el reporte y para enviar el siniestro por correo-->
+                <a href="{{siniestro.url}}" target="_blank"><i class="fa fa-file-pdf-o" title="Descargar Siniestro"></i></a>
+              </td>
+            </tr>
+          </table>
+        </div>
+      </div>
+    </section>
+  </div>  
+</div>

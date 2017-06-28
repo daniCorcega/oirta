@@ -1,0 +1,164 @@
+<div class="row">
+  <div class="col-lg-12" >
+        <section class="panel">
+            <header class="panel-heading">
+                <h5 class="panel-title">Datos del Solicitante</h5>
+            </header>
+            <div class="panel-body">
+                <div class="table-responsive">
+                    <table class="table table-striped mb-none">
+                        <thead>
+                            <tr>
+                                <!--th class="center">N Cotización</th>-->
+                                <th class="center">Cédula</th>
+                                <th class="center">Nombre y Apellido</th>
+                                <th class="center">Teléfono 1</th>
+                                <th class="center">Teléfono 2</th>
+                                <th class="center">Email</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                        <tr>
+                            <!--<td class="center">{{numSolicitud}}</td>-->
+                            <td class="center">{{solicitante.numId}}</td>
+                            <td class="center">{{solicitante.nombre}} {{solicitante.apellidos}}</td>
+                            <td class="center">({{solicitante.codArea1.codtelefono}}) {{solicitante.telefono1}}</td>
+                            <td class="center">({{solicitante.codArea2.codtelefono}}) {{solicitante.telefono2}}</td>
+                            <td class="center">{{solicitante.email}}</td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </section>
+    </div>
+    <div class="col-lg-12" >
+        <section class="panel">
+            <header class="panel-heading">
+                <h5 class="panel-title">Datos del Automóvil</h5>
+            </header>
+            <div class="panel-body">
+                <div class="table-responsive">
+                    <table class="table table-striped mb-none">
+                        <thead>
+                            <tr>
+                                <th class="center">Año</th>
+                                <th class="center">Marca</th>
+                                <th class="center">Modelo</th>
+                                <th class="center">Versión</th>
+                                <th class="center">Vehículo 0 Km</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                        <tr>
+                            <td class="center">{{vehiculo.anio}}</td>
+                            <td class="center">{{vehiculo.marca.descrip}}</td>
+                            <td class="center">{{vehiculo.modelo.descmodelo}}</td>
+                            <td class="center">{{vehiculo.version.descrip}}</td>
+                            <td class="center"><i class='fa blue bigger {{vehiculo.cerokm | checkmark}}' title="{{ vehiculo.cerokm | sino}} es 0 kms"></i></td>
+                            </td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </section>
+    </div>
+    <div class="col-lg-12" >
+        <section class="panel">
+            <header class="panel-heading">
+                <h5 class="panel-title">Forma de Pago</h5>
+            </header>
+            <div class="panel-body">
+                <div class="table-responsive">
+                    <table class="table table-striped mb-none">
+                        <thead>
+                            <tr>
+                                <th class="center">Nombre</th>
+                                <th class="center">Inicial</th>
+                                <th class="center">N de Giros</th>
+                                <th class="center">Monto x Giros</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                        <tr>
+                            <td class="center">{{ambientePago.pagoSeleccionado.nomplan}}</td>
+                            <td class="center">{{ambientePago.pagoSeleccionado.inicial_prima | currency:"" | monedaVenezolana}}</td>
+                            <td class="center">{{ambientePago.pagoSeleccionado.cantgiros | num}}</td>
+                            <td class="center">{{ambientePago.pagoSeleccionado.mtogiro | currency:"" | monedaVenezolana }}</td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </section>
+    </div>
+    <div class="col-lg-12" >
+        <section class="panel">
+            <header class="panel-heading">
+                <h5 class="panel-title">Plan Seleccionado</h5>
+            </header>
+            <div class="panel-body">
+              {{ambientePlan.planSeleccionado.descrip}}
+            </div>
+        </section>
+    </div>
+    <div class="col-lg-12" >
+        <section class="panel">
+            <header class="panel-heading">
+                <h5 class="panel-title">Coberturas</h5>
+            </header>
+            <div class="panel-body">
+                <div class="table-responsive">
+                    <table class="table table-striped mb-none">
+                        <thead>
+                            <tr>
+                                <th class="center"></th>
+                                <th class="text-right">Suma Asegurada Bs.</th>
+                                <th class="text-right">Deducible Bs.</th>
+                                <th class="text-right">Prima Bs.</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                        <tr ng-repeat="cobertura in ambientePlan.planSeleccionado.coberturasObligatorias">
+                            <td>{{cobertura.desccobert}}</td>
+                            <td class="text-right">{{cobertura.sumaasegmoneda | currency:"" | monedaVenezolana}}</td>
+                            <td class="text-right">{{cobertura.mtodeduciblesin | currency:"" | monedaVenezolana}}</td>
+                            <td class="text-right">{{cobertura.primamoneda | currency:"" | monedaVenezolana}}</td>
+                        </tr>
+                        <tr ng-repeat="cobertura in ambientePlan.planSeleccionado.coberturaSeleccionadas">
+                          <td>(*) {{cobertura.desccobert}}</td>
+                          <td class="text-right">{{cobertura.sumaasegmoneda | currency:"" | monedaVenezolana}}</td>
+                          <td class="text-right">{{cobertura.mtodeduciblesin == 0 | currency:"" | monedaVenezolana}}</td>
+                          <td class="text-right"> {{cobertura.primamoneda | currency:"" | monedaVenezolana}}</td>
+
+
+                        </tr>
+                        <tr>
+                            <td class="center"></td>
+                            <td class="center"></td>
+                            <td class="text-right"><strong>Prima Total</strong></td>
+                            <td class="text-right"><strong>{{ambientePlan.planSeleccionado.primatotal | currency:"" | monedaVenezolana}}</strong></td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </section>
+    </div>
+    <div class="row spacer">
+        <div class="col-lg-12" >
+            <ul class="fa fa-ul">
+                <li>
+                <i class="fa fa-warning fa-lg fa-li blue"></i> Cotización válida por diez(10) días sujeta a resultados. Los montos resultantes son solo referenciales, pueden variar a criterios de la empresa conforme a la índole del riesgo e inspección del vehículo.
+                </li>
+            </ul>
+        </div>
+    </div>
+    <!--div class="row spacer">
+        <div class="col-md-offset-4" >
+          <a href="/atrio-web/api/v1/reports?nrosolicitud={{numSolicitud}}" class="btn btn-primary"><i class="fa fa-file-pdf-o"></i> Descargar Cotizaci&oacute;n</a>
+          <a href="" ng-click="enviarCotizacion();" class="btn btn-primary"><i class="fa fa-envelope"></i> Enviar Cotizaci&oacute;n</a>
+        </div>
+    </div>
+</div-->

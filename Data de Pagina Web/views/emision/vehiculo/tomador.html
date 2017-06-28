@@ -1,0 +1,155 @@
+<div id="w1-cliente" class="tab-pane">
+  <h4>Datos del Tomador</h4>
+ <div class="form-group">
+    <label class="col-md-8 control-label">El tomador de la poliza es el mismo que el titular</label>
+    
+    <div class="col-md-3">
+      <input id="true" type="radio" name="esCliente" value="S" ng-click="tomadorEsCliente()" required ng-model="$parent.ambienteTomador.tomador.esCliente" ng-checked="$parent.ambienteTomador.tomador.esCliente == 'S'"> Si
+      <input id="false" type="radio" name="esCliente" value="N" ng-click="tomadorNoCliente()" required ng-model="$parent.ambienteTomador.tomador.esCliente" ng-checked="$parent.ambienteTomador.tomador.esCliente == 'N'"> No
+    </div>
+  </div>
+  <div class="form-group">
+    <label class="col-md-3 control-label">C&eacute;dula o RIF</label>
+
+    <div class="col-md-3">
+      <select class="form-control" name="tomadorTipoId" ng-model="$parent.ambienteTomador.tomador.tipoId" ng-options="tipoId for tipoId in tiposId"  ng-change="limpiarFormulario()" ng-disabled="$parent.ambienteTomador.tomador.esCliente == 'S'" required>
+        <option value="">-- seleccione --</option>
+      </select>
+
+    </div>
+    <div class="col-md-5">
+      <input type="text" class="form-control" name="tomadorNumId" ng-model="$parent.ambienteTomador.tomador.numId" ng-blur="verificarCedula()" ng-enter="verificarCedula()" solo-numeros required ng-disabled="$parent.ambienteTomador.tomador.esCliente == 'S'" data-plugin-maxlength="" maxlength="9">
+    </div>
+  </div>
+  <div class="form-group">
+    <label class="col-md-3 control-label">Nombre</label>
+
+    <div class="col-md-8">
+      <input type="text" class="form-control" name="nombre" ng-model="$parent.ambienteTomador.tomador.nombre" required ng-disabled="$parent.ambienteTomador.tomador.acsel || $parent.ambienteTomador.tomador.esCliente == 'S'" data-plugin-maxlength="" maxlength="50">
+
+    </div>
+  </div>
+  <div class="form-group" ng-hide="$parent.ambienteTomador.tomador.tipoId == 'Jurídico' ||$parent.ambienteTomador.tomador.tipoId == 'Gubernamental'" ng-disabled="$parent.ambienteTomador.tomador.esCliente == 'S'">
+    <label class="col-md-3 control-label">Apellidos</label>
+
+    <div class="col-md-8">
+      <input type="text" class="form-control" name="apellidos" ng-model="$parent.ambienteTomador.tomador.apellidos" required ng-disabled="$parent.ambienteTomador.tomador.acsel || $parent.ambienteTomador.tomador.esCliente == 'S'"  data-plugin-maxlength="" maxlength="60">
+    </div>
+  </div>
+  <div class="form-group" ng-hide="$parent.ambienteTomador.tomador.tipoId == 'Jurídico' || $parent.ambienteTomador.tomador.tipoId == 'Gubernamental'">
+    <label class="col-md-3 control-label">Sexo</label>
+    <div class="col-md-3">
+      <select name="tomadorSexo" class="form-control" ng-model="$parent.ambienteTomador.tomador.sexo" required ng-disabled="$parent.ambienteTomador.tomador.acsel || $parent.ambienteTomador.tomador.esCliente == 'S'"  ng-options="sexo for sexo in $parent.sexos">
+        <option value="">-- seleccione --</option>
+      </select>
+    </div>
+    <label class="col-md-2 control-label">Estado Civil</label>
+    <div class="col-md-3">
+      <select name="tomadorEdoCivil" class="form-control" ng-model="$parent.ambienteTomador.tomador.edocivil" ng-options="edocivil for edocivil in $parent.edosCivil" required ng-disabled="$parent.ambienteTomador.tomador.acsel || $parent.ambienteTomador.tomador.esCliente == 'S'">
+        <option value="">-- seleccione --</option>
+      </select>
+    </div>
+  </div> 
+
+  <div class="form-group" ng-hide="$parent.ambienteTomador.tomador.tipoId == 'Jurídico' ||$parent.ambienteTomador.tomador.tipoId == 'Gubernamental'">
+    <label class="col-md-3 control-label">Fecha de Nac.</label>
+
+    <div class="col-md-3">
+      <div class="input-group">
+	<input name="tomadorFecNacimiento" type="text" data-provide="datepicker" class="form-control" ng-model="$parent.ambienteTomador.tomador.fechaNacimiento" data-date-format="dd/mm/yyyy"
+               data-date-language="es" id="date" placeholder="__/__/____" required ng-disabled="$parent.ambienteTomador.tomador.acsel || $parent.ambienteTomador.tomador.esCliente == 'S'" data-date-end-date="-18y" data-date-start-date="-150y" data-date-autoclose="true">
+        <span class="input-group-addon btn" ng-click="clicked();" > <i class="fa fa-calendar"></i></span> 
+      </div>
+    </div>
+  </div>
+
+
+  <div class="form-group" ng-hide="$parent.ambienteTomador.tomador.tipoId == 'Jurídico' ||$parent.ambienteTomador.tomador.tipoId == 'Gubernamental'">
+    <label class="col-md-3 control-label">Actividad Económica / Profesión</label>
+    <div class="col-md-5">
+      <select name="tomadorProfesion" class="form-control" ng-model="$parent.ambienteTomador.tomador.profesion" ng-options="act.descrip for act in $parent.actividades" required ng-disabled="$parent.ambienteTomador.tomador.esCliente == 'S'">
+        <option value="">-- seleccione --</option>
+      </select>
+    </div>
+  </div> 
+
+  <div class="form-group">
+    <label class="col-md-3 control-label" for="inputDefault">Estado</label>
+
+    <div class="col-md-8">
+      <select name="tomadorEstado" class="form-control" ng-model="$parent.ambienteTomador.tomador.estado" ng-options="estado.descestado for estado in $parent.estados" ng-change="cambioEstado()" required ng-disabled="$parent.ambienteTomador.tomador.esCliente == 'S'">
+        <option value="">-- seleccione --</option>
+      </select>
+    </div>
+  </div>
+  <div class="form-group">
+    <label class="col-md-3 control-label">Ciudad</label>
+    
+    <div class="col-md-8">
+      <select name="tomadorCiudad" class="form-control" ng-model="$parent.ambienteTomador.tomador.ciudad" ng-options="ciudad.descciudad for ciudad in $parent.ciudades | filter: {codestado : $parent.ambienteTomador.tomador.estado.codestado}" required ng-disabled="$parent.ambienteTomador.tomador.estado === undefined || $parent.ambienteTomador.tomador.esCliente == 'S'" ng-change="cambioCiudad()">
+        <option value="">-- seleccione --</option>
+      </select>
+    </div>
+  </div>
+
+  <div class="form-group">
+    <label class="col-md-3 control-label">Municipio</label>
+    
+    <div class="col-md-8">
+      <select name="tomadorMunicipio" class="form-control" ng-model="$parent.ambienteTomador.tomador.municipio" ng-options="municipio.descmunicipio for municipio in $parent.municipios | filter : {codestado : $parent.ambienteTomador.tomador.estado.codestado} | filter : {codciudad : $parent.ambienteTomador.tomador.ciudad.codciudad}" required ng-disabled="$parent.ambienteTomador.tomador.ciudad === undefined || $parent.ambienteTomador.tomador.esCliente == 'S' || ($parent.municipios | filter : {codestado : $parent.ambienteTomador.tomador.estado.codestado} | filter : {codciudad : $parent.ambienteTomador.tomador.ciudad.codciudad}).length === 0" ng-change="cambioMunicipio()">
+        <option value="">-- seleccione --</option>
+      </select>
+    </div>
+  </div>
+
+  <div class="form-group">
+    <label class="col-md-3 control-label">Urbanizaci&oacute;n</label>
+    
+    <div class="col-md-8">
+      <select name="tomadorUrbanizacion" class="form-control" ng-model="$parent.ambienteTomador.tomador.urbanizacion" ng-options="urbanizacion.descurbanizacion for urbanizacion in urbanizaciones | filter : {codestado: $parent.ambienteTomador.tomador.estado.codestado} | filter : {codciudad : $parent.ambienteTomador.tomador.ciudad.codciudad} | filter : {codmunicipio : $parent.ambienteTomador.tomador.municipio.codmunicipio}" required ng-disabled="$parent.ambienteTomador.tomador.municipio === undefined || $parent.ambienteTomador.tomador.esCliente == 'S' || (urbanizaciones | filter : {codestado: $parent.ambienteTomador.tomador.estado.codestado} | filter : {codciudad : $parent.ambienteTomador.tomador.ciudad.codciudad} | filter : {codmunicipio : $parent.ambienteTomador.tomador.municipio.codmunicipio}).length === 0">
+        <option value="">-- seleccione --</option>
+      </select>
+    </div>
+  </div>
+
+  <div class="form-group">
+    <label class="col-md-3 control-label">Direcci&oacute;n</label>
+    
+    <div class="col-md-8">
+      <input text="text" class="form-control" ng-model="$parent.ambienteTomador.tomador.direccion" name="tomador" required ng-disabled="$parent.ambienteTomador.tomador.esCliente == 'S'">
+    </div>
+  </div>
+
+  <div class="form-group">
+    <label class="col-md-3 control-label">Tel&eacute;fono 1</label>
+
+    <div class="col-md-2">
+      <select class="form-control" ng-model="$parent.ambienteTomador.tomador.codArea1" ng-options="codArea.codtelefono for codArea in $parent.codAreas | codAreas:$parent.ambienteTomador.tomador.estado.codestado" name="codArea2" required ng-disabled="$parent.ambienteTomador.tomador.estado === undefined || $parent.ambienteTomador.tomador.esCliente == 'S'">
+        <option value=""> c&oacute;digo </option>
+      </select>
+    </div>
+    <div class="col-md-6">
+      <input type="text" name="telefono1" class="form-control phone" ng-model="$parent.ambienteTomador.tomador.telefono1" placeholder="___-____" required ng-disabled="$parent.ambienteTomador.tomador.esCliente == 'S'">
+    </div>
+  </div>
+  <div class="form-group">
+    <label class="col-md-3 control-label">Tel&eacute;fono 2</label>
+
+    <div class="col-md-2">
+      <select class="form-control" ng-model="$parent.ambienteTomador.tomador.codArea2" ng-options="codArea.codtelefono for codArea in $parent.codAreas | codAreas:$parent.ambienteTomador.tomador.estado.codestado" name="codArea1" required ng-disabled="$parent.ambienteTomador.tomador.estado === undefined || $parent.ambienteTomador.tomador.esCliente == 'S'">
+        <option value=""> c&oacute;digo</option>
+      </select>
+    </div>
+    <div class="col-md-6">
+      <input type="text" class="form-control phone" name="telefono2" ng-model="$parent.ambienteTomador.tomador.telefono2" placeholder="___-____" required ng-disabled="$parent.ambienteTomador.tomador.esCliente == 'S'">
+    </div>
+  </div>
+
+  <div class="form-group">
+    <label class="col-md-3 control-label">Correo Electr&oacute;nico</label>
+
+    <div class="col-md-8">
+      <input type="email" class="form-control" name="email" ng-model="$parent.ambienteTomador.tomador.email" required ng-disabled="$parent.ambienteTomador.tomador.esCliente == 'S'" data-plugin-maxlength="" maxlength="80">
+    </div>
+  </div>
+</div>

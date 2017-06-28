@@ -1,0 +1,28 @@
+<div class="modal-header">
+    <h3 translate>Coberturas Adicionales</h3>
+</div>
+<div class="modal-body row" translate>
+    <h5>&nbsp;&nbsp;&nbsp;&nbsp;Seleccione y filtra las coberturas adicionales que desea agregar:</h5>
+    <!--div class="col-md-4" style="margin-left: 210px;"-->
+      <div class="col-md-4">
+      <div class="input-group input-group-icon">
+    <input type="text" class="form-control" ng-model="search.desccobert" placeholder="Coberturas">
+    <span class="input-group-addon" >
+    <span class="icon"><i class="fa fa-search"></i></span>
+    </span>
+      </div>
+    </div>
+<br>
+<br>
+<div class="checkbox-custom checkbox-default col-xs-15 col-sm-5 col-sm-offset-1"  ng-repeat="cobertura in ambientePlan.planSeleccionado.coberturasAdicionales| filter:search">
+      <input type="checkbox" id="checkboxExample{{$index}}"  ng-model="ambientePlan.planSeleccionado.seleccion[cobertura.codcompleto]" ng-click="actualizarCoberturas(cobertura)">
+      <label for="checkboxExample{{$index}}">{{cobertura.desccobert}}</label>
+      <!--td><select class="form-control"  id="{{$index}}" ng-show="cobertura.codcobert == '0050' && cobertura.mensajeerror == null" name="reservapp" ng-change="tarificarCoberturasAdicionaless(cobertura);reserva(plan.indice);"
+         ng-model="ambientePlan.planSeleccionado.reservacod" ng-options="planesreservas.codtarif as planesreservas.suma for planesreservas in reservas">
+          <option value="">-- Sin Reserva --</option>
+       </select></td-->
+    </div>
+</div>
+<div class="modal-footer">
+    <button class="btn btn-primary" ng-click="ok()">OK</button>
+</div>

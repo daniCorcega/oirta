@@ -1,0 +1,98 @@
+<div class="modal-header">
+    <h3 translate>Requisitos Entregados</h3>
+</div>
+<div class="modal-body1 row" translate>
+<div id="w1-requisitos" class="tab-pane">
+  <br>
+
+  <h4>Requisitos Obligatorios</h4>
+  <br>
+  <div>
+    <div>
+      <div class="col-lg-8" style="margin-right: -70px;">
+        <strong>Requisitos</strong>
+      </div>
+      <div class="col-lg-2 text-center" style="margin-right: -10px;">
+        <strong>Fecha de Solicitud</strong>
+      </div>
+      <div class="col-lg-2 text-center">
+        <strong>Fecha de Recepcion</strong>
+      </div>
+      <div class="row ng-scope" ng-repeat="requisitos in $parent.ambienteCotizaciones.requisitos = (obligatorios = ($parent.ambienteCotizaciones.requisitos | filter:{indicador_requisito: 'S'})) | filter:{indicador_requisito: 'S'}">
+        <div class="col-lg-8" style="margin-right: -70px;">
+          <input type="checkbox" id="{{requisitos.validador}}"  ng-disabled="requisitos.indicador == 'S'" ng-checked="requisitos.indicador == 'S'" value="{{requisitos.validador}}" name="checkbox"  ng-model="requisitos.validador" ng-click="guardarRequisito(requisitos,$index)"  required >
+            <label for="{{requisitos.validador}}">{{requisitos.descripcion_requisito}}</label>
+        </div>
+        <div class="col-lg-2" style="width:125px;margin-right:20px;">
+          <div>
+            <div class="input-group">
+            <input type="text" name="date" datepicker-options="dateOptions" data-provide="datepicker" class="form-control" ng-model="fromdate" data-format="dd/mm/yyyy"
+                     data-date-language="es" id="date" placeholder="__/__/____" data-date-autoclose="true" disabled required>
+            </div>
+          </div>
+      </div>
+      <div class="col-lg-2" style="width:125px;margin-center: 20px;">
+        <div>
+          <div class="input-group">
+          <input type="text" name="date" datepicker-options="dateOptions" data-provide="datepicker" class="form-control" ng-model="fromdate" data-format="dd/mm/yyyy"
+                   data-date-language="es" id="date" placeholder="__/__/____"  disabled required>
+          </div>
+        </div>
+    </div>
+    </div>
+    <hr>
+     <br>
+
+      <h4>Requisitos Adicionales</h4>
+      <!--div class="alert alert-info" ng-show="ambienteCotizaciones.requisitos.indicador_requisito !== 'N'">
+        <strong>Este Plan no posee Requisitos Adicionales</strong><br/>
+        {{ambientePago.error}}<br/><br/>
+      </div-->
+
+
+      <div ng-show="ambienteCotizaciones.requisitos.indicador_requisito !== 'N'">
+          <div class="col-lg-8" style="margin-right: -70px;">
+            <strong>Requisitos</strong>
+          </div>
+          <div class="col-lg-2 text-center" style="margin-right: -10px;">
+            <strong>Fecha de Solicitud</strong>
+          </div>
+          <div class="col-lg-2 text-center">
+            <strong>Fecha de Recepcion</strong>
+          </div>
+        <div class="row ng-scope" ng-repeat="requisitoss in $parent.ambienteCotizaciones.requisitoss | filter:{indicador_requisito: 'N'}">
+        <div class="col-lg-8" style="margin-right: -70px;">
+            <input type="checkbox" id="{{requisitoss.validador}}" name="nombrePlan" ng-disabled="requisitoss.indicador == 'S'" ng-model="requisitoss.validador" value="{{requisitoss.validador}}" ng-click="guardarRequisitos(requisitoss,$index)">
+            <label for="{{requisitoss.validador}}">{{requisitoss.descripcion_requisito}}</label>
+          </div>
+          <div class="col-lg-2" style="width:125px;margin-right:20px;">
+            <div>
+              <div class="input-group">
+              <input type="text" name="date" datepicker-options="dateOptions" data-provide="datepicker" class="form-control" ng-model="fromdate" data-format="dd/mm/yyyy"
+                       data-date-language="es" id="date" placeholder="__/__/____" data-date-autoclose="true" disabled required>
+              </div>
+            </div>
+        </div>
+        <div class="col-lg-2" style="width:125px;margin-center: 20px;">
+          <div>
+            <div class="input-group">
+            <input type="text" name="date" datepicker-options="dateOptions" data-provide="datepicker" class="form-control" ng-model="fromdate" data-format="dd/mm/yyyy"
+                     data-date-language="es" id="date" placeholder="__/__/____"  disabled required>
+
+            </div>
+          </div>
+      </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+</div>
+</div>
+<div class="modal-footer">
+  <!--span>{{obligatorios.length}}</span-->
+  <!--span>{{SelectedItems.length}}</span-->
+  <button class="btn btn-primary" ng-disabled=" SelectedItems.length < obligatorios.length" ng-click="guardar()">Continuar</button>
+  <button class="btn btn-primary" ng-click="salir()">Salir</button>
+</div>

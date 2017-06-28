@@ -1,0 +1,39 @@
+<div id="w1-vehiculo" class="tab-pane">
+    <div class="form-group">
+        <label class="col-md-2 control-label">A&ntilde;o</label>
+
+        <div class="col-md-3">
+            <select name="vehiculoAnio" class="form-control" ng-options="anio for anio in anios" ng-model="vehiculo.anio" ng-change="buscarMarcas()" required>
+                <option value="">-- seleccione --</option>
+            </select>
+        </div>
+        <label class="col-md-1 control-label" for="inputDefault">Marca</label>
+
+        <div class="col-md-3">
+            <select name="vehiculoMarca" class="form-control" ng-model="vehiculo.marca" ng-options="marca.descrip for marca in marcas" ng-change="buscarModelos()" ng-disabled="!vehiculo.anio" required>
+                <option value="">-- seleccione --</option>
+            </select>
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="col-md-2 control-label" for="inputDefault">Modelo</label>
+        <div class="col-md-3">
+            <select name="vehiculoModelo" class="form-control" ng-model="vehiculo.modelo" ng-options="modelo.descmodelo for modelo in modelos" ng-change="buscarVersiones()" ng-disabled="$parent.vehiculo.marca == undefined || $parent.vehiculo.marca == null" required>
+                <option value="">-- seleccione --</option>
+            </select>
+        </div>
+        <label class="col-md-1 control-label" for="inputDefault">Versi&oacute;n</label>
+
+        <div class="col-md-3">
+            <select name="vehiculoVersion" class="form-control" ng-model="vehiculo.version" ng-options="version.descrip for version in versiones" ng-disabled="$parent.vehiculo.modelo == undefined || $parent.vehiculo.modelo == null" ng-change="$parent.coberturaPedida = false" required>
+                <option value="">-- seleccione --</option>
+            </select>
+        </div>
+        <div class="col-md-1">
+            <div class="checkbox-custom checkbox-primary" ng-show="aniosCeroKms()">
+              <input type="checkbox" ng-model="vehiculo.cerokm">
+              <label>0 Km</label>
+            </div>
+        </div>
+    </div>
+</div>

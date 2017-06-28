@@ -1,0 +1,32 @@
+<div modal="showModal">
+  <div class="panel-heading">
+    <h4>Finalizada Cotizaci&oacute;n</h4>
+  </div>
+
+    <div class="panel-body">
+      <div class="modal-wrapper">
+	<div class="modal-icon modal-block-primary" >
+	  <i class="fa fa-check"></i>
+	</div>
+	<div class="modal-text">
+	  <h4>Finalizada Cotizaci&oacute;n</h4>
+	  <p>Usted ha terminado el proceso de Cotizaci&oacute;n.</p>
+	</div>
+      </div>
+    </div>
+    <footer class="panel-footer">
+      <div class="row">
+	<div class="col-md-12 text-right">
+          <a href="/atrio-web/api/v1/reports?nrosolicitud={{numSolicitud}}" class="btn btn-primary"><i class="fa fa-file-pdf-o"></i> Descargar Cotizaci&oacute;n</a>
+          <button ng-click="enviarCotizacion();" class="btn btn-primary"><i class="fa fa-envelope"></i> Enviar Cotizaci&oacute;n</button>
+          <button class="btn btn-primary" ng-click="nuevaPoliza()">Nueva Cotizaci&oacute;n</button>
+          <button class="btn btn-primary" ng-click="emitir()" ng-show="mostrarEmisor() >= 0">Emitir</button>
+  <div class="col-md-12 text-center">
+          <br>
+          <button class="btn btn-primary" ng-click="inicio()">Ir a Inicio</a></button>
+	        </div>
+          </div>
+      </div>
+    </footer>
+  </section>
+</div>

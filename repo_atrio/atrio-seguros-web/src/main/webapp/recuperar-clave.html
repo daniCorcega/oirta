@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html class="fixed">
+  <head>
+
+    <!-- Basic -->
+    <meta charset="UTF-8">
+
+    <meta name="keywords" content="HTML5 Admin Template" />
+    <meta name="description" content="Atrio Seguros">
+    <meta name="author" content="cleteci">
+
+    <!-- Mobile Metas -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+
+    <!-- Web Fonts  -->
+    <link href="assets/fonts/fonts.css" rel="stylesheet" type="text/css" />
+
+    <!-- Vendor CSS -->
+    <link rel="stylesheet" href="assets/vendor/bootstrap/css/bootstrap.css" />
+    <link rel="stylesheet" href="assets/vendor/font-awesome/css/font-awesome.css" />
+    <link rel="stylesheet" href="assets/vendor/magnific-popup/magnific-popup.css" />
+
+    <!-- Theme CSS -->
+    <link rel="stylesheet" href="assets/stylesheets/theme.css" />
+
+    <!-- Skin CSS -->
+    <link rel="stylesheet" href="assets/stylesheets/skins/default.css" />
+
+    <!-- Theme Custom CSS -->
+    <link rel="stylesheet" href="assets/stylesheets/theme-custom.css">
+
+    <!-- Head Libs -->
+    <script src="assets/vendor/modernizr/modernizr.js"></script>
+
+  </head>
+  <body>
+    <section class="body-sign">
+      <div class="center-sign">
+	<a href="/" class="logo pull-left"> <img src="assets/images/logo.png" height="54" alt="Porto Admin" />
+	</a>
+
+	<div class="panel panel-sign">
+	  <div class="panel-title-sign mt-xl text-right">
+	    <h2 class="title text-uppercase text-bold m-none">
+	      <i class="fa fa-user mr-xs"></i> Recuperar Clave
+	    </h2>
+	  </div>
+	  <div class="panel-body">
+              <div class="alert alert-info">
+		<p class="m-none text-semibold h6">Introduce el correo electr&#243;nico asociado a tu usuario y en el recibiras las instrucciones para recuperar tu clave.</p>
+	      </div>
+              <div class="form-group mb-lg">
+                <label>Correo Eletr&oacute;nico</label>
+                <input id="email" name="email" type="email" class="form-control input-lg">
+              </div>
+              <div class="row">
+                <div class="col-sm-offset-8 col-sm-4 text-right">
+                  <div class="btn btn-primary hidden-xs recuperar">Recuperar</div>
+                  <div class="btn btn-primary btn-block btn-lg visible-xs mt-lg recuperar">Recuperar</div>
+                </div>
+              </div>
+	  </div>
+	</div>
+
+	<p class="text-center text-muted mt-md mb-md">&#169; Copyright 2014. Todos los derechos reservados.</p>
+      </div>
+    </section>
+    <div class="modal fade modal-block-danger" id="modalError" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+      <div class="modal-dialog">
+        <section class="panel">
+          <header class="panel-heading">
+            <h2 class="panel-title">Error</h2>
+          </header>
+          <div class="panel-body">
+            <div class="modal-wrapper">
+              <div class="modal-icon">
+                <i class="fa fa-times-circle"></i>
+              </div>
+              <div class="modal-text">
+                <h4>Error</h4>
+                <p id="error-mensaje">El correo introducido no es v&aacute;lido. Puede que se haya equivocado al tipearlo o su usuario esta asociado a otra cuenta de correo.</p>
+              </div>
+            </div>
+          </div>
+          <footer class="panel-footer">
+            <div class="row">
+              <div class="col-md-12 text-right">
+                <button class="btn btn-danger" onclick="$('#modalError').modal('hide')">OK</button>
+              </div>
+            </div>
+          </footer>
+        </section>
+      </div>
+    </div>
+    
+    <!-- Modal -->
+    <div class="modal fade modal-block-success" id="modalOk" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+      <div class="modal-dialog">
+        <section class="panel">
+          <header class="panel-heading">
+            <h2 class="panel-title">&Eacute;xito</h2>
+          </header>
+          <div class="panel-body">
+            <div class="modal-wrapper">
+              <div class="modal-icon">
+                <i class="fa fa-check"></i>
+              </div>
+              <div class="modal-text">
+                <h4>&Eacute;xito</h4>
+                <p>Usted ha  informado que olvid&oacute; la clave de su cuenta. Sin embargo, la recuperaci&oacute;n de clave en este sistema se hace en 2 pasos, para brindarle mayor seguridad.</p>
+                <p>Se ha enviado un c&oacute;digo de seguridad a su correo. Ahora necesitamos que establezca usted mismo la nueva clave utilizando el c&oacute;digo ya mencionado.</p>
+                <p>Para ello, usted ser&aacute; redirigido la p&aacute;gina en la que podr&aacute; establecer su nueva clave.</p>
+              </div>
+            </div>
+          </div>
+          <footer class="panel-footer">
+            <div class="row">
+              <div class="col-md-12 text-right">
+                <button class="btn btn-success" onclick="login();">OK</button>
+              </div>
+            </div>
+          </footer>
+        </section>
+      </div>
+    </div>
+    <script src="assets/vendor/jquery/jquery.min.js"></script>    
+    <script src="assets/vendor/bootstrap/js/bootstrap.min.js"></script>
+    <script>
+      function login() {
+        window.location = "nueva-clave.html";
+      };
+      
+      function enviarClave() {
+        var stringEmail = $("#email").val();
+      
+        $.ajax({
+          "type":"POST",
+          "async": false,
+          "url":"/atrio-web/api/v1/users/send-password",
+          "data":{email : stringEmail},
+          "success": function (data) {
+            $("#modalOk").modal({backdrop:"static"});
+          },
+          "error": function (response) {
+            if (response.status == 200) {
+              $("#modalOk").modal({backdrop:"static"});
+            } else {
+              $("#modalError").modal(); 
+            }
+          }
+        });
+      };
+
+      $(".recuperar").click(function () {
+        enviarClave();
+      });
+
+      $("#email").keyup(function () {
+        if(event.keyCode == 13){
+          enviarClave();
+        };   
+      });
+
+    </script>
+  </body>
+</html>
+
+

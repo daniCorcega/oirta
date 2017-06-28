@@ -1,0 +1,38 @@
+<div id="w1-cliente" class="tab-pane">
+  <h4>Seleccione una Cotizaci&oacute;n</h4>
+
+  <div class="table-responsive">
+    <table class="table mb-none">
+      <thead>
+	<tr>
+	  <th>Nro.</th>
+	  <th>Fecha</th>
+	  <th>Asesor</th>
+	  <th>Solicitante</th>
+	  <th>Monto Prima (Bs.F)</th>
+          <th>Marca</th>
+          <th>Modelo</th>
+          <th>Año</th>
+          <th>Acciones</th>
+	</tr>
+      </thead>
+      <tbody>
+        
+	<tr ng-repeat="cotizacion in ambienteCotizaciones.cotizaciones" ng-class="cotizacionSeleccionada($index)">
+          <td>{{cotizacion.nrosolic}}</td>
+          <td>{{cotizacion.fecsolic}}</td>
+          <td>{{cotizacion.codinter}}</td>
+          <td>{{cotizacion.nombre}} {{cotizacion.apellido}}</td>
+          <td class="text-right">{{cotizacion.prima | currency:"" | monedaVenezolana}}</td>
+          <td>{{cotizacion.descmarca}}</td>
+          <td>{{cotizacion.descmodelo}}</td>
+          <td>{{cotizacion.anoveh}}</td>
+          <td>
+            <a href="" ng-click="seleccionarCotizacion($index)" ><i class="fa fa-check" title="Emitir Cotizacion"></i></a>
+            <a href="/atrio-rs/api/v1/reports?nrosolicitud={{cotizacion.nrosolic}}"><i class="fa fa-file-pdf-o" title="Descargar Cotizacion"></i></a>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

@@ -1,0 +1,75 @@
+<div id="w1-pago" class="tab-pane">
+  <div class="alert alert-info" ng-show="ambientePago.error">
+    <strong>Este Plan No Tiene Financiamientos Activos</strong><br/>
+    {{ambientePago.error}}<br/><br/>
+    <strong>Si considera que esto es un error comun&iacute;quese con el &Aacute;rea T&eacute;cnica.</strong>
+  </div>
+
+  <div>
+    <div>
+      <div class="col-lg-4">
+        <strong>Nombre del Plan</strong>
+      </div>
+      <div class="col-lg-8 text-center">
+        <strong>Descripci&oacute;n</strong>
+      </div>
+      <div class="row ng-scope" ng-repeat="pago in $parent.ambientePago.pagos | filter:{tipoplan:'C'}">
+        <div class="col-lg-4">
+          <input type="checkbox" id="nombrePlan" name="nombrePlan" ng-checked="$parent.ambientePago.pagoSeleccionado.nomplan == pago.nomplan" ng-click="seleccionarPago(pago)">
+          {{pago.nomplan}}
+        </div>
+        <div class="col-lg-8 text-center">
+          Monto de Prima Seleccionada
+          <br/>
+          <div class="text-primary">
+            {{ pago.inicial_prima | currency:"" | monedaVenezolana}}
+          </div>
+        </div>
+      </div>
+      <hr>
+      <div ng-show="ambientePago.pagos.length > 1">
+        <div class="col-lg-4"></div>
+        <!--div class="col-lg-2"><strong>Inicial Bsf.</strong></div-->
+        <div class="col-lg-2"><strong>Monto Inicial Bsf.</strong></div>
+        <div class="col-lg-2"><strong>% Inicial</strong></div>
+        <div class="col-lg-2"><strong>N de Giros</strong></div>
+        <div class="col-lg-2"><strong>Monto x Giros Bsf.</strong></div>
+      </div>
+      <div class="row ng-scope" ng-repeat="pago in $parent.ambientePago.pagos | filter:{tipoplan:'F'}">
+        <div class="col-lg-4">
+          <input type="checkbox" id="nombrePlan" name="nombrePlan" ng-checked="$parent.ambientePago.pagoSeleccionado.nomplan == pago.nomplan" ng-click="seleccionarPago(pago)">
+          {{pago.nomplan}}
+        </div>
+        <!-- Agregado -->
+        <div class="col-lg-2 text-center" style="width:130px">
+          <div>
+
+            <input type="text" class="form-control"  id="inicial"  step='0.01' value='0.00' ng-model="pago.montoinicial" ng-enter="recalcularPago(pago);" ng-blur="recalcularPago(pago);" tabindex="-1" ng-disabled="$parent.ambientePago.pagoSeleccionado.nomplan != pago.nomplan">
+          </div>
+          <div class="text-primary">
+              <span> Su Monto Inicial es {{pago.montoinicial | currency:"" | monedaVenezolana}} Bs</span>
+          </div>
+          <div>
+
+          </div>
+        </div>
+        <div class="col-lg-2 text-center" style="width:90px">
+          <div>
+
+            <input type="text" class="form-control col-md-4" id="inicial" step='0.01' value='0.00' ng-model="pago.porcinicial" ng-enter="recalcularPagopor(pago)" ng-blur="recalcularPagopor(pago);" tabindex="-1" ng-disabled="$parent.ambientePago.pagoSeleccionado.nomplan != pago.nomplan" ng-slider="#slider_inicial">
+          </div>
+          <div>
+            Ingrese un valor entre {{pago.porcinicialmin}} y {{pago.porcinicialmax}}
+          </div>
+        </div>
+        <div class="col-lg-2 text-center">
+          <select class="form-control" name="numGiros" ng-model="pago.cantgiros" ng-change="recalcularPago(pago);" ng-disabled="$parent.ambientePago.pagoSeleccionado.nomplan != pago.nomplan" ng-options="giro for giro in pago.giros"></select>
+        </div>
+        <div class="col-lg-2 text-center">
+
+        {{pago.mtogiro | currency:"" | monedaVenezolana}}
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

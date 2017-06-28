@@ -1,0 +1,109 @@
+<section class="panel">
+  <header class="panel-heading">
+    <h2 class="panel-title">Detalles de Siniestro y Da&ntilde;os</h2>
+  </header>
+  <div class="panel-body">
+    <div id="w1-solicitante" class="tab-pane active">      
+      <div ng-show="ambienteConductor.siniestro.tipoDano.codigo != 'RO'">
+        <div class="col-md-12">
+          Seleccione las piezas del veh&iacute;culo afectadas por el siniestro:
+        </div>
+        
+        <!-- Imagen 1 -->
+        <div class="form-group">
+          <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+            <div class="col-lg-4 col-md-4 hidden-sm hidden-xs">
+              <div class="checkbox-custom checkbox-default" ng-repeat="pieza in $parent.ambienteDanos.piezas | filter:{posicion:1}">
+                <input type="checkbox" name="posicion1_{{$index}}" ng-change="piezasActualizar()" ng-model ="pieza.sel" ng-disabled="$parent.ambienteResultado.numsin != undefined"> 
+                <label for="posicion1_{{$index}}">(<strong>{{pieza.numero}}</strong>) {{pieza.nombre}}</label>
+              </div>
+            </div>
+            <div class="col-lg-8 col-md-8 col-sm-12">
+              <img width="100%"  src="assets/images/blueprints/sedan_1.png">
+            </div>
+            <div class="col-sm-12 col-xs-12 hidden-md hidden-lg">
+              <div class="checkbox-custom checkbox-default" ng-repeat="pieza in $parent.ambienteDanos.piezas | filter:{posicion:1}">
+                <input type="checkbox" name="posicion1_{{$index}}" ng-change="piezasActualizar()" ng-model ="pieza.sel" ng-disabled="$parent.ambienteResultado.numsin != undefined"> 
+                <label for="posicion1_{{$index}}">(<strong>{{pieza.numero}}</strong>) {{pieza.nombre}}</label>
+              </div>
+            </div>
+          </div>
+        </div>
+        <hr>
+        
+        <!-- Imagen 2 -->
+        <div class="form-group">
+          <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+            <div class="col-lg-4 col-md-4 hidden-sm hidden-xs">
+              <div class="checkbox-custom checkbox-default" ng-repeat="pieza in $parent.ambienteDanos.piezas | filter:{posicion:2}">
+                <input type="checkbox" name="posicion1_{{$index}}" ng-change="piezasActualizar()" ng-model ="pieza.sel" ng-disabled="$parent.ambienteResultado.numsin != undefined"> 
+                <label for="posicion1_{{$index}}">(<strong>{{pieza.numero}}</strong>) {{pieza.nombre}}</label>
+              </div>
+            </div>
+            <div class="col-lg-8 col-md-8 col-sm-12">
+              <img width="100%"  src="assets/images/blueprints/sedan_2.png">
+            </div>
+            <div class="col-sm-12 col-xs-12 hidden-md hidden-lg">
+              <div class="checkbox-custom checkbox-default" ng-repeat="pieza in $parent.ambienteDanos.piezas | filter:{posicion:2}">
+                <input type="checkbox" name="posicion1_{{$index}}" ng-change="piezasActualizar()" ng-model ="pieza.sel" ng-disabled="$parent.ambienteResultado.numsin != undefined"> 
+                <label for="posicion1_{{$index}}">(<strong>{{pieza.numero}}</strong>) {{pieza.nombre}}</label>
+              </div>
+            </div>
+          </div>
+        </div>
+        <hr>
+        
+        <!-- Imagen 3 -->
+        <div class="form-group">
+          <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+            <div class="col-lg-4 col-md-4 hidden-sm hidden-xs">
+              <div class="checkbox-custom checkbox-default" ng-repeat="pieza in $parent.ambienteDanos.piezas | filter:{posicion:3}">
+                <input type="checkbox" name="posicion1_{{$index}}" ng-change="piezasActualizar()" ng-model ="pieza.sel"  ng-disabled="$parent.ambienteResultado.numsin != undefined">
+                <label for="posicion1_{{$index}}">(<strong>{{pieza.numero}}</strong>) {{pieza.nombre}}</label>
+              </div>
+            </div>
+            <div class="col-lg-8 col-md-8 col-sm-12">
+              <img width="100%"  src="assets/images/blueprints/sedan_3.png">
+            </div>
+            <div class="col-sm-12 col-xs-12 hidden-md hidden-lg">
+              <div class="checkbox-custom checkbox-default" ng-repeat="pieza in $parent.ambienteDanos.piezas | filter:{posicion:3}">
+                <input type="checkbox" name="posicion1_{{$index}}" ng-change="piezasActualizar()" ng-model ="pieza.sel" ng-disabled="$parent.ambienteResultado.numsin != undefined"> 
+                <label for="posicion1_{{$index}}">(<strong>{{pieza.numero}}</strong>) {{pieza.nombre}}</label>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>  
+
+      <div class="form-group" ng-show="ambienteConductor.siniestro.tipoDano.codigo != 'RO'">
+        <label class="col-md-4 control-label" for="inputDefault">Se&ntilde;ale <strong>otras partes</strong> del veh&iacute;culo afectadas por el siniestro:</label>
+        <div class="col-md-8">
+          <textarea id="danos" name="siniestroDanos" ng-model="$parent.ambienteDanos.danos"class="form-control" rows="4" data-plugin-maxlength="" maxlength="500" cantidad-caracteres="#limite_danos" ng-disabled="$parent.ambienteResultado.numsin != undefined"></textarea>
+          <div class="text-right">
+            <span id="limite_danos">0</span> / 500
+          </div>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label class="col-md-4 control-label" for="inputDefault">Describa que sucedi&oacute;:</label>
+        <div class="col-md-8">
+          <textarea id="sucedido" name="siniestroSucedido" ng-model="$parent.ambienteDanos.sucedido" class="form-control" rows="4" data-plugin-maxlength="" maxlength="500" cantidad-caracteres="#limite_sucedido" required ng-disabled="$parent.ambienteResultado.numsin != undefined"></textarea>
+          <div class="text-right">
+            <span id="limite_sucedido">0</span> / 500
+          </div>
+        </div>
+      </div>
+      
+      <div class="form-group" ng-show="mostrarDanosPersonas()">
+        <label class="col-md-4 control-label" for="inputDefault">Describa los da&ntilde;os ocasionados a terceros:</label>
+        <div class="col-md-8">
+          <textarea id="danos" name="siniestroDanosTerceros" ng-model="$parent.ambienteDanos.danosTerceros"class="form-control" rows="4" data-plugin-maxlength="" maxlength="500" cantidad-caracteres="#limiteDanosTerceros" required  ng-disabled="$parent.ambienteResultado.numsin != undefined"></textarea>
+          <div class="text-right">
+            <span id="limiteDanosTerceros">0</span> / 500<br/>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

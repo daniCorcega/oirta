@@ -1,0 +1,40 @@
+<div modal="showModal">
+  <div class="panel-heading">
+    <h4>Confirmar Emisi&oacute;n</h4>
+  </div>
+  <div class="panel-body">
+    <div class="modal-wrapper">
+      <div class="modal-icon modal-block-warning" >
+	<i class="fa fa-warning"></i>
+      </div>
+      <div class="modal-text">
+	<h4>Confirmar emisi&oacute;n</h4>
+	<p>Usted ha terminado el proceso de Emisi&oacute;n. El pr&oacute;ximo paso generar&aacute; la P&oacute;liza. Si esta de acuerdo puede continuar, sino puede cancelar</p>
+        
+        <div>
+          <br/>
+          <div ng-show="oficinas.length > 1">
+            El asesor que realiz&oacute; esta cotizaci&oacute;n tiene asociada m&aacute;s de 2 oficinas. Indique por cual oficina se emitir&aacute; esta p&oacute;liza.
+          </div>
+          <div ng-hide="oficinas.length < 1">
+            El asesor que realiz&oacute; esta cotizaci&oacute;n tiene asociada 1 oficina. La misma se usar&aacute; como oficina de emisi&oacute;n de esta p&oacute;liza
+          </div>
+          <br/>
+          <div class="col-md-4 col-md-offset-4">
+            <select class="form-control" ng-model="oficina" ng-options="oficina.descripcion for oficina in oficinas" ng-disabled="oficinas.lenght == 1">
+            </select>
+          </div>
+        </div>
+	</div>
+      </div>
+    </div>
+    <footer class="panel-footer">
+      <div class="row">
+	<div class="col-md-12 text-right">
+          <button class="btn btn-primary" ng-click="emitir(oficina.codigoofi)">Emitir</button>
+          <button class="btn" ng-click="cancelar()">Cancelar</a>
+	</div>
+      </div>
+    </footer>
+  </section>
+</div>

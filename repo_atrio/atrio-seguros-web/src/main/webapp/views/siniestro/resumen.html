@@ -1,0 +1,239 @@
+
+<h1>Resumen</h1>
+<div class="row">
+  <div class="col-lg-12" >
+    <section class="panel">
+      <header class="panel-heading">
+        <h5 class="panel-title">Datos del Titular</h5>
+      </header>
+      <div class="panel-body">
+        <div class="table-responsive">
+          <table class="table table-striped  mb-none">
+            <tr>
+              <th class="center">P&oacute;liza</th>
+              <th class="center">C&eacute;dula</th>
+              <th class="center" colspan="2">Nombre y Apellido</th>
+            </tr>
+            <tr>
+              <td class="center">{{$parent.ambienteVehiculo.polizaSeleccionada.numpol}}</td>
+              <td class="center">{{$parent.ambienteTitular.titular.tipoId.substring(0,1)}} - {{$parent.ambienteTitular.titular.numId}}</td>
+              <td class="center" colspan="2">{{$parent.ambienteTitular.titular.nombre}} {{$parent.ambienteTitular.titular.apellidos}}</td>
+            </tr>
+            <tr>
+              <th class="center">Certificado</th>
+              <th class="center">Tel&eacute;fono 1</th>
+              <th class="center">Tel&eacute;fono 2</th>
+              <th class="center">Email</th>
+            </tr>
+            <tr>
+              <td class="center">{{$parent.ambienteVehiculo.polizaSeleccionada.numcert}}</td>
+              <td class="center">({{$parent.ambienteTitular.titular.codArea1.codtelefono}}) {{$parent.ambienteTitular.titular.telefono1}}</td>
+              <td class="center">
+                <div ng-hide="$parent.ambienteTitular.titular.codArea2 == undefined && $parent.ambienteTitular.titular.telefono2 == undefined">
+                  ({{$parent.ambienteTitular.titular.codArea2.codtelefono}}) {{$parent.ambienteTitular.titular.telefono2}}
+                </div>
+              </td>
+              <td class="center">{{$parent.ambienteTitular.titular.email}}</td>
+            </tr>
+          </table>
+        </div>
+      </div>
+    </section>
+    <section class="panel">
+      <header class="panel-heading">
+        <h5 class="panel-title">Datos del Automóvil</h5>
+      </header>
+      <div class="panel-body">
+        <div class="table-responsive">
+          <table class="table table-striped  mb-none">
+            <thead>
+              <tr>
+                <th class="center">Año</th>
+                <th class="center">Marca</th>
+                <th class="center">Modelo</th>
+                <th class="center">Versión</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td class="text-center">{{$parent.ambienteVehiculo.vehiculo.anoveh}}</td>
+                <td class="text-center">{{$parent.ambienteVehiculo.vehiculo.marca}}</td>
+                <td class="text-center">{{$parent.ambienteVehiculo.vehiculo.modelo}}</td>
+                <td class="text-center">{{$parent.ambienteVehiculo.vehiculo.version}}</td>                              
+              </tr>
+            </tbody>
+            <thead>
+              <tr>
+                <th class="center" colspan="2">Serial Carroceria</th>
+                <th class="center" colspan="2">Serial Motor</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td class="text-center" colspan="2">{{$parent.ambienteVehiculo.vehiculo.carroceria}}</td>
+                <td class="text-center" colspan="2">{{$parent.ambienteVehiculo.vehiculo.motor}}</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+    <section class="panel">
+      <header class="panel-heading">
+        <h5 class="panel-title">Datos del Conductor</h5>
+      </header>
+      <div class="panel-body">
+        <div class="table-responsive">
+          <table class="table table-striped mb-none">
+            <tr>
+              <th class="center">C&eacute;dula</th>
+              <th class="center">Nombre y Apellido</th>
+              <th class="center">Parentesco</th>
+              <th class="center">Posee Licencia</th>
+              <th class="center">Fecha de Nacimiento</th>
+            </tr>
+            <tr>
+              <td class="center">{{$parent.ambienteConductor.conductor.tipoId.substring(0,1)}} - {{$parent.ambienteConductor.conductor.numId}}</td>
+              <td class="center">{{$parent.ambienteConductor.conductor.nombre}} {{$parent.ambienteConductor.conductor.apellidos}}</td>
+              <td class="center">{{$parent.ambienteConductor.conductor.parentesco.descrip}}</td>
+              <td class="center">{{$parent.ambienteConductor.conductor.licencia | sinoSN }}</td>
+              <td class="center">{{$parent.ambienteConductor.conductor.fechaNacimiento}}</td>
+            </tr>
+          </table>
+        </div>
+      </div>
+    </section>
+
+    <section class="panel">
+      <header class="panel-heading">
+        <h5 class="panel-title">Datos del Siniestro</h5>
+      </header>
+      <div class="panel-body">
+        <div class="table-responsive">
+          <table class="table table-striped mb-none">
+            <tr>
+              <th class="center">Estado</th>
+              <th class="center">Ciudad</th>
+              <th class="center">Municipio</th>
+              <th class="center">Urbanizaci&oacute;n</th>
+            </tr>
+            <tr>
+              <td class="center">{{ambienteConductor.siniestro.estado.descestado}}</td>
+              <td class="center">{{ambienteConductor.siniestro.ciudad.descciudad}}</td>
+              <td class="center">{{ambienteConductor.siniestro.municipio.descmunicipio}}</td>
+              <td class="center">{{ambienteConductor.siniestro.urbanizacion.descurbanizacion}}</td>
+            </tr>
+            <tr>
+              <th class="center" colspan="2">Direcc&oacute;n</th>
+              <th class="center">Fecha</th>
+              <th class="center">Hora</th>
+            </tr>
+            <tr>
+              <td class="center" colspan="2">{{ambienteConductor.siniestro.direccion}}</td>
+              <td class="center">{{ambienteVehiculo.datosBusqueda.fechaSiniestro}}</td>
+              <td class="center">{{ambienteVehiculo.datosBusqueda.horaSiniestro}}</td>
+            </tr>
+          </table>
+        </div>
+      </div>
+    </section>
+
+    <section class="panel">
+      <header class="panel-heading">
+        <h5 class="panel-title">Datos Adicionales del Siniestro</h5>
+      </header>
+      <div class="panel-body">
+        <div class="table-responsive" ng-show="ambienteConductor.siniestro.tipoDano.codigo == 'RO'">
+          <table class="table table-striped mb-none">
+            <tr>
+              <th class="center">Da&ntilde;o</th>
+            </tr>
+            <tr>
+              <td class="center">{{ambienteConductor.siniestro.tipoDano.descrip}}</td>
+            </tr>
+          </table>
+        </div>
+        <div class="table-responsive" ng-show="ambienteConductor.siniestro.tipoDano.codigo != 'RO'">
+          <table class="table table-striped mb-none">
+            <tr>
+              <th class="center">Da&ntilde;o</th>
+              <th class="center">Autoridades en el Siniestro</th>
+              <th class="center">Robo de Accesorios</th>
+              <th class="center">Da&ntilde;os a Terceros</th>
+            </tr>
+            <tr>
+              <td class="center">{{ambienteConductor.siniestro.tipoDano.descrip}}</td>           
+              <td class="center">{{ambienteConductor.siniestro.autoridadesEscena | sinoSN }}</td>
+              <td class="center">{{ambienteConductor.siniestro.roboAccesorios | sinoSN }}</td>
+              <td class="center">{{ambienteConductor.siniestro.danosTerceros | sinoSN }}</td>
+            </tr>
+            <tr>
+              <th class="center">Autom&oacute;vil estaba estacionado</th>
+              <th class="center">Velocidad del Autom&oacute;vil</th>
+              <th class="center">Autom&oacute;vil Detenido</th>
+              <th class="center">Autom&oacute;vil Rueda</th>
+            </tr>
+            <tr>
+              <td class="center">{{ambienteConductor.siniestro.vehiculoEstacionado | sinoSN }}</td>
+              <td class="center"><span ng-show="ambienteConductor.siniestro.velocidad == undefined || ambienteConductor.siniestro.vehiculoEstacionado == 'S'">0</span><span ng-show="ambienteConductor.siniestro.vehiculoEstacionado == 'N'">{{ambienteConductor.siniestro.velocidad}}</span> kms/h</td>
+              <td class="center">{{ambienteConductor.siniestro.vehiculoDetenido | sinoSN }}</td>
+              <td class="center">{{ambienteConductor.siniestro.vehiculoRueda | sinoSN }}</td>
+            </tr>
+          </table>
+        </div>
+      </div>
+    </section>
+    <section class="panel">
+      <header class="panel-heading">
+        <h5 class="panel-title">Detalles del Siniestro</h5>
+      </header>
+      <div class="panel-body">
+        <div class="table-responsive">
+          <table class="table table-striped mb-none">
+            <tr>
+              <th class="center">Descripci&oacute;n</th>
+            </tr>
+            <tr>
+              <td class="center">
+                {{$parent.ambienteDanos.sucedido}}
+              </td>
+            </tr>
+            <tr ng-show="ambienteConductor.siniestro.tipoDano.codigo != 'RO'">
+              <th class="center">Da&ntilde;os Ocasionados a su Veh&iacute;culo</th>
+            </tr>
+            <tr ng-show="ambienteConductor.siniestro.tipoDano.codigo != 'RO'">
+              <td class="center">
+                <div ng-show="$parent.ambienteDanos.piezasLeibles.length > 0">
+                  <strong>Lista Pre-Definida:</strong><br/>
+                  {{$parent.ambienteDanos.piezasLeibles}}            
+                  <br><br>
+                  <strong ng-show="$parent.ambienteDanos.danos.length > 0">Otros:</strong><br/>
+                </div>
+                {{$parent.ambienteDanos.danos}}                
+              </td>
+            </tr>
+            <tr ng-show="ambienteConductor.siniestro.tipoDano.codigo != 'RO' && $parent.ambienteConductor.siniestro.danosTerceros">
+              <th class="center">Da&ntilde;os Ocasionados a Terceros</th>
+            </tr>
+            <tr ng-show="ambienteConductor.siniestro.tipoDano.codigo != 'RO' && $parent.ambienteConductor.siniestro.danosTerceros">
+              <td class="center">
+                {{$parent.ambienteDanos.danosTerceros}}
+              </td>
+            </tr>
+          </table>
+        </div>
+      </div>
+    </section>
+    <section class="panel">
+      <header class="panel-heading">
+        <h5 class="panel-title">Declaraci&oacute;n de Buena Fe</h5>
+      </header>
+      <div class="panel-body text-center">
+        &iquest; Reconoce que ha contestado las preguntas correctamente y de buena fe? 
+        <input  type="radio" name="buenaFe" value="S" ng-model="$parent.ambienteResumen.buenaFe"  ng-disabled="$parent.ambienteResultado.numsin != undefined"> Si
+        <input  type="radio" name="buenaFe" value="N" ng-model="$parent.ambienteResumen.buenaFe"  ng-disabled="$parent.ambienteResultado.numsin != undefined"> No
+      </div>
+    </section>
+  </div>
+</div>

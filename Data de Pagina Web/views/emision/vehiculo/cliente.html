@@ -1,0 +1,151 @@
+<div id="w1-cliente" class="tab-pane">
+  <h4>Datos del Cliente</h4>
+  <div class="form-group">
+    <label class="col-md-3 control-label">C&eacute;dula o RIF</label>
+
+    <div class="col-md-3">
+      <select class="form-control" name="tipoId" ng-model="$parent.ambienteCliente.cliente.tipoId" ng-options="tipoId for tipoId in tiposId"  ng-change="limpiarFormulario()" required>
+        <option value="">-- seleccione --</option>
+      </select>
+    </div>
+    <div class="col-md-5">
+      <input type="text" class="form-control" name="numId" ng-model="$parent.ambienteCliente.cliente.numId" ng-blur="buscarAsegurado()" ng-enter="buscarAsegurado()" solo-numeros required data-plugin-maxlength="" maxlength="9">
+    </div>
+  </div>
+  <div class="form-group">
+    <label class="col-md-3 control-label">Nombre</label>
+
+    <div class="col-md-8">
+      <input type="text" class="form-control" name="nombre" ng-model="$parent.ambienteCliente.cliente.nombre" required ng-disabled="$parent.ambienteCliente.cliente.acsel" data-plugin-maxlength="" maxlength="50">
+    </div>
+  </div>
+  <div class="form-group" ng-hide="$parent.ambienteCliente.cliente.tipoId == 'Jurídico' ||$parent.ambienteCliente.cliente.tipoId == 'Gubernamental'">
+    <label class="col-md-3 control-label">Apellidos</label>
+
+    <div class="col-md-8">
+      <input type="text" class="form-control" name="clienteApellidos" ng-model="$parent.ambienteCliente.cliente.apellidos" required ng-disabled="$parent.ambienteCliente.cliente.acsel" data-plugin-maxlength="" maxlength="60">
+    </div>
+  </div>
+  <div class="form-group" ng-hide="$parent.ambienteCliente.cliente.tipoId == 'Jurídico' || $parent.ambienteCliente.cliente.tipoId == 'Gubernamental'">
+    <label class="col-md-3 control-label">Sexo</label>
+    <div class="col-md-3">
+      <select class="form-control" name="clienteSexo" ng-model="$parent.ambienteCliente.cliente.sexo" required ng-disabled="$parent.ambienteCliente.cliente.acsel" ng-options="sexo for sexo in $parent.sexos">
+        <option value="">-- seleccione --</option>
+      </select>
+    </div>
+    <label class="col-md-2 control-label">Estado Civil</label>
+    <div class="col-md-3">
+      <select class="form-control" ng-model="$parent.ambienteCliente.cliente.edocivil" ng-options="edocivil for edocivil in $parent.edosCivil" required ng-disabled="$parent.ambienteCliente.cliente.acsel">
+        <option value="">-- seleccione --</option>
+      </select>
+    </div>
+  </div> 
+
+  <div class="form-group" ng-hide="$parent.ambienteCliente.cliente.tipoId == 'Jurídico' ||$parent.ambienteCliente.cliente.tipoId == 'Gubernamental'">
+    <label class="col-md-3 control-label">Fecha de Nac.</label>
+
+    <div class="col-md-3">
+      <div class="input-group">
+	<input type="text" name="clienteFecha" data-provide="datepicker" class="form-control" ng-model="$parent.ambienteCliente.cliente.fechaNacimiento" data-date-format="dd/mm/yyyy"
+               data-date-language="es" id="date" placeholder="__/__/____" required ng-disabled="$parent.ambienteCliente.cliente.acsel" data-date-end-date="-18y" data-date-start-date="-150y" data-date-autoclose="true">
+        <span class="input-group-addon btn" ng-click="clicked();" > <i class="fa fa-calendar"></i></span> 
+      </div>
+    </div>
+  </div>
+
+  <div class="form-group" ng-hide="$parent.ambienteCliente.cliente.tipoId == 'Jurídico' ||$parent.ambienteCliente.cliente.tipoId == 'Gubernamental'">
+    <label class="col-md-3 control-label">Actividad Económica / Profesión</label>
+    <div class="col-md-5">
+      <select name="profesion" class="form-control" ng-model="$parent.ambienteCliente.cliente.profesion" ng-options="act.descrip for act in $parent.actividades" required>
+        <option value="">-- seleccione --</option>
+      </select>
+    </div>
+  </div> 
+
+  <div class="form-group">
+    <label class="col-md-3 control-label" for="inputDefault">Estado</label>
+
+    <div class="col-md-8">
+      <select name="estado" class="form-control" ng-model="$parent.ambienteCliente.cliente.estado" ng-options="estado.descestado for estado in $parent.estados" ng-change="cambioEstado()" required>
+        <option value="">-- seleccione --</option>
+      </select>
+    </div>
+  </div>
+  <div class="form-group">
+    <label class="col-md-3 control-label">Ciudad</label>
+    
+    <div class="col-md-8">
+      <select name="ciudad" class="form-control" ng-model="$parent.ambienteCliente.cliente.ciudad" ng-options="ciudad.descciudad for ciudad in $parent.ciudades | filter: {codestado : $parent.ambienteCliente.cliente.estado.codestado}" required ng-disabled="$parent.ambienteCliente.cliente.estado === undefined" ng-change="cambioCiudad()">
+        <option value="">-- seleccione --</option>
+      </select>
+    </div>
+  </div>
+
+  <div class="form-group">
+    <label class="col-md-3 control-label">Municipio</label>
+    
+    <div class="col-md-8">
+      <select name="municipio" class="form-control" ng-model="$parent.ambienteCliente.cliente.municipio" ng-options="municipio.descmunicipio for municipio in $parent.municipios | filter : {codestado : $parent.ambienteCliente.cliente.estado.codestado} | filter : {codciudad : $parent.ambienteCliente.cliente.ciudad.codciudad}" required ng-disabled="$parent.ambienteCliente.cliente.ciudad === undefined || ($parent.municipios | filter : {codestado : $parent.ambienteCliente.cliente.estado.codestado} | filter : {codciudad : $parent.ambienteCliente.cliente.ciudad.codciudad}).length === 0" ng-change="cambioMunicipio()">
+        <option value="">-- seleccione --</option>
+      </select>
+    </div>
+  </div>
+
+  <div class="form-group">
+    <label class="col-md-3 control-label">Urbanizaci&oacute;n</label>
+    
+    <div class="col-md-8">
+      <select name="urbanizacion" class="form-control" ng-model="$parent.ambienteCliente.cliente.urbanizacion" ng-options="urbanizacion.descurbanizacion for urbanizacion in urbanizaciones | filter : {codestado: $parent.ambienteCliente.cliente.estado.codestado} | filter : {codciudad : $parent.ambienteCliente.cliente.ciudad.codciudad} | filter : {codmunicipio : $parent.ambienteCliente.cliente.municipio.codmunicipio}"  required ng-disabled="$parent.ambienteCliente.cliente.municipio === undefined || (urbanizaciones | filter : {codestado: $parent.ambienteCliente.cliente.estado.codestado} | filter : {codciudad : $parent.ambienteCliente.cliente.ciudad.codciudad} | filter : {codmunicipio : $parent.ambienteCliente.cliente.municipio.codmunicipio}).length === 0" >
+        <option value="">-- seleccione --</option>
+      </select>
+    </div>
+  </div>
+
+  <div class="form-group">
+    <label class="col-md-3 control-label">Direcci&oacute;n</label>
+    
+    <div class="col-md-8">
+      <input text="text" class="form-control" ng-model="$parent.ambienteCliente.cliente.direccion" name="clienteDireccion" required>
+    </div>
+  </div>
+
+  <div class="form-group">
+    <label class="col-md-3 control-label">Tel&eacute;fono 1</label>
+
+    <div class="col-md-2">
+      <select class="form-control" ng-model="$parent.ambienteCliente.cliente.codArea1" ng-options="codArea.codtelefono for codArea in $parent.codAreas | codAreas:$parent.ambienteCliente.cliente.estado.codestado" name="codArea1" required ng-disabled="$parent.ambienteCliente.cliente.estado === undefined">
+        <option value=""> c&oacute;digo </option>
+      </select>
+    </div>
+    <div class="col-md-6">
+      <input type="text" name="telefono1" class="form-control phone" ng-model="$parent.ambienteCliente.cliente.telefono1" placeholder="___-____" required>
+    </div>
+  </div>
+  <div class="form-group">
+    <label class="col-md-3 control-label">Tel&eacute;fono 2</label>
+
+    <div class="col-md-2">
+      <select class="form-control" ng-model="$parent.ambienteCliente.cliente.codArea2" ng-options="codArea.codtelefono for codArea in $parent.codAreas | codAreas:$parent.ambienteCliente.cliente.estado.codestado" name="codArea1" required ng-disabled="$parent.ambienteCliente.cliente.estado === undefined">
+        <option value=""> c&oacute;digo </option>
+      </select>
+    </div>
+    <div class="col-md-6">
+      <input type="text" class="form-control phone" name="telefono2" ng-model="$parent.ambienteCliente.cliente.telefono2" placeholder="___-____" required>
+    </div>
+  </div>
+
+  <div class="form-group">
+    <label class="col-md-3 control-label">Correo Electr&oacute;nico</label>
+
+    <div class="col-md-8">
+      <input type="email" class="form-control" name="email" ng-model="$parent.ambienteCliente.cliente.email" required data-plugin-maxlength="" maxlength="80">
+    </div>
+  </div>
+
+  <div class="form-group" ng-hide="$parent.ambienteCliente.cliente.tipoId == 'Jurídico' ||$parent.ambienteCliente.cliente.tipoId == 'Gubernamental'">
+    <label class="col-md-3 control-label">Beneficiario Preferencial</label>
+    <div class="col-md-5">
+      <input type="text" name="beneficiario" class="form-control" ng-model="$parent.ambienteCliente.cliente.beneficiario" required data-plugin-maxlength="" maxlength="140">
+    </div>
+  </div> 
+</div>

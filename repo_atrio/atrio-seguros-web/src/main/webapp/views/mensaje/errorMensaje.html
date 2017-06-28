@@ -1,0 +1,30 @@
+<div modal="showModal">
+  <div class="panel-heading">
+    <!--h4>Error</h4-->
+      <h4>Informaci&oacute;n</h4>
+  </div>
+
+  <div class="panel-body">
+    <div class="modal-wrapper">
+      <!--div class="modal-icon modal-block-danger"-->
+      	<div class="modal-icon modal-block-info" >
+	<i class="fa fa-times-circle"></i>
+      </div>
+      <div class="modal-text">
+	<!--h4>Error <span ng-if="title">({{title}})</span></h4-->
+    <h4>Informaci&oacute;n <span ng-if="title">({{title}})</span></h4>
+	<p>{{ mensaje }}</p>
+	<p ng-if="mensaje2">{{mensaje2}}</p>
+      </div>
+    </div>
+  </div>
+
+  <footer class="panel-footer">
+    <div class="row">
+      <div class="col-md-12 text-right">
+         <button class="btn btn-info" ng-click="cerrar()">Ok</button>
+        <!--button class="btn btn-danger" ng-click="cerrar()">Cerrar</button-->
+      </div>
+    </div>
+  </footer>
+</div>

@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jboss-web>
+  <security-domain>atrio-seguros-realm</security-domain>
+  <resource-ref>
+    <res-ref-name>jdbc/AtrioSegurosDS</res-ref-name>
+    <jndi-name>java:jboss/datasources/AtrioSegurosDS</jndi-name>
+  </resource-ref>
+  <resource-ref>
+    <res-ref-name>java/mail/AtrioMail</res-ref-name>
+    <jndi-name>java:jboss/mail/AtrioMail</jndi-name>
+  </resource-ref>
+</jboss-web>

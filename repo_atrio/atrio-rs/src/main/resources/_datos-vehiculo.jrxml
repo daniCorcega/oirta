@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="_datos-vehiculo" pageWidth="528" pageHeight="792" whenNoDataType="AllSectionsNoDetail" columnWidth="528" leftMargin="0" rightMargin="0" topMargin="0" bottomMargin="0" uuid="1eb8d608-521e-4154-8d4c-c3c5cc9d8e30">
+	<property name="ireport.zoom" value="2.0"/>
+	<property name="ireport.x" value="394"/>
+	<property name="ireport.y" value="0"/>
+	<style name="Normal" isDefault="true" vAlign="Middle" fontName="SansSerif" fontSize="8">
+		<box leftPadding="5" rightPadding="5"/>
+	</style>
+	<style name="Título" style="Normal" hAlign="Center" vAlign="Middle" fontName="SansSerif" fontSize="12" isBold="true" isItalic="false" isUnderline="false" isStrikeThrough="false"/>
+	<style name="Titulo Campo" style="Normal" isBold="true" pdfFontName="Helvetica-Bold">
+		<box leftPadding="5" rightPadding="5"/>
+	</style>
+	<style name="Titulo Sección" style="Normal" mode="Opaque" backcolor="#CCCCCC" hAlign="Center" isBold="true" pdfFontName="Helvetica-Bold">
+		<box>
+			<pen lineWidth="0.25"/>
+			<topPen lineWidth="1.0" lineColor="#000000"/>
+			<leftPen lineWidth="1.0" lineColor="#000000"/>
+			<bottomPen lineWidth="1.0" lineColor="#000000"/>
+			<rightPen lineWidth="1.0" lineColor="#000000"/>
+		</box>
+	</style>
+	<parameter name="NROSOLICITUD" class="java.lang.Integer"/>
+	<queryString>
+		<![CDATA[SELECT P.Anoveh,
+       acsel.pr_web_auto.busca_marca(p.codmarca) codmarca,
+       acsel.pr_web_auto.busca_modelo(p.codmarca, p.codmodelo) codmodelo,
+       acsel.pr_web_auto.busca_version(p.codmarca,
+                                       p.codmodelo,
+                                       p.codversion) codversion,
+       p.indcerokm
+  FROM ct_vehiculo P
+ WHERE p.nrosolic = $P{NROSOLICITUD}]]>
+	</queryString>
+	<field name="ANOVEH" class="java.math.BigDecimal"/>
+	<field name="CODMARCA" class="java.lang.String"/>
+	<field name="CODMODELO" class="java.lang.String"/>
+	<field name="CODVERSION" class="java.lang.String"/>
+	<field name="INDCEROKM" class="java.lang.String"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<detail>
+		<band height="45" splitType="Stretch">
+			<rectangle>
+				<reportElement mode="Transparent" x="0" y="0" width="528" height="44" uuid="58a4faca-7ed2-4ced-a2a3-c89912007c45"/>
+			</rectangle>
+			<staticText>
+				<reportElement style="Titulo Sección" x="0" y="0" width="528" height="20" uuid="e12fe47a-3d6c-470d-963e-2659e15fc856"/>
+				<text><![CDATA[DATOS DEL VEHICULO]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="Titulo Campo" x="0" y="20" width="50" height="12" uuid="f6d3bf6e-1760-4ea2-9ae6-7785bc027a9b"/>
+				<textElement>
+					<font size="7"/>
+				</textElement>
+				<text><![CDATA[Marca:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="Titulo Campo" x="254" y="32" width="50" height="12" uuid="11ff1f27-3ff2-42ea-b940-dbbcb1cab5ab"/>
+				<textElement>
+					<font size="7"/>
+				</textElement>
+				<text><![CDATA[Año:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="Titulo Campo" x="0" y="32" width="50" height="12" uuid="759f4e22-7a05-4c3a-b242-9b862aff013d"/>
+				<textElement>
+					<font size="7"/>
+				</textElement>
+				<text><![CDATA[Versión:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="Titulo Campo" x="254" y="20" width="50" height="12" uuid="799a2ff5-8fd8-4a0d-805c-20e35f97de8d"/>
+				<textElement>
+					<font size="7"/>
+				</textElement>
+				<text><![CDATA[Modelo:]]></text>
+			</staticText>
+			<textField>
+				<reportElement style="Normal" x="50" y="20" width="204" height="12" uuid="02b6ad11-db60-4457-b0cb-3f34b69b16c9"/>
+				<textElement>
+					<font size="7"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{CODMARCA}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement style="Normal" x="304" y="32" width="131" height="12" uuid="f041fe6f-87b7-4f2b-a187-246a6b3b5ebc"/>
+				<textElement>
+					<font size="7"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{ANOVEH}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement style="Normal" x="304" y="20" width="131" height="12" uuid="613d08c5-4f09-4c90-bb76-5518b41026ff"/>
+				<textElement>
+					<font size="7"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{CODMODELO}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement style="Normal" x="50" y="32" width="204" height="12" uuid="81270b27-cfb5-4c7d-a7c4-8dd83ca1bdad"/>
+				<textElement>
+					<font size="7"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{CODVERSION}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement style="Titulo Campo" x="435" y="32" width="53" height="12" uuid="280a4e53-56f7-43c4-af3f-d41270816ce2"/>
+				<textElement>
+					<font size="7"/>
+				</textElement>
+				<text><![CDATA[Cero Km:]]></text>
+			</staticText>
+			<textField>
+				<reportElement style="Normal" x="488" y="32" width="40" height="12" uuid="9e3929b4-4051-4735-8a9a-42af8788cecc"/>
+				<textElement>
+					<font size="7"/>
+				</textElement>
+				<textFieldExpression><![CDATA[( $F{INDCEROKM}.equals( "S" ) ? "Sí" : "No" )]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+</jasperReport>

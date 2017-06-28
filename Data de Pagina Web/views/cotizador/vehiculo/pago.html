@@ -1,0 +1,49 @@
+<div id="w1-pago" class="tab-pane">
+  <div class="row" ng-repeat="pago in $parent.ambientePago.pagos | filter: {tipoplan: 'C'}">
+    <div class="col-lg-6">
+      <div class="radio-custom radio-primary">
+	<input type="radio" id="nombrePlan" name="nombrePlan" ng-checked="$parent.ambientePago.pagoSeleccionado.nomplan == pago.nomplan" ng-click="seleccionarPago(pago)"> <label for="nombrePlan" >{{pago.nomplan}}</label>
+      </div>
+    </div>
+    <div class="col-lg-6">
+      <p class="text-center">Monto de Prima Seleccionada</p>
+      <p class="text-primary text-center">{{ ambientePlan.planSeleccionado.primatotal | currency:"" | monedaVenezolana }}</p>
+    </div>
+  </div>
+  <div class="row" ng-repeat="pago in $parent.ambientePago.pagos | filter: {tipoplan: 'F'}">
+    <div class="col-lg-4">
+      <div class="radio-custom radio-primary">
+	<input type="radio" id="nombrePlan{{pago.ideplan}}" name="nombrePlan" ng-checked="$parent.ambientePago.pagoSeleccionado.nomplan == pago.nomplan" ng-click="seleccionarPago(pago)"> <label for="nombrePlan{{pago.ideplan}}">{{pago.nomplan}}</label>
+      </div>
+    </div>
+    <div class="col-lg-2">
+      <p class="text-center">Inicial</p>
+      <p class="text-primary text-center">{{ pago.inicial_prima | currency:"" | monedaVenezolana }} </p>
+    </div>
+    <div class="col-lg-2">
+      <p class="text-center">% inicial</p>
+      <input type="text" class="form-control" id="inicial" ng-model="pago.porcinicial" ng-change="recalcularPago(pago);" ng-disabled="$parent.ambientePago.pagoSeleccionado.nomplan != pago.nomplan">
+    </div>
+    <div class="col-lg-2">
+      <p class="text-center">No. Giros</p>
+      <select class="form-control" name="numGiros" ng-model="pago.cantgiros" ng-change="recalcularPago(pago);" ng-disabled="$parent.ambientePago.pagoSeleccionado.nomplan != pago.nomplan">
+
+	<option value="1">1</option>
+	<option value="2">2</option>
+	<option value="3">3</option>
+	<option value="4">4</option>
+	<option value="5">5</option>
+	<option value="6">6</option>
+	<option value="7">7</option>
+	<option value="8" selected="selected">8</option>
+      </select>
+      
+    </div>
+    <div class="col-lg-2">
+      <p class="text-center">Monto por giro</p>
+      <p class="text-primary text-center">{{ pago.mtogiro | currency:"" | monedaVenezolana}}</p>
+    </div>
+  </div>
+</div>
+
+

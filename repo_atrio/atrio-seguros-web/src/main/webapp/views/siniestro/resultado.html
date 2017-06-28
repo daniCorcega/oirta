@@ -1,0 +1,71 @@
+<div id="w1-resultado" class="tab-pane">
+  <p>Su proceso de Declaraci&oacute;n de Siniestro ha finalizado correctamente, a continuaci&oacute;n se muestran los documentos y requisitos relacionados al respecto</p>
+  <h3 class="text-center">Siniestro N&uacute;mero: <strong>{{$parent.ambienteResultado.numsin}}</strong></h3>
+  <div class="text-center">
+    <a target="_blank" href="{{ambienteResultado.url}}" class="btn btn-primary" ng-class="{true: 'disabled'}[ambienteResultado.url === undefined || ambienteResultado.url == 'NO']"><i class="fa fa-file-pdf-o"></i> Descargar Declaraci&oacute;n de Siniestro</a>
+  </div>
+  <h3>Requisitos</h3>
+  <p>Al ocurrir cualquier siniestro cubierto por esta P&oacute;liza, el Tomador, el Asegurado o el Beneficiario deber&aacute;:
+</p>
+  <ol>
+    <li>Tomar las providencias necesarias y oportunas para evitar que sobrevengan pérdidas ulteriores; salvo que demuestre que no fue posible debido a una causa extra&ntilde;a no imputable a él que lo exonere de responsabilidad.</li>
+    <li>Dentro de los cinco (5) d&iacute;as h&aacute;biles siguientes a la fecha de aviso del siniestro, someter el Veh&iacute;culo Asegurado a la Inspecci&oacute;n de los da&ntilde;os correspondientes al siniestro reclamado.</li>
+    <li>Suministrar a la Empresa de Seguros, dentro de los diez (10) d&iacute;as h&aacute;biles siguientes a la fecha de aviso del siniestro, un informe escrito relativo a todas las circunstancias del mismo, consignando como m&iacute;nimo:
+      <ol type="a">
+        <li>Copia del Cuadro P&oacute;liza-Recibo vigente para el momento del siniestro</li>
+        <li>Copia de la Cédula de Identidad del Asegurado y del Conductor de ser el caso</li>
+        <li>Copia del Carnet de Circulaci&oacute;n, licencia del Conductor y certificado médico del conductor</li>
+        <li>Autorizaci&oacute;n para conducir el veh&iacute;culo en caso de que sea una persona distinta al Asegurado o al conductor habitual declarado en la solicitud de seguro.</li>
+      </ol>
+    </li>
+    <li>Proporcionar a la Empresa de Seguros dentro de los quince (15) d&iacute;as h&aacute;biles siguientes a la fecha de aviso del siniestro, los comprobantes y las actuaciones de tr&aacute;nsito o de cualquier autoridad que hubiere intervenido en el accidente (Bomberos, C.I.C.P.C., Tr&aacute;nsito Terrestre, Polic&iacute;a de Circulaci&oacute;n Municipal).</li>
+    <li>Presentar la denuncia respectiva inmediatamente ante las autoridades competentes, en caso de Robo/hurto (Sustracci&oacute;n Ileg&iacute;tima)  de Accesorios o del Veh&iacute;culo Asegurado.</li>
+  </ol>
+  
+  <br>
+  <strong>Adem&aacute;s debe consignar los siguientes documentos:</strong>
+  <ul>
+    <li ng-show="$parent.ambienteConductor.siniestro.autoridadesEscena == 'S'"> Copias certificadas de las actuaciones de tr&aacute;nsito con su respectiva esperticia.</li>
+    <li ng-show="$parent.ambienteConductor.siniestro.autroidadesEscena == 'N'"> Una Declaraci&oacute;n Jurada en tr&aacute;nsito y elaborar la experticia</li>
+    <li ng-show="$parent.ambienteConductor.conductor.esTitular == 'N'">Copia de la C&eacute;dula de Identidad del propietario</li>
+    <li>Copia de la C&eacute;dula de Identidad del conductor.</li>
+    <li>Copia de la Licencia de Conductor del conductor.</li>
+    <li>Copia del certificado m&eacute;dico del conductor.</li>
+    <li>Original y Copia del certificado de origen o t&iacute;tulo de propiedad del documento de compra venta.</li>
+    <li>Copia de la P&oacute;liza de responsabilidad b&aacute;sica, en caso de poseer p&oacute;lizas a todo riesgo; debe emitir una carta de renuncia a su compa&ntilde;a de seguros y traerla sellada y firmada por su compa&ntilde;&iacute;a de seguros.</li>
+  </ul>
+  <div ng-show="ambienteConductor.siniestro.danosTerceros == 'S'">
+     <br><strong>Por Reclamos para Responsabilidad Civil de Veh&iacute;culos: R.C.V.:</strong>
+    <ul>
+      <li>C&eacute;dula de Identidad (Fotocopia)</li>
+      <li>Carnet de Circulaci&oacute;n (Fotocopia)</li>
+      <li>Licencia de Conducir (Fotocopia)</li>
+      <li>Certificado M&eacute;dico (Fotocopia)</li>
+      <li>Cuadro de P&oacute;liza R.C.V.</li>
+      <li>T&iacute;tulo de Propiedad del Veh&iacute;culo y Copia Certificada de Actuaciones de Tr&aacute;nsito y/o Declaraci&oacute;n Jurada.</li>
+    </ul>
+  </div>
+  <div ng-show="ambienteConductor.siniestro.danosCorporales == 'S'">
+    <br><strong>Por Da&ntilde;os a personas:</strong>
+    <ul>
+      <li>Constancia de tribunal que conoce la causa.</li>
+      <li>Facturas de gastos m&eacute;dicos y/o farmac&eacute;ticos. Copias y Originales.</li>
+      <li>Informe m&eacute;dico forense y/o certificado m&eacute;dico.</li>
+    </ul>
+    <strong>En caso de muerte: Adicionalmente deber&aacute; presentar</strong>
+    <ul>
+      <li>Acta de defunci&oacute;n.</li>
+      <li>Partida de nacimiento.</li>
+      <li>Permiso del  tribunal de menores (en caso de ser menor de edad)</li>
+      <li>Acta de Nacimiento.</li>
+      <li>Declaraci&oacute;n de &uacute;nicos y universales herederos.</li>
+    </ul>
+  </div>
+  <br/>
+  <div ng-show="ambienteConductor.siniestro.tipoDano == 'Mayor'">
+    <strong>DA&NTILDE;O MAYOR:</strong> Cuando el importe de la reparaci&oacute;n de los da&ntilde;os sea igual o mayor al setenta y cinco por ciento (75%) del Valor de Mercado o de la Suma Asegurada, la que sea menor al momento del siniestro, o cuando se produzca la desaparici&oacute;n del Veh&iacute;culo Asegurado a consecuencia de Sustracci&oacute;n Ileg&iacute;tima.
+  </div>
+  <div ng-show="ambienteConductor.siniestro.tipoDano == 'Menor'">
+    <strong>DA&Ntilde;O MENOR:</strong> Da&ntilde;o material causado al Veh&iacute;culo Asegurado por la ocurrencia de un siniestro cubierto por esta P&oacute;liza, cuya valoraci&oacute;n econ&oacute;mica es menor al setenta y cinco por ciento (75%) del Valor de Mercado o de la Suma Asegurada, la que sea menor al momento del siniestro.
+  </div>
+</div>

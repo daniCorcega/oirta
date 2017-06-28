@@ -1,0 +1,86 @@
+<div id="w1-vehiculo" class="tab-pane active">
+    <section class="panel">
+        <header class="panel-heading">
+            <h2 class="panel-title">Datos principales del Titular, Contacto y Vehículo</h2>
+        </header>
+        <div class="panel-body">
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label class="col-md-2 col-md-offset-2">Nombre: </label>
+                        <label class="col-md-2 col-md-offset-2">{{ambienteVehiculo.detallePoliza.cnombre}} </label>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-md-2 col-md-offset-2">Apellido: </label>
+                        <label class="col-md-3 col-md-offset-2">{{ambienteVehiculo.detallePoliza.capellido}} </label>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-md-2 col-md-offset-2">Cédula: </label>
+                        <label class="col-md-2 col-md-offset-2">{{ambienteVehiculo.detallePoliza.ccedula}} </label>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-md-2 col-md-offset-2">Póliza: </label>
+                        <label class="col-md-2 col-md-offset-2">{{ambienteVehiculo.detallePoliza.cpoliza}} </label>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-md-2 col-md-offset-2">Certificado: </label>
+                        <label class="col-md-2 col-md-offset-2">{{ambienteVehiculo.detallePoliza.cnumcert}} </label>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-md-2 col-md-offset-2 control-label">Teléfono: </label>
+                        <div class="col-md-6">
+                            <input type="text" name="telefono" class="form-control phone" placeholder="____-_______" value="{{ambienteVehiculo.detallePoliza.ctelefono1 | tel }}"/>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-md-2 col-md-offset-2 control-label">Celular: </label>
+                        <div class="col-md-6">
+                            <input type="text" class="form-control phone" name="celular" placeholder="____-_______" value="{{ambienteVehiculo.detallePoliza.ctelefono2 | tel }}"/>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-md-2 col-md-offset-2 control-label">Email: </label>
+                        <div class="col-md-6">
+                            <input type="text" class="form-control" name="email" ng-model="ambienteVehiculo.detallePoliza.cemail"/>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <section class="panel">
+                        <div class="panel-body resumen">
+                            <div class="col-md-12">
+                                <p><h4>Datos del Vehículo</h4></p>
+                            </div>
+                            <div class="col-md-12 spacer">
+                                <div class="form-group">
+                                    <label class="col-md-3 col-md-offset-1 text-right"><strong>Marca:</strong></label>
+                                    <label class="col-md-2">{{ambienteVehiculo.detallePoliza.cmarca}} </label>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-md-3 col-md-offset-1 text-right"><strong>Modelo:</strong></label>
+                                    <label class="col-md-2">{{ambienteVehiculo.detallePoliza.cmodelo}} </label>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-md-3 col-md-offset-1 text-right"><strong>Versión:</strong></label>
+                                    <label class="col-md-2">{{ambienteVehiculo.detallePoliza.cmarca}} </label>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-md-3 col-md-offset-1 text-right"><strong>Año:</strong></label>
+                                    <label class="col-md-2">{{ambienteVehiculo.detallePoliza.canio}} </label>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-md-3 col-md-offset-1 text-right"><strong>Serial de Carrocería:</strong></label>
+                                    <label class="col-md-2">{{ambienteVehiculo.detallePoliza.cserialcarroceria}} </label>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-md-3 col-md-offset-1 text-right"><strong>Serial de Motor:</strong></label>
+                                    <label class="col-md-2">{{ambienteVehiculo.detallePoliza.cserialmotor}} </label>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+                </div>
+            </div>
+        </div>
+    </section>
+</div>

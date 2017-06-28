@@ -1,0 +1,230 @@
+<section class="panel">
+  <header class="panel-heading">
+    <h2 class="panel-title">Datos del Conductor y Siniestro</h2>
+  </header>
+  <div>
+    <h4>Datos del Conductor</h4>
+    <div class="form-group">
+      <label class="col-md-8 control-label">¿El conductor del veh&iacute;culo al momento del siniestro es el titular de la p&oacute;liza?</label>
+      
+      <div class="col-md-3">
+        <input type="radio" name="esTitular" value="S" ng-model="$parent.ambienteConductor.conductor.esTitular" ng-click="esTitular()" ng-disabled="$parent.ambienteResultado.numsin != undefined"> Si
+        <input type="radio" name="esTitular" value="N" ng-model="$parent.ambienteConductor.conductor.esTitular" ng-click="limpiar()" ng-disabled="$parent.ambienteResultado.numsin != undefined"> No
+      </div>
+    </div>
+    <div class="col-md-12">
+      <section class="panel">
+        <div class="panel-body resumen">
+          <!-- Columna 1 -->
+          <div class="col-md-6">
+            <div class="form-group">
+              <label class="col-md-3 control-label">C&eacute;dula o RIF</label>
+
+              <div class="col-md-4">
+                <select class="form-control" name="conductorTipoId" ng-model="$parent.ambienteConductor.conductor.tipoId" ng-options="tipoId for tipoId in $parent.tiposId" ng-change="limpiar()" ng-disabled="$parent.ambienteConductor.conductor.esTitular == 'S' || $parent.ambienteResultado.numsin != undefined" required>
+                  <option>-- seleccione --</option>
+                </select>
+              </div>
+              <div class="col-md-5">
+                <input type="text" class="form-control" name="conductorNumId" ng-model="$parent.ambienteConductor.conductor.numId" ng-blur="verificarCedula()" ng-enter="verificarCedula()" solo-numeros required ng-disabled="$parent.ambienteConductor.conductor.esTitular == 'S' || $parent.ambienteResultado.numsin != undefined" data-plugin-maxlength="" maxlength="9">
+              </div>
+            </div>
+            <div class="form-group">
+              <label class="col-md-3 control-label">Nombre</label>
+
+              <div class="col-md-9">
+                <input type="text" class="form-control" name="conductorNombre" ng-model="$parent.ambienteConductor.conductor.nombre" required ng-disabled="$parent.ambienteConductor.conductor.esTitular == 'S' || $parent.ambienteConductor.conductor.acsel == true || $parent.ambienteResultado.numsin != undefined" data-plugin-maxlength="" maxlength="50">
+              </div>
+            </div>
+            <div class="form-group" ng-disabled="$parent.ambienteConductor.conductor.esTitular == 'S'">
+              <label class="col-md-3 control-label">Apellidos</label>
+
+              <div class="col-md-9">
+                <input type="text" class="form-control" name="conductorApellidos" ng-model="$parent.ambienteConductor.conductor.apellidos" required ng-disabled="$parent.ambienteConductor.conductor.esTitular == 'S' || $parent.ambienteConductor.conductor.acsel == true || $parent.ambienteResultado.numsin != undefined" data-plugin-maxlength="" maxlength="60">
+              </div>
+            </div>
+<div class="form-group">
+              <label class="col-md-3 control-label">Estado Civil</label>
+              <div class="col-md-9">
+                <select class="form-control" ng-model="$parent.ambienteConductor.conductor.edocivil" ng-options="edocivil for edocivil in $parent.edosCivil" required ng-disabled="$parent.ambienteConductor.conductor.acsel || $parent.ambienteConductor.conductor.esTitular == 'S' || $parent.ambienteResultado.numsin != undefined">
+                  <option value="">-- seleccione --</option>
+                </select>
+              </div>
+            </div>
+          </div>
+          <!-- Columna 2 -->
+          <div class="col-md-6">
+            <div class="form-group">
+              <label class="col-md-6 control-label">Fecha de Nacimiento</label>
+              <div class="col-md-6">
+                <div class="input-group input-append bootstrap-timepicker">
+	          <input type="text" name="conductorFechaNacimiento" data-provide="datepicker" class="form-control date" ng-model="$parent.ambienteConductor.conductor.fechaNacimiento" data-date-format="dd/mm/yyyy"
+                         data-date-language="es" id="date" placeholder="__/__/____" required ng-disabled="$parent.ambienteConductor.conductor.esTitular == 'S' || $parent.ambienteConductor.conductor.acsel == true || $parent.ambienteResultado.numsin != undefined" data-date-end-date="-18y" data-date-start-date="-150y" data-date-autoclose="true">
+                  <span class="input-group-addon btn" ng-click="clicked();" > <i class="fa fa-calendar"></i></span> 
+                </div>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label class="col-md-6 control-label">Sexo</label>
+              <div class="col-md-6">
+                <select class="form-control" name="conductorSexo" ng-model="$parent.ambienteConductor.conductor.sexo" required ng-disabled="$parent.ambienteConductor.conductor.acsel || $parent.ambienteConductor.conductor.esTitular == 'S' || $parent.ambienteResultado.numsin != undefined"  ng-options="sexo for sexo in $parent.sexos">
+                  <option value="">-- seleccione --</option>
+                </select>
+              </div>
+            </div>
+            <div class="form-group">
+              <label class="col-md-6 control-label">Parentesco</label>
+              <div class="col-md-6">
+                <select class="form-control" name="conductorParentesco" ng-model="$parent.ambienteConductor.conductor.parentesco" required ng-disabled="$parent.ambienteConductor.conductor.esTitular == 'S' || $parent.ambienteResultado.numsin != undefined"  ng-options="parentesco.descrip for parentesco in ambienteConductor.parentescos | parentescosSexo:ambienteConductor.conductor.sexo:ambienteConductor.conductor.esTitular" ng-change="verificarParentesco()">
+                  <option value="">-- seleccione --</option>
+                </select>
+              </div>
+            </div>            
+            <div class="form-group">          
+              <label class="col-md-6 control-label">¿El conductor tiene licencia?</label>
+              <div class="col-md-6">
+                <input type="radio" name="conductorLicencia" value="S" ng-model="$parent.ambienteConductor.conductor.licencia" ng-disabled="ambienteConductor.conductor.esTitular == 'S' || $parent.ambienteResultado.numsin != undefined"> Si
+                <input  type="radio" name="conductorLicencia" value="N" ng-model="$parent.ambienteConductor.conductor.licencia" ng-disabled="ambienteConductor.conductor.esTitular == 'S' || $parent.ambienteResultado.numsin != undefined"> No
+              </div>
+            </div>
+            
+          </div>
+        </div>
+      </section>
+    </div>
+
+
+    <div class="col-md-12">
+      <h4>Datos del Siniestro</h4>
+      <section class="panel">
+        <div class="panel-body">
+          <!-- Columna 1 -->          
+          <div class="col-md-6">
+            <div class="form-group">          
+              <label class="col-md-4 control-label">Tipo de da&ntilde;o:</label>
+              <div class="col-md-7">
+                <select class="form-control" ng-model="$parent.ambienteConductor.siniestro.tipoDano" ng-options="tipo.descrip for tipo in $parent.ambienteConductor.tiposDanos" ng-disabled="$parent.ambienteResultado.numsin != undefined" ng-change="cambioTipoDano()" required> 
+                  <option value="">-- seleccione --</option>
+                </select>
+              </div>
+            </div>
+            
+            <div class="form-group">
+              <label class="col-md-3 control-label" for="inputDefault">Estado</label>
+              
+              <div class="col-md-8">
+                <select name="siniestroEstado" class="form-control" ng-model="$parent.ambienteConductor.siniestro.estado" ng-options="estado.descestado for estado in $parent.estados" ng-change="cambioEstado()" ng-disabled="$parent.ambienteResultado.numsin != undefined" required>
+                  <option value="">-- seleccione --</option>
+                </select>
+              </div>
+            </div>
+            <div class="form-group">
+              <label class="col-md-3 control-label">Ciudad</label>
+              
+              <div class="col-md-8">
+                <select name="siniestroCiudades" class="form-control" ng-model="$parent.ambienteConductor.siniestro.ciudad" ng-options="ciudad.descciudad for ciudad in $parent.ciudades | filter: {codestado : $parent.ambienteConductor.siniestro.estado.codestado}" required ng-disabled="$parent.ambienteConductor.siniestro.estado === undefined || ($parent.ciudades | filter: {codestado : $parent.ambienteConductor.siniestro.estado.codestado}).length === 0 || $parent.ambienteResultado.numsin != undefined" ng-change="cambioCiudad()">
+                  <option value="">-- seleccione --</option>
+                </select>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label class="col-md-3 control-label">Municipio</label>
+              
+              <div class="col-md-8">
+                <select name="siniestroMunicipio" class="form-control" ng-model="$parent.ambienteConductor.siniestro.municipio" ng-options="municipio.descmunicipio for municipio in $parent.municipios | filter : {codestado : $parent.ambienteConductor.siniestro.estado.codestado} | filter : {codciudad : $parent.ambienteConductor.siniestro.ciudad.codciudad}" required ng-disabled="$parent.ambienteConductor.siniestro.ciudad === undefined || ($parent.municipios | filter : {codestado : $parent.ambienteConductor.siniestro.estado.codestado} | filter : {codciudad : $parent.ambienteConductor.siniestro.ciudad.codciudad}).length === 0 || $parent.ambienteResultado.numsin != undefined" ng-change="cambioMunicipio()">
+                  <option value="">-- seleccione --</option>
+                </select>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label class="col-md-3 control-label">Urbanizaci&oacute;n</label>
+              
+              <div class="col-md-8">
+                <select name="urbanizacion" class="form-control" ng-model="$parent.ambienteConductor.siniestro.urbanizacion" ng-options="urbanizacion.descurbanizacion for urbanizacion in $parent.urbanizaciones | filter : {codestado: $parent.ambienteConductor.siniestro.estado.codestado} | filter : {codciudad : $parent.ambienteConductor.siniestro.ciudad.codciudad} | filter : {codmunicipio : $parent.ambienteConductor.siniestro.municipio.codmunicipio}"  required ng-disabled="$parent.ambienteConductor.siniestro.municipio === undefined || (urbanizaciones | filter : {codestado: $parent.ambienteConductor.siniestro.estado.codestado} | filter : {codciudad : $parent.ambienteConductor.siniestro.ciudad.codciudad} | filter : {codmunicipio : $parent.ambienteConductor.siniestro.municipio.codmunicipio}).length === 0 || $parent.ambienteResultado.numsin != undefined" >
+
+                  <option value="">-- seleccione --</option>
+                </select>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label class="col-md-3 control-label">Direcci&oacute;n</label>
+              
+              <div class="col-md-8">
+                <input name="siniestroDireccion" text="text" class="form-control" ng-model="$parent.ambienteConductor.siniestro.direccion" required ng-disabled="$parent.ambienteResultado.numsin != undefined">
+              </div>
+            </div>
+          </div>
+          
+          <!-- Columna 2 -->
+          <div class="col-md-6" ng-show="ambienteConductor.siniestro.tipoDano.codigo != 'RO'">
+            <div class="form-group">          
+              <label class="col-md-8 control-label">¿Las autoridades acudieron al siniestro?</label>
+              <div class="col-md-3">
+                <input  type="radio" name="autoridadesEscena" value="S" ng-model="$parent.ambienteConductor.siniestro.autoridadesEscena" ng-disabled="$parent.ambienteResultado.numsin != undefined"> Si
+                <input  type="radio" name="autoridadesEscena" value="N" ng-model="$parent.ambienteConductor.siniestro.autoridadesEscena" ng-disabled="$parent.ambienteResultado.numsin != undefined"> No
+              </div>
+            </div>
+
+            <div class="form-group">     
+              <label class="col-md-8 control-label">¿El veh&iacute;culo se encuentra detenido?</label>
+              <div class="col-md-3">
+                <input  type="radio" name="vehiculoDetenido" value="S" ng-model="$parent.ambienteConductor.siniestro.vehiculoDetenido" ng-disabled="$parent.ambienteResultado.numsin != undefined"> Si
+                <input  type="radio" name="vehiculoDetenido" value="N" ng-model="$parent.ambienteConductor.siniestro.vehiculoDetenido" ng-disabled="$parent.ambienteResultado.numsin != undefined"> No
+              </div>
+            </div>
+            <div class="form-group">
+              <label class="col-md-8 control-label">¿El veh&iacute;culo rueda?</label>
+              <div class="col-md-3">
+                <input  type="radio" name="vehiculoRueda" value="S" ng-model="$parent.ambienteConductor.siniestro.vehiculoRueda" ng-disabled="$parent.ambienteResultado.numsin != undefined"> Si
+                <input  type="radio" name="vehiculoRueda" value="N" ng-model="$parent.ambienteConductor.siniestro.vehiculoRueda" ng-disabled="$parent.ambienteResultado.numsin != undefined"> No
+              </div>
+            </div>
+            <div class="form-group">
+              <label class="col-md-8 control-label">¿Hubo robo de accesorios?</label>
+              <div class="col-md-3">
+                <input  type="radio" name="roboAccesorios" value="S" ng-model="$parent.ambienteConductor.siniestro.roboAccesorios" ng-disabled="$parent.ambienteResultado.numsin != undefined"> Si
+                <input  type="radio" name="roboAccesorios" value="N" ng-model="$parent.ambienteConductor.siniestro.roboAccesorios" ng-disabled="$parent.ambienteResultado.numsin != undefined"> No
+              </div>
+            </div>
+            <div class="form-group">          
+              <label class="col-md-8 control-label">¿El veh&iacute;culo estaba estacionado?</label>
+              <div class="col-md-3">
+                <input  type="radio" name="vehiculoEstacionado" value="S" ng-model="$parent.ambienteConductor.siniestro.vehiculoEstacionado" ng-click="iniciarVelocidad()" ng-disabled="$parent.ambienteResultado.numsin != undefined"> Si
+                <input  type="radio" name="vehiculoEstacionado" value="N" ng-model="$parent.ambienteConductor.siniestro.vehiculoEstacionado" ng-disabled="$parent.ambienteResultado.numsin != undefined"> No
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label class="col-md-8 control-label">Velocidad a la que se desplazaba</label>
+              
+              <div class="col-md-3">
+                <input name="siniestroVelocidad" text="text" class="form-control" ng-model="$parent.ambienteConductor.siniestro.velocidad" required ng-disabled="$parent.ambienteConductor.siniestro.vehiculoEstacionado == null || $parent.ambienteConductor.siniestro.vehiculoEstacionado == 'S' || $parent.ambienteResultado.numsin != undefined" solo-numeros>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-12" ng-show="$parent.ambienteConductor.siniestro.tipoDano.codigo != 'RO'">
+            <div class="form-group">
+              <label class="col-md-10">¿Existen otros veh&iacute;culos o propiedades afectadas en el accidente?</label>
+              <div class="col-md-2 text-center">
+                <input  type="radio" name="danosTerceros" value="S" ng-model="$parent.ambienteConductor.siniestro.danosTerceros" ng-disabled="$parent.ambienteResultado.numsin != undefined"> Si
+                <input  type="radio" name="danosTerceros" value="N" ng-model="$parent.ambienteConductor.siniestro.danosTerceros" ng-disabled="$parent.ambienteResultado.numsin != undefined"> No
+              </div>
+            </div>    
+            <div class="form-group">
+              <label class="col-md-10">¿Producto de este accidente se ocasiono lesiones corporales a personas que no estuvieran en el veh&iacute;culo asegurado?</label>
+              <div class="col-md-2 text-center">
+                <input  type="radio" name="danosCorporales" value="S" ng-model="$parent.ambienteConductor.siniestro.danosCorporales" ng-disabled="$parent.ambienteResultado.numsin != undefined"> Si
+                <input  type="radio" name="danosCorporales" value="N" ng-model="$parent.ambienteConductor.siniestro.danosCorporales" ng-disabled="$parent.ambienteResultado.numsin != undefined"> No
+              </div>
+            </div>    
+       
+          </div>
+        </div>
+      </section>
+    </div>
+  </div>
+</section>

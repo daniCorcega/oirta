@@ -1,0 +1,84 @@
+<div class="row" cambio-fondo="auto">
+  <div ng-class="{false: 'col-lg-9'}[ambienteActivo == 4]">
+    <section class="panel form-wizard" id="w1">
+      <header class="panel-heading">
+	<div class="panel-actions">
+          <!--
+	      <a href="#" class="fa fa-caret-down"></a> <a href="#" class="fa fa-times"></a>
+          -->
+	</div>
+
+	<h2 class="panel-title">
+	  <img src="assets/images/automovil.png" id="logo-panel" /> Cotizador de Autom&oacute;vil
+	</h2>
+      </header>
+      <div class="panel-body panel-body-nopadding">
+	<div class="wizard-tabs">
+	  <ul class="wizard-steps">
+	    <li class="active"><a href="#w1-solicitante" data-toggle="tab" class="text-center"> <span class="badge">1</span> <span class="hidden-xs"> Datos del</span> Solicitante
+	    </a></li>
+	    <li><a href="#w1-vehiculo" data-toggle="tab" class="text-center"> <span class="badge">2</span> <span class="hidden-xs"> Datos del</span> Veh&iacute;culo
+	    </a></li>
+	    <li><a href="#w1-planes" data-toggle="tab" class="text-center"> <span class="badge">3</span> Planes
+	    </a></li>
+	    <li><a href="#w1-pagos" data-toggle="tab" class="text-center"> <span class="badge">4</span> <span class="hidden-xs"> Formas de</span> Pago
+	    </a></li>
+	    <li><a href="#w1-resumen" data-toggle="tab" class="text-center"> <span class="badge">5</span> Resumen
+	    </a></li>
+	  </ul>
+	</div>
+        <form class="form-horizontal" novalidate="novalidate">
+          <div class="tab-content">
+            <br>
+            <ui-view autoscroll="true">
+            </ui-view>
+            <br>
+          </div>
+        </form>
+      </div>
+      <div class="panel-footer">
+        <ul class="pager">
+          <li class="previous disabled"><a><i class="fa fa-angle-left"></i> Anterior</a></li>
+          <li class="finish hidden pull-right"><a>Finalizar</a></li>
+          <li class="next"><a>Siguiente <i class="fa fa-angle-right"></i></a></li>
+        </ul>
+      </div>
+    </section>
+  </div>
+  <div id="resumen" class="col-lg-3" ng-class="{true: 'hide'}[ambienteActivo == 4]">
+    <section class="panel" ng-hide="solicitante.nombre == null && vehiculo.anio == null">
+      <div class="panel-body">
+	<h5>Resumen</h5>
+
+	<ul class="list-unstyled">
+	  <li ng-hide="solicitante.nombre == null">
+            <h6>Datos del Solicitante</h6>
+	    <ul >
+	      <li ng-show="solicitante.nombre || solicitante.apellido">{{solicitante.nombre}} {{solicitante.apellidos}}</li>
+
+	      <li ng-show="solicitante.fechaNacimiento" >{{solicitante.fechaNacimiento}}</li>
+	      <li ng-show="solicitante.codArea1 && solicitante.telefono1">({{solicitante.codArea1.codtelefono}}) {{solicitante.telefono1}}</li>
+	      <li ng-show="solicitante.codArea2 && solicitante.telefono2">({{solicitante.codArea2.codtelefono}}) {{solicitante.telefono2}}</li>
+	      <li ng-show="solicitante.email">{{solicitante.email}}</li>
+	  </ul></li>
+	  <li ng-hide="vehiculo.anio == null">
+            <h6>Datos del Vehículo</h6>
+	    <ul >
+	      <li ng-show="vehiculo.anio">{{vehiculo.anio}}</li>
+	      <li ng-show="vehiculo.marca ||  i_codmarca">{{vehiculo.marca.descrip}}   <strong>ID:{{vehiculo.marca.valor}}</strong></li>
+	      <li ng-show="vehiculo.modelo ||  vehiculo.i_codmodelo">{{vehiculo.modelo.descmodelo}}  <strong>ID:{{vehiculo.modelo.codmodelo}}</strong></li>
+	      <li ng-show="vehiculo.version || vehiculo.i_codversion">{{vehiculo.version.descrip}}  <strong>ID:{{vehiculo.version.valor}}</strong></li>
+	    </ul>
+          </li>
+          <li ng-hide="ambientePlan.planSeleccionado.descrip == null">
+            <h6>Plan Seleccionado</h6>
+	    <ul >
+	      <li>{{ambientePlan.planSeleccionado.descrip}}</li>
+	    </ul>
+          </li>
+
+	</ul>
+      </div>
+    </section>
+  </div>
+</div>

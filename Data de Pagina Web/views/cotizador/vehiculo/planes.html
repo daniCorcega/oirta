@@ -1,0 +1,443 @@
+<div class="tabs tabs-success">
+  <ul class="nav nav-tabs">
+    <li ng-class="{true: 'active'}[ambientePlan.planSeleccionado.indice !== undefined]">
+      <a href="#recent2" data-toggle="tab" ng-click="seleccionarPlan(-1)">Personalizado</a>
+    </li>
+    <li ng-class="{true: 'active'}[ambientePlan.planSeleccionado.indice === undedined]">
+      <a href="#popular2" data-toggle="tab" ng-click="seleccionarPlan()"> </i>Recomendado</a>
+</li>
+
+</ul>
+<div class="tab-content">
+  <div id="popular2" class="tab-pane" ng-class="{true: 'active'}[ambientePlan.planSeleccionado.indice === undedined]">
+    <!--********************* EMPIEZA PLAN RECOMENDADO *******************-->
+    <div class="tab-pane" ng-show="ambientePlan.plan.error != false">
+      {{ambientePlan.plan.error}}
+    </div>
+    <div id="w1-pago" class="tab-pane" ng-show="ambientePlan.plan.error == false">
+      <div class="row">
+        <div class="col-lg-12" ng-show="ambientePlan.plan.mostrarsuma">
+          <section class="panel panel-featured-left panel-featured-primary">
+            <div class="panel-body">
+              <div class="widget-summary widget-summary-sm"> 
+               <div class="widget-summary-col widget-summary-col-icon">
+                  <div class="summary-icon bg-primary">
+                    Bs.
+                  </div>
+                </div>
+                <div class="widget-summary-col">
+                  <div class="summary">
+                    <h4 class="title"><strong>Suma Asegurada</strong></h4>
+                    <div class="info">
+                      <div class="form-group" ng-show="ambientePlan.plan.editSuma">
+                        <br>
+                        <div class="col-md-6">
+                          <input class="form-control" type="text" ng-model='ambientePlan.plan.sumaasegurada' custo-mask-money id="suma" ng-slider="#slider_suma">
+                        </div>
+                      </div>
+                      <div class="form-group" ng-show="ambientePlan.plan.editSuma">
+                        <div id="slider_suma" data-plugin-slider-output="#suma" data-plugin-options='{ "value": {{ambientePlan.plan.sumaasegurada}}, "max": {{ambientePlan.plan.maxSumaAseg}}, "min": {{ambientePlan.plan.minSumaAseg}}, "range": "min", "step": 50}'
+                             
+                             ng-load-slider="" ng-load-max="{{ambientePlan.plan.maxSumaAseg}}" ng-load-min="{{ambientePlan.plan.minSumaAseg}}" ng-load-value="{{ambientePlan.plan.sumaasegurada}}"
+                             data-plugin-slider="" class="m-md slider-primary ui-slider ui-slider-horizontal ui-widget ui-widget-content ui-corner-all col-md-4" aria-disabled="false">
+                        </div>
+                      </div>
+                      <div class="form-group" ng-show="ambientePlan.plan.editSuma">
+                        <div class="col-md-8">
+                          <p>Ingrese un valor entre {{ambientePlan.plan.minSumaAseg | currency:"" | monedaVenezolana}} y {{ambientePlan.plan.maxSumaAseg | currency: "" | monedaVenezolana }}</p>
+                        </div>
+                      </div>
+                      <div class="form-group" ng-show="ambientePlan.plan.editSuma">
+                        <div class="col-md-2 col-md-offset-1">
+                          <div class="btn-group btn-group-justified">
+                            <a class="btn btn-success" ng-click="enviarSuma()" title="Actualizar Suma Asegurada"><i class="fa fa-floppy-o"></i></a>
+                            <a class="btn btn-danger" ng-click="noEnviarSuma()" title="Omitir Cambio de Suma Asegurada"><i class="fa fa-times"></i></a>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="row">
+                        <div class="col-md-6">
+                          <strong  ng-mouseover="editimage=true" ng-mouseleave="editimage=false" class="amount edit" ng-hide="ambientePlan.plan.editSuma" ng-click="ambientePlan.plan.editSuma=true" id="activeSlider">{{ambientePlan.plan.sumaasegurada | currency:"" | monedaVenezolana}} <i class="fa blue fa-edit"></i></strong>
+                        </div>
+                        <!--
+                        <div class="col-md-2" ng-show="editimage">
+                          <a popover="testing" popover-trigger="mouseenter"><i class="fa blue bigger fa-edit"></i></a>
+                        </div>
+                        -->
+                      </div>
+                      <div class="form-group" ng-show="error">
+                        <div class="alert alert-danger col-md-10">
+                          <button type="button" class="close" deata-dismiss="alert" aria-hidden="true">×</button>
+                          <strong>Error:</strong> El número que ingreso sobrepasa los límites permitidos
+                        </div>
+                      </div>
+
+                    </div>
+                  </div>
+                  <div class="summary-footer">
+                    <a class="text-muted text-uppercase">(view all)</a>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </section>
+        </div>
+      </div>
+      <div class="table-responsive">
+        <table class="table mb-none">
+          <thead>
+            <tr>
+              <th>&nbsp;</th>
+              <th class="text-right">Suma Asegurada (Bs)</th>
+              <th class="text-right">Prima (Bs)</th>
+
+            </tr>
+          </thead>
+          <tbody>
+            <tr ng-repeat="cobertura in ambientePlan.plan.coberturasObligatorias">
+              <td><i class="fa fa-check"></i> {{cobertura.desccobert}}</td>
+              <td class="text-right">{{cobertura.sumaasegmoneda | currency:"" | monedaVenezolana }}</td>
+              <td class="text-right">{{cobertura.primamoneda | currency:"" | monedaVenezolana}}</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <hr>
+      <div class="table-responsive" ng-show="ambientePlan.plan.coberturaSeleccionadas.length">
+        <h3> Coberturas Adicionales </h3>
+        <table class="table mb-none">
+          <thead>
+            <tr>
+              <th>&nbsp;</th>
+              <th><div class="col-md-6"></div></th>
+              <th class="text-right">Suma Asegurada (Bs)</th>
+              <th class="text-right">Prima (Bs)</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr ng-repeat="cobertura in ambientePlan.plan.coberturaSeleccionadas">
+              <td ><i class="fa fa-check"></i> {{cobertura.desccobert}}</td>
+              <td ng-mouseup="tarificarCoberturasAdicionales(cobertura)">
+                <div ng-show="cobertura.indaccesorio=='S' && cobertura.sumaasegmax != cobertura.sumaasegmin">
+                  <div class="col-md-4">{{cobertura.sumaasegmin | currency:""| monedaVenezolana}}</div>
+                  <div id="slider{{ambientePlan.plan.codplan}}{{ambientePlan.plan.revplan}}_{{$index}}" class="mt-lg mb-lg slider-primary ui-slider ui-slider-horizontal ui-widget ui-widget-content ui-corner-all col-md-4" data-plugin-slider=""
+                       data-plugin-options='{ "value": {{cobertura.sumaasegmoneda}}, "range": "min", "max": {{cobertura.sumaasegmax}}, "min": {{cobertura.sumaasegmin}}, "step": 50 }'
+                       ng-load-slider="" ng-load-max="{{cobertura.sumaasegmax}}" ng-load-min="{{cobertura.sumaasegmin}}" ng-load-value="{{cobertura.sumaasegmoneda}}"
+                       data-plugin-slider-output="#sumaaseg{{ambientePlan.plan.codplan}}{{ambientePlan.plan.revplan}}_{{$index}}" aria-disabled="false">
+
+                  </div>
+                  <div class="col-md-4">{{cobertura.sumaasegmax | currency:""| monedaVenezolana}}</div>
+                </div>
+              </td>
+              <td class="text-right" ng-hide="ambientePlan.planSeleccionado.mostrarEdicion[$index]" ng-click="editarCobertura($index, true, cobertura, ambientePlan.plan)">
+                <div class="col-md-10 col-md-offset-2">
+                  {{cobertura.sumaasegmoneda | currency:"" | monedaVenezolana }} <i ng-show="cobertura.indaccesorio=='S' && cobertura.sumaasegmax != cobertura.sumaasegmin" class="fa blue fa-edit cursor-pointer"></i>
+                </div>
+              </td>
+              <td ng-show="ambientePlan.planSeleccionado.mostrarEdicion[$index]">
+                <div class="col-md-8 col-md-offset-4">
+                  <input type="text" class="form-control" id="sumaaseg{{ambientePlan.plan.codplan}}{{ambientePlan.plan.revplan}}_{{$index}}" ng-model="cobertura.sumaasegmoneda" custo-mask-money ng-blur="editarCobertura($index, false, cobertura, ambientePlan.plan)" ng-slider="#slider{{ambientePlan.plan.codplan}}{{ambientePlan.plan.revplan}}_{{$index}}">
+                </div>
+              </td>
+              <td class="text-right">{{cobertura.primamoneda | currency:"" | monedaVenezolana }}</td>
+
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="row">
+        <div class="col-md-offset-5">
+          <button class="btn btn-primary" ng-click="mostrarCoberturasAdicionales()">Coberturas adicionales </button>
+        </div>
+      </div>
+      <hr>
+      <div class="row">
+        <div class="col-lg-8">
+          <div ng-show="maxDescuento > 0">
+            <div class="form-group">
+              <label class="col-md-3 control-label" for="inputDefault">Descuento</label>
+              <div class="col-md-3" >
+                <input type="text" class="form-control" value="0" min-numero="0" ng-model="descuento" max-numero="{{maxDescuento}}" solo-numeros id="desc" ng-slider="#slider_desc">
+              </div>
+              <div class="col-md-3">
+                <button class="btn btn-primary" ng-click="obtenerCoberturasObligatorias()">Aceptar</button>
+              </div>
+            </div>
+            <div class="form-group">
+              <div class="col-md-3">
+              </div>
+              <div class="col-md-3" >
+                <div id="slider_desc" data-plugin-slider-output="#desc" data-plugin-options='{ "value": {{descuento}}, "max": {{maxDescuento}}, "min": 0, "range": "min"}'
+                     ng-load-slider="" ng-load-max="{{maxDescuento}}" ng-load-min="0" ng-load-value="{{descuento}}"
+                     data-plugin-slider="" class="m-md slider-primary ui-slider ui-slider-horizontal ui-widget ui-widget-content ui-corner-all" aria-disabled="false">
+                </div>
+              </div>
+            </div>
+            <div class="form-group">
+              <div class="col-md-3">
+              </div>
+              <div class="col-md-4">
+                <p>Ingrese un valor entre 0  y {{maxDescuento}}</p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-lg-4">
+          <section class="panel panel-featured-left panel-featured-primary">
+            <div class="panel-body">
+              <div class="widget-summary widget-summary-sm">
+                <div class="widget-summary-col widget-summary-col-icon">
+                  <div class="summary-icon bg-primary">
+                    Bs.
+                  </div>
+                </div>
+                <div class="widget-summary-col">
+                  <div class="summary">
+                    <h4 class="title">Prima total</h4>
+                    <div class="info">
+                      <strong class="amount">{{ambientePlan.plan.primatotal | currency:"" | monedaVenezolana}}</strong>
+                    </div>
+                  </div>
+                  <div class="summary-footer">
+                    <a class="text-muted text-uppercase">(view all)</a>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </section>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!--************************** TERMINA PLAN RECOMENDADO ********************-->
+  <!--************************** EMPIEZAN PLANES PERSONALIZADOS **************-->
+  <div id="recent2" class="tab-pane" ng-class="{true: 'active'}[ambientePlan.planSeleccionado.indice !== undefined]">
+    <div class="panel-group" id="accordion">
+      <div ng-repeat="plan in ambientePlan.planes" class="panel panel-accordion">
+        <div class="panel-heading">
+          <h4 class="panel-title">
+            <a class="collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapse{{$index}}Three" ng-click="seleccionarPlan(plan.indice)">
+              {{plan.descrip}}
+            </a>
+          </h4>
+        </div>
+        <div id="collapse{{$index}}Three" class="accordion-body collapse" ng-class="{true:'in'}[$parent.ambientePlan.cargado == 0 && $parent.ambientePlan.planSeleccionado.indice == plan.indice]" acordeon-activo="{{ambientePlan.planSeleccionado.indice}}" acordeon-valor="{{plan.indice}}">
+          <div class="panel-body" ng-show="plan.error != false">
+            {{plan.error}}
+          </div>
+          <div class="panel-body" ng-show="plan.error == false">
+            <div class="col-lg-12" ng-show="plan.mostrarsuma">
+              <section class="panel panel-featured-left panel-featured-primary">
+                <div class="panel-body">
+                  <div class="widget-summary widget-summary-sm">
+                    <div class="widget-summary-col widget-summary-col-icon">
+                      <div class="summary-icon bg-primary">
+                        Bs.
+                      </div>
+                    </div>
+                    <div class="widget-summary-col">
+                      <div class="summary">
+                        <h4 class="title"><strong>Suma Asegurada</strong></h4>
+                        <div class="info">
+                          <!-- Aqui Comienza -->
+                          <div class="form-group" ng-show="plan.editSuma">
+                            <br>
+                            <div class="col-md-4">
+                              <input class="form-control" type="text" ng-model='ambientePlan.planes[$index].sumaasegurada' custo-mask-money id="suma{{$index}}" ng-slider="#slider_suma{{$index}}">
+                            </div>
+                          </div>
+
+
+                          <div class="form-group" ng-show="plan.editSuma">
+                            <div id="slider_suma{{$index}}" data-plugin-slider-output="#suma{{$index}}" data-plugin-options='{ "value": {{plan.sumaasegurada}}, "max": {{plan.maxSumaAseg}}, "min": {{plan.minSumaAseg}}, "range": "min", "step":50}'
+                                 ng-load-slider="" ng-load-max="{{plan.maxSumaAseg}}" ng-load-min="{{plan.minSumaAseg}}" ng-load-value="{{plan.sumaasegurada}}"
+                                 data-plugin-slider="" class="m-md slider-primary ui-slider ui-slider-horizontal ui-widget ui-widget-content ui-corner-all col-md-4" aria-disabled="false">
+                            </div>
+                          </div>
+
+                          <div class="form-group" ng-show="plan.editSuma">
+                            <div class="col-md-8">
+                              <p>Ingrese un valor entre {{plan.minSumaAseg | currency:"" | monedaVenezolana}} y {{plan.maxSumaAseg | currency: "" | monedaVenezolana }}</p>
+                            </div>
+                          </div>
+                          <div class="form-group" ng-show="error">
+                            <div class="alert alert-danger col-md-10">
+                              <button type="button" class="close" deata-dismiss="alert" aria-hidden="true">×</button>
+                              <strong>Error:</strong> El número que ingreso sobrepasa los límites permitidos
+                            </div>
+                          </div>
+                          <div class="form-group" ng-show="plan.editSuma">
+                            <div class="col-md-2 col-md-offset-1">
+                              <div class="btn-group btn-group-justified">
+                                <a class="btn btn-success" ng-click="enviarSuma(plan.indice)" title="Actualizar Suma Asegurada"><i class="fa fa-floppy-o"></i></a>
+                                <a class="btn btn-danger" ng-click="noEnviarSuma(plan.indice)" title="Omitir Cambio de Suma Asegurada"><i class="fa fa-times"></i></a>
+                              </div>
+                            </div>
+                          </div>
+                          <!-- Aqui termina -->
+                          <div class="row">
+                            <div class="col-md-6">
+                              <div ng-show="plan.modsuma">
+                                <strong  ng-mouseover="editimage=true" ng-mouseleave="editimage=false" class="amount edit" ng-hide="plan.editSuma" ng-click="plan.editSuma=true" id="activeSlider">{{plan.sumaasegurada | currency:"" | monedaVenezolana}} <i class="fa blue fa-edit mouse-pointer"></i></strong>
+                              </div>
+                              <div ng-hide="plan.modsuma">
+                                <strong class="amount">{{plan.sumaasegurada | currency:"" | monedaVenezolana}}</strong>
+                              </div>
+
+                            </div>
+                            <!--
+                            <div class="col-md-2" ng-show="editimage">
+                              <a popover="testing" popover-trigger="mouseenter"><i class="fa blue bigger fa-edit"></i></a>
+                            </div>
+                            -->
+                          </div>
+
+                        </div>
+                      </div>
+                      <div class="summary-footer">
+                        <a class="text-muted text-uppercase">(view all)</a>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </section>
+            </div>
+
+            <div class="table-responsive">
+              <table class="table mb-none">
+                <thead>
+                  <tr>
+                    <th>&nbsp;</th>
+                    <th class="text-right">Suma Asegurada (Bs)</th>
+                    <th class="text-right">Prima (Bs)</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr ng-repeat="cobertura in plan.coberturasObligatorias">
+                    <td><i class="fa fa-check"></i> {{cobertura.desccobert}}</td>
+                    <td class="text-right">{{cobertura.sumaasegmoneda | currency:"" | monedaVenezolana }}</td>
+                    <td class="text-right">{{cobertura.primamoneda | currency:"" | monedaVenezolana}}</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <hr>
+            <div class="table-responsive" ng-show="plan.coberturaSeleccionadas.length">
+              <h3> Coberturas Adicionales </h3>
+              <table class="table mb-none">
+                <thead>
+                  <tr>
+                    <th>&nbsp;</th>
+                    <th><div class="col-md-6"></div></th>
+                    <th class="text-right">Suma Asegurada (Bs)</th>
+                    <th class="text-right">Prima (Bs)</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr ng-repeat="cobertura in plan.coberturaSeleccionadas">
+                    <td ><i class="fa fa-check"></i> {{cobertura.desccobert}}</td>
+                    <td ng-mouseup="tarificarCoberturasAdicionales(cobertura)">
+                      <div ng-show="cobertura.indaccesorio=='S' && cobertura.sumaasegmax != cobertura.sumaasegmin">
+                        <div class="col-md-4">{{cobertura.sumaasegmin | currency:""| monedaVenezolana}}</div>
+                        <div id="slider_sumaaseg{{plan.codplan}}{{plan.revplan}}_{{$index}}" class="mt-lg mb-lg slider-primary ui-slider ui-slider-horizontal ui-widget ui-widget-content ui-corner-all col-md-4" data-plugin-slider=""
+                             data-plugin-options='{ "value": {{cobertura.sumaasegmoneda}}, "range": "min", "max": {{cobertura.sumaasegmax}}, "min": {{cobertura.sumaasegmin}}, "step":50}' 
+                             ng-load-slider="" ng-load-max="{{cobertura.sumaasegmax}}" ng-load-min="{{cobertura.sumaasegmin}}" ng-load-value="{{cobertura.sumaasegmoneda}}"
+                             data-plugin-slider-output="#sumaaseg{{plan.codplan}}{{plan.revplan}}_{{$index}}" aria-disabled="false">
+                        </div>
+                        <div class="col-md-4">{{cobertura.sumaasegmax | currency:""| monedaVenezolana}}</div>
+                      </div>
+                    </td>
+                    <td class="text-right" ng-hide="ambientePlan.planSeleccionado.mostrarEdicion[$index]" ng-click="editarCobertura($index, true, cobertura, plan)">
+                      <div class="col-md-10 col-md-offset-2">
+                        {{cobertura.sumaasegmoneda | currency:"" | monedaVenezolana }} <i ng-show="cobertura.indaccesorio=='S' && cobertura.sumaasegmax != cobertura.sumaasegmin" class="fa blue fa-edit cursor-pointer mouse-pointer"></i>
+                      </div>
+                    </td>
+                    <td ng-show="ambientePlan.planSeleccionado.mostrarEdicion[$index]">
+                      <div class="col-md-8 col-md-offset-4">
+                        <input type="text" class="form-control" id="sumaaseg{{plan.codplan}}{{plan.revplan}}_{{$index}}" ng-model="cobertura.sumaasegmoneda" custo-mask-money ng-blur="editarCobertura($index, false, cobertura, plan)" ng-slider="#slider_sumaaseg{{plan.codplan}}{{plan.revplan}}_{{$index}}">
+                      </div>
+                    </td>
+                    <!--<td class="text-right">{{cobertura.sumaasegmoneda | currency:"" | monedaVenezolana }}</td>-->
+                    <td class="text-right">{{cobertura.primamoneda | currency:"" | monedaVenezolana }}</td>
+
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <div class="row">
+              <div class="col-md-offset-5">
+                <button class="btn btn-primary" ng-click="mostrarCoberturasAdicionales()">Coberturas adicionales </button>
+              </div>
+            </div>
+            <hr>
+
+            <div class="row">
+              <div class="col-lg-8">
+                <div ng-show="plan.modprima && maxDescuento > 0">
+                  <div class="form-group">
+                    <label class="col-md-3 control-label" for="inputDefault">Descuento</label>
+                    <div class="col-md-3" >
+                      <input type="text" class="form-control" value="0" min-numero="0" ng-model="plan.descuento" max-numero="{{maxDescuento}}" solo-numeros id="desc{{$index}}" ng-slider="#slider_desc{{$index}}">
+                    </div>
+                    <div class="col-md-3">
+                      <button class="btn btn-primary" ng-click="obtenerCoberturasObligatorias($index)">Aceptar</button>
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    <div class="col-md-3">
+                    </div>
+                    <div class="col-md-3" ng-init="initSlider()" >
+                      <div id="slider_desc{{$index}}" data-plugin-slider-output="#desc{{$index}}" data-plugin-options='{ "value": {{plan.descuento}}, "max": {{maxDescuento}}, "min": 0, "range": "min"}'
+                           ng-load-slider="" ng-load-max="{{maxDescuento}}" ng-load-min="0" ng-load-value="{{plan.descuento}}"
+                           data-plugin-slider="" class="m-md slider-primary ui-slider ui-slider-horizontal ui-widget ui-widget-content ui-corner-all" aria-disabled="false">
+                      </div>
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    <div class="col-md-3">
+                    </div>
+                    <div class="col-md-4">
+                      <p>Ingrese un valor entre 0  y {{maxDescuento}}</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="col-lg-4">
+                <section class="panel panel-featured-left panel-featured-primary">
+                  <div class="panel-body">
+                    <div class="widget-summary widget-summary-sm">
+                      <div class="widget-summary-col widget-summary-col-icon">
+                        <div class="summary-icon bg-primary">
+                          Bs.
+                        </div>
+                      </div>
+                      <div class="widget-summary-col">
+                        <div class="summary">
+                          <h4 class="title">Prima total</h4>
+                          <div class="info">
+                            <strong class="amount">{{ambientePlan.planes[$index].primatotal | currency:"" | monedaVenezolana}}</strong>
+                          </div>
+                        </div>
+                        <div class="summary-footer">
+                          <a class="text-muted text-uppercase">(view all)</a>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </section>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>      
+  </div>
+  <!--******************** TERMINAN PLANES PERSONALIZADOS ********************-->
+</div>
+<div>
+  <div class="text-center">
+    Plan Seleccionado: 
+    <strong ng-hide="ambientePlan.planSeleccionado.descrip == null">{{ambientePlan.planSeleccionado.descrip}}</strong>
+    <span ng-show="ambientePlan.planSeleccionado.descrip==null">No ha seleccionado plan</span>.
+  </div>
+</div>

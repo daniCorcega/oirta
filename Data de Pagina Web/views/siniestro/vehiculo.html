@@ -1,0 +1,90 @@
+<div id="w1-vehiculo" class="tab-pane active">
+    <section class="panel">
+        <header class="panel-heading">
+            <h2 class="panel-title">Filtro de Búsqueda</h2>
+        </header>
+        <div class="panel-body">
+            <div class="form-group">
+                <label class="col-md-2 col-md-offset-2">Fecha de Ocurrencia: </label>
+                <div class="col-md-4">
+                    <div class="input-group">
+                        <input type="text" data-provide="datepicker" class="form-control" data-date-format="dd/mm/yyyy"
+                        data-date-language="es" id="date" placeholder="__/__/____" required ng-model="ambienteVehiculo.datosBusqueda.fechaSiniestro">
+                        <span class="input-group-addon btn" ng-click="clicked();" > <i class="fa fa-calendar"></i></span> 
+                    </div>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="radio-custom radio-primary col-md-offset-2 col-md-2">
+                    <input type="radio" id="CI" value="cedula" ng-model="ambienteVehiculo.tipoBusqueda" name="tipoBusqueda" ng-click="limpiarDatos()">
+                    <label class="control-label">Cédula de identidad o RIF:  </label>
+                </div>
+                <div class="col-md-2">
+                    <select class="form-control" ng-options="tipoId for tipoId in tiposId" ng-model="ambienteVehiculo.datosBusqueda.tipoId" ng-disabled="ambienteVehiculo.tipoBusqueda != 'cedula'" name="tipoId">
+                    </select>
+                </div>
+                <div class="col-md-2">
+                    <input type="text" class="form-control" ng-disabled="ambienteVehiculo.tipoBusqueda != 'cedula'" ng-model="ambienteVehiculo.datosBusqueda.cedula" name="cedula" solo-numeros maxlength="10">
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="radio-custom radio-primary col-md-offset-2 col-md-2">
+                    <input type="radio" id="placa" value="placa" ng-model="ambienteVehiculo.tipoBusqueda" name="tipoBusqueda" ng-click="limpiarDatos()">
+                    <label class="control-label">Placa: </label>
+                </div>
+                <div class="col-md-4">
+                    <input type="text" class="form-control" ng-disabled="ambienteVehiculo.tipoBusqueda != 'placa'" name="placa" ng-model="ambienteVehiculo.datosBusqueda.placa" capitalizar maxlength=7> 
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="radio-custom radio-primary col-md-offset-2 col-md-2">
+                    <input type="radio" id="poliza" value="poliza" ng-model="ambienteVehiculo.tipoBusqueda" name="tipoBusqueda" ng-click="limpiarDatos()">
+                    <label class="control-label">Póliza: </label>
+                </div>
+                <div class="col-md-4">
+                    <input type="text" class="form-control" name="poliza" ng-disabled="ambienteVehiculo.tipoBusqueda != 'poliza'" ng-model="ambienteVehiculo.datosBusqueda.poliza" solo-numeros maxlength="10">
+                </div>
+            </div>
+            <hr>
+            <div class="col-md-offset-5">
+                <button class="btn btn-primary" ng-click="obtenerVehiculos()" >Consultar </button>
+            </div>
+            <hr>
+            <div class="table-responsive col-md-8 col-md-offset-2" ng-show="ambienteVehiculo.polizas">
+                <table class="table mb-none table-bordered">
+                    <thead>
+                        <tr class="active">
+                            <th class="text-center">Seleccionar</th>
+                            <th class="text-center">Cliente/Póliza</th>
+                            <th class="text-center">Vehículo/Placa</th>
+                            <th class="text-center">Fecha Inicio Vigencia</th>
+                            <th class="text-center">Fecha Fin Vigencia</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                    <tr ng-repeat="poliza in ambienteVehiculo.polizas">
+                        <td class="text-center">
+                            <div class="radio-custom radio-primary col-md-offset-5">
+                                <input type="radio" id="vh{{$index}}" name="vehiculo" ng-click="seleccionarPoliza(poliza)" ng-checked="ambienteVehiculo.polizaSeleccionada == poliza">
+                                <label for="vh{{$index}}" class="control-label"> </label>
+                            </div>
+                        </td>
+                        <td class="text-center">
+                            {{poliza.asegurado}}/{{poliza.idepol}}
+                        </td>
+                        <td class="text-center">
+                            {{poliza.numplaca}}
+                        </td>
+                        <td class="text-center">
+                            {{poliza.fecinivig | date: "dd/MM/yyyy"}}
+                        </td>
+                        <td class="text-center">
+                            {{poliza.fecfinvig | date: "dd/MM/yyyy"}}
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </section>
+</div>

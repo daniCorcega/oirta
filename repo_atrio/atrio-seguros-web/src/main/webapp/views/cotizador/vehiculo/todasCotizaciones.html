@@ -1,0 +1,79 @@
+<div class="row" cambio-fondo="auto">
+  <div id="w1-cliente" class="tab-pane">
+    <section = "panel form-wizard" id="w1">
+      <header class="panel-heading">
+	<div class="panel-actions">
+          <!--
+	  <a href="#" class="fa fa-caret-down"></a> <a href="#" class="fa fa-times"></a>
+          -->
+	</div>
+	<h2 class="panel-title">
+	  <img src="assets/images/automovil.png" id="logo-panel"> Todas las Cotizaciones
+	</h2>
+      </header>
+    </section>
+    <div class="tab-content">
+      <div class="row">
+	<div class="col-md-9 text-left">
+          <div class="btn-group" role="group" aria-label="...">
+            <a href="#/cotizacion/lista" class="btn btn-default">Mis Cotizaciones</a>
+            <a href="#/cotizacion/todas" class="btn active btn-default">Todas las Cotizaciones</a>
+          </div>
+	</div>
+
+	<div class="col-md-3">
+	  <div class="form-group">
+	    <div class="input-group input-group-icon">
+        <input type="text" class="form-control" ng-model="datosFiltro.nrosolic" ng-change="filtrar2()" placeholder="Nro.">
+          <input type="text" class="form-control" ng-model="datosFiltro.intermediario" ng-change="filtrar()" placeholder="Intermediario">
+          <span class="input-group-addon">
+<span class="icon"><i class="fa fa-search"></i></span>
+          <span class="input-group-addon">
+<span class="icon"><i class="fa fa-search"></i></span>
+
+      </span>
+	    </div>
+	  </div>
+
+	  <div class="form-group">
+	    <select class="form-control" ng-model="datosFiltro.estatus" ng-options="estatus.descrip for estatus in estatuses" ng-change="filtrar2()">
+      </select>
+	  </div>
+	</div>
+      </div>
+      <div class="table-responsive">
+	<table ng-table="tableParams" class="table table-striped">
+	  <tr ng-repeat="cotizacion in $data | filter:search">
+
+      <!--td class="text-center" data-title="'Editar'" sortable="'stssolic'">
+        <span ng-show="cotizacion.stssolic == 'VAL'">
+          <a href="" ng-click="editarcotizar(cotizacion.nrosolic)">
+            <input type="checkbox"/></a></span>
+      </td-->
+            <td data-title="'Nro.'" sortable="'nrosolic'"  ><center>{{cotizacion.nrosolic}}<center></td>
+            <td data-title="'Fecha'" sortable="'fecsolic'" ><center>{{cotizacion.fecsolic}}<center></td>
+            <td data-title="'Estado'" sortable="'estado'"  ><center>{{cotizacion.estado}}</center></td>
+            <td data-title="'Solicitante'" ><span title="{{cotizacion.nombre}} {{cotizacion.apellido}}"><center>{{cotizacion.solicitante}}<center></span></td>
+            <td data-title="'Intermediario'" sortable="'intermediario'"><center>{{cotizacion.codinter}}</center></td>
+            <td data-title="'Prima'" sortable="'prima'" class="text-right"><center>{{cotizacion.prima | currency:"" | monedaVenezolana}}</center></td>
+            <td class="text-center" data-title="'Estatus'" sortable="'stssolic'">
+              <span ng-show="cotizacion.stssolic == 'VAL'" class="label label-info">Válida</span>
+              <span ng-show="cotizacion.stssolic == 'EMI'" class="label label-success">Emitida</span>
+              <span ng-show="cotizacion.stssolic == 'ANU'" class="label label-danger">Vencida</span>
+            </td>
+            <td data-title="'Marca'" sortable="'descmarca'"><center>{{cotizacion.descmarca}}</center></td>
+            <td data-title="'Modelo'" sortable="'descmodelo'"><center>{{cotizacion.descmodelo}}</center></td>
+            <td data-title="'Año'" sortable="'anoveh'"><center>{{cotizacion.anoveh}}</center></td>
+            <td data-title="'Acciones'">
+            <center><span ng-show="cotizacion.stssolic == 'VAL' && mostrarEmisor() >= 0">
+		          <a href="" ng-click="emitir(cotizacion.nrosolic)"><i class="fa fa-mail-forward" style="font-size:17px;" title="Emitir" align="center"></i></a>
+            </span>
+	          <a href="/atrio-web/api/v1/reports?nrosolicitud={{cotizacion.nrosolic}}"><i class="fa fa-file-pdf-o" style="font-size:20px;" tooltip="Descargar Cotización" tooltip-trigger tooltip-animation="false" tooltip-placement="top" align="center"></i></a>
+            <a href="" ng-click="enviarCotizacion(cotizacion.nrosolic)" tooltip="Enviar Cotización por Correo" tooltip-trigger tooltip-animation="false" tooltip-placement="top" ><i class="fa fa-envelope" style="font-size:20px;" align="center"></i></a></center>
+            </td>
+          </tr>
+	</table>
+      </div>
+    </div>
+  </div>
+</div>

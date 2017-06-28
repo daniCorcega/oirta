@@ -1,0 +1,84 @@
+<div id="w1-vehiculo" class="tab-pane">
+  <h4>Datos del Veh&iacute;culo </h4>
+  <div class="form-group">
+    <label class="col-md-3 control-label">Placa</label>
+    
+    <div class="col-md-8">
+      <input type="text" name="placa" class="form-control" name="vehiculoPlaca" ng-model="$parent.ambienteVehiculo.vehiculo.placa" ng-blur="buscarVehiculo()" ng-enter="buscarVehiculo()" required>
+    </div>
+  </div>
+
+  <div class="form-group">
+    <label class="col-md-3 control-label">Año</label>    
+    <div class="col-md-8">
+      <input text="text" class="form-control" ng-model="$parent.ambienteVehiculo.vehiculo.anoveh" name="" required disabled>
+    </div>
+  </div>
+  <div class="form-group">
+    <label class="col-md-3 control-label">Marca</label>
+    <div class="col-md-8">
+      <input text="text" class="form-control" ng-model="$parent.ambienteVehiculo.vehiculo.descmarca" name="" required disabled>
+    </div>
+  </div>
+  <div class="form-group">
+    <label class="col-md-3 control-label">Modelo</label>
+    
+    <div class="col-md-8">
+      <input text="text" class="form-control" ng-model="$parent.ambienteVehiculo.vehiculo.descmodelo" name="" required disabled>
+    </div>
+  </div>
+  <div class="form-group">
+    <label class="col-md-3 control-label">Version</label>
+    
+    <div class="col-md-8">
+      <input text="text" class="form-control" ng-model="$parent.ambienteVehiculo.vehiculo.descversion" name="" required disabled>
+    </div>
+  </div>
+
+  <div class="form-group">
+    <label class="col-md-3 control-label">Serial de Carrocer&iacute;a</label>
+    
+    <div class="col-md-8">
+      <input text="text" class="form-control" ng-model="$parent.ambienteVehiculo.vehiculo.carroceria" name="carroceria" required ng-disabled="!$parent.ambienteVehiculo.vehiculo.cerokm">
+    </div>
+  </div>
+
+  <div class="form-group">
+    <label class="col-md-3 control-label">Serial de Motor</label>
+
+    <div class="col-md-8">
+      <input type="text" class="form-control" ng-model="$parent.ambienteVehiculo.vehiculo.motor" name="motor" required ng-disabled="!$parent.ambienteVehiculo.vehiculo.cerokm">
+    </div>
+  </div>
+
+  <div class="form-group">
+    <label class="col-md-3 control-label">Color</label>
+
+    <div class="col-md-8">
+      <input type="text" class="form-control" ng-model="$parent.ambienteVehiculo.vehiculo.color" name="color" required ng-disabled="!$parent.ambienteVehiculo.vehiculo.cerokm">
+    </div>
+  </div>
+
+  <div class="form-group">
+    <label class="col-md-3 control-label">Uso</label>
+
+    <div class="col-md-8">
+      <select name="uso" required class="form-control" ng-model="$parent.ambienteVehiculo.vehiculo.uso" ng-options="uso.descrip for uso in $parent.ambienteVehiculo.usos" ng-disabled="!$parent.ambienteVehiculo.vehiculo.cerokm">
+        <option value="">-- seleccione --</option>
+      </select>
+    </div>
+  </div>
+  
+  <div class="form-group" ng-show="$parent.ambienteVehiculo.vehiculo.cerokm">
+    <label class="col-md-3 control-label">Fecha de Factura</label>
+    
+    <div class="col-md-3">
+      <div class="input-group">
+	<input type="text" name="fechaFactura" data-provide="datepicker" class="form-control" ng-model="$parent.ambienteVehiculo.vehiculo.fechaFactura" data-date-format="dd/mm/yyyy"
+               data-date-language="es" id="date" placeholder="__/__/____" data-date-end-date="-0d" data-date-start-date="-15d" data-date-autoclose="true">
+        <span class="input-group-addon btn" ng-click="clicked();" > <i class="fa fa-calendar"></i></span> 
+      </div>
+    </div>
+
+  </div>
+</div>

@@ -1,0 +1,94 @@
+<div id="w1-vehiculo" class="tab-pane active">
+  <section class="panel">
+    <header class="panel-heading">
+      <h2 class="panel-title">Ocurrencia del Siniestro y Filtro de Búsqueda</h2>
+    </header>
+    <div class="panel-body">
+      <h4>Ocurrencia del Siniestro</h4>
+      <div class="form-group">
+        <label class="col-md-2 col-md-offset-2">Fecha de Ocurrencia: </label>
+        <div class="col-md-3">
+          <div class="input-group">
+            <input type="text" data-provide="datepicker" class="form-control" data-date-format="dd/mm/yyyy"
+                   data-date-language="es" id="date" placeholder="__/__/____" required ng-model="ambienteVehiculo.datosBusqueda.fechaSiniestro" data-date-end-date="-0d" data-date-start-date="-5d" data-date-autoclose="true" ng-disabled="ambienteResultado.numsin != undefined" ng-change="verificarData()">
+            <span class="input-group-addon btn" ng-click="clicked();" > <i class="fa fa-calendar"></i></span> 
+          </div>
+        </div>
+      </div>
+      <div class="form-group">
+        <label class="col-md-2 col-md-offset-2 control-label">Hora</label>
+        
+        <div class="col-md-2">
+          <div class="input-group bootstrap-timepicker">
+            <input name="siniestroHora" type="text" id="timepicker1" ng-model="$parent.ambienteVehiculo.datosBusqueda.horaSiniestro" activar-time class="form-control" data-minute-step="1" data-plugin-options="{'showMeridian': false, 'template': 'modal', 'minuteStep': 1}" required  ng-disabled="ambienteResultado.numsin != undefined" ng-change="verificarData()">
+            
+            <span class="input-group-addon"><i class="fa fa-clock-o"></i></span>
+          </div>
+        </div>
+      </div>
+
+      <h4>B&uacute;squeda</h4>
+      <div class="form-group">
+        <div class="radio-custom radio-primary col-md-offset-2 col-md-2">
+          <input type="radio" id="cedula" value="cedula" ng-model="ambienteVehiculo.tipoBusqueda" name="tipoBusqueda" ng-click="limpiarDatos()" ng-disabled="ambienteResultado.numsin != undefined" ng-change="verificarData()">
+          <label for="cedula" class="control-label">Cédula de identidad o RIF:  </label>
+        </div>
+        <div class="col-md-2">
+          <select class="form-control" ng-options="tipoId for tipoId in tiposId" ng-model="ambienteVehiculo.datosBusqueda.tipoId" ng-disabled="ambienteVehiculo.tipoBusqueda != 'cedula' || ambienteResultado.numsin != undefined" name="tipoId" ng-change="verificarData()">
+          </select>
+        </div>
+        <div class="col-md-2">
+          <input type="text" class="form-control" ng-disabled="ambienteVehiculo.tipoBusqueda != 'cedula'" ng-model="ambienteVehiculo.datosBusqueda.cedula" name="cedula" solo-numeros maxlength="10" ng-disabled="ambienteResultado.numsin != undefined" ng-change="verificarData()">
+        </div>
+      </div>
+      <div class="form-group">
+        <div class="radio-custom radio-primary col-md-offset-2 col-md-2">
+          <input type="radio" id="placa" value="placa" ng-model="ambienteVehiculo.tipoBusqueda" name="tipoBusqueda" ng-click="limpiarDatos()" ng-disabled="ambienteResultado.numsin != undefined" ng-change="verificarData()">
+          <label for="placa" class="control-label">Placa: </label>
+        </div>
+        <div class="col-md-4">
+          <input type="text" class="form-control" ng-disabled="ambienteVehiculo.tipoBusqueda != 'placa' || ambienteResultado.numsin != undefined" name="placa" ng-model="ambienteVehiculo.datosBusqueda.placa" capitalizar maxlength=7 ng-change="verificarData()">
+        </div>
+      </div>
+      <div class="form-group">
+        <div class="radio-custom radio-primary col-md-offset-2 col-md-2">
+          <input type="radio" id="poliza" value="poliza" ng-model="ambienteVehiculo.tipoBusqueda" name="tipoBusqueda" ng-click="limpiarDatos()" ng-disabled="ambienteResultado.numsin != undefined" ng-change="verificarData()">
+          <label for="poliza" class="control-label">Póliza: </label>
+        </div>
+        <div class="col-md-4">
+          <input type="text" class="form-control" name="poliza" ng-disabled="ambienteVehiculo.tipoBusqueda != 'poliza' || ambienteResultado.numsin != undefined" ng-model="ambienteVehiculo.datosBusqueda.poliza" solo-numeros maxlength="10" ng-change="verificarData()">
+        </div>
+      </div>
+      <hr>
+      <div class="col-md-offset-5">
+        <button class="btn btn-primary" ng-click="obtenerVehiculos()" ng-disabled="ambienteResultado.numsin != undefined">Consultar </button>
+      </div>
+      <hr>
+        <div class="col-md-2" ng-show="ambienteVehiculo.mostrar" style="margin-left: 355px;">
+          <div class="form-group">
+            <div class="input-group input-group-icon">
+              <input type="text" class="form-control" ng-model="datosFiltro.numpol"  ng-change="filtrar()" placeholder="Nro poliza">
+                <span class="input-group-addon">
+                  <span class="icon"><i class="fa fa-search"></i></span>
+                </span>
+            </div>
+          </div> 
+        </div>   
+      
+      <div class="table-responsive col-md-12" ng-show="ambienteVehiculo.mostrar">
+        <table ng-table="tableParams" class="table">
+	  <tr ng-repeat="poliza in $data" ng-class="polizaSeleccionada(poliza.numpol)">
+            <td data-title="'Nro.'" sortable="'numpol'" class="text-center">{{poliza.numpol}}</td>
+            <td data-title="'Cliente'" sortable="'cliente'" class="text-center" >{{poliza.cliente}}</td>
+            <td data-title="'Placa'" sortable="'poliza'" class="text-center">{{poliza.numplaca}}</td>
+            <td data-title="'Oficina Emisora'" sortable="'placa'" class="text-center">{{poliza.descrip}}</td>
+            <td data-title="'Fecha de Vigencia'" class="text-center">{{poliza.fecinivig | date: "dd/MM/yyyy"}} - {{poliza.fecfinvig | date: "dd/MM/yyyy"}}</td>
+            <td data-title="'Acciones'" class="text-center">
+              <a href="" ng-click="seleccionarPoliza(poliza);" ><i class="fa fa-check" title="Declarar Siniestro"></i></a>
+            </td>
+          </tr>
+        </table>
+      </div>
+    </div>
+  </section>
+</div>

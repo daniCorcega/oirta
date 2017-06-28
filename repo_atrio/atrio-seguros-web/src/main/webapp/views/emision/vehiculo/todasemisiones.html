@@ -1,0 +1,65 @@
+<div class="row" cambio-fondo="auto">
+  <div id="w1-cliente" class="tab-pane">
+    <section = "panel form-wizard" id="w1">
+      <header class="panel-heading">
+	<div class="panel-actions">
+          <!--
+	  <a href="#" class="fa fa-caret-down"></a> <a href="#" class="fa fa-times"></a>
+          -->
+	</div>
+	<h2 class="panel-title">
+	  <img src="assets/images/automovil.png" id="logo-panel"> Cotizaciones Emitidas
+	</h2>
+      </header>
+    </section>
+    <div class="tab-content">
+      <div class="row">
+    <div class="col-md-9 text-left">
+	        <div class="btn-group" role="group" aria-label="..." ng-show="mostrarEmpleado() >= 0">
+            <a href="#/emision/lista" class="btn active btn-default">Mis Emisiones</a>
+            <a href="#/emision/todas" class="btn btn-default">Todas las Emisiones</a>
+          </div>
+
+	</div>
+    <div class="col-md-3">
+      <div class="input-group input-group-icon">
+	<input type="text" class="form-control" ng-model="datosFiltro.cliente" ng-change="filtrar2()" placeholder="Solicitante">
+   <input type="text" class="form-control" ng-model="datosFiltro.poliza" ng-change="filtrar()" placeholder="Nro.">
+	<span class="input-group-addon">
+    <span class="icon"><i class="fa fa-search"></i></span>
+  <span class="input-group-addon">
+    <span class="icon"><i class="fa fa-search"></i></span>
+      </div>
+    </div>
+  </div>
+
+
+    <div class="table-responsive">
+  <table ng-table="tableParams" class="table">
+    <tr ng-repeat="emision in $data">
+      <td data-title="'Nro.'" sortable="'poliza'"><center>{{emision.poliza}}</center></td>
+      <td data-title="'Fecha Inicio'" sortable="'inicio_vig'"><center>{{emision.inicio_vig}}</center></td>
+      <td data-title="'Fecha Vigencia'" sortable="'fin_vig'"><center>{{emision.fin_vig}}</center></td>
+      <td data-title="'Solicitante'" sortable="'cliente'"><center>{{emision.cliente}}</center></td>
+      <td data-title="'Marca'" sortable="'marca'"><center>{{emision.marca}}</center></td>
+      <td data-title="'Modelo'" sortable="'modelo'"><center>{{emision.modelo}}</center></td>
+      <td data-title="'Año'" sortable="'ano'"><center>{{emision.ano}}</center></td>
+      <td data-title="'Impresión'">
+      <span>
+       <center><a href="" ng-click="descargarpoliza(emision.idepol,'POL')"><i class="fa fa-file-pdf-o fa-1x" style="font-size:20px;"  tooltip="Descargar Poliza" tooltip-trigger tooltip-animation="false" tooltip-placement="top" align="center"></i></a>
+      </span>
+      <span>
+       <a href="" ng-click="descargaranexo(emision.idepol)"><i class="fa fa-file-pdf-o fa-1x" style="font-size:20px;" tooltip="Descargar Anexo" tooltip-trigger tooltip-animation="false" tooltip-placement="top" align="right"></i></a></center>
+      </span>
+      </td>
+      <td  ng-show="mostrarEmpleado() >= 0" data-title="'Requisitos'">
+        <span>
+         <center><a href="" ng-click="requisitos(emision.nrosolic,emision.idepol)"><i class="fa fa-pencil-square-o fa-1x" style="font-size:20px;"   tooltip="Requisitos" tooltip-trigger tooltip-animation="false" tooltip-placement="top" align="center"></i></a><center>
+        </span>
+      </td>
+          </tr>
+	</table>
+      </div>
+    </div>
+ </div>
+</div>

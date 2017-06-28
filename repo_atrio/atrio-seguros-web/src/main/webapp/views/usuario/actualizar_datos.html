@@ -1,0 +1,85 @@
+<div class="col-md-8 col-md-offset-2" cambio-fondo="">
+  <header class="panel-heading">
+    <h2 class="panel-title">Actualizar Datos</h2>
+  </header>
+  <div id="edit" class="tab-content">
+    <div class="alert alert-info">
+      <p>Por favor ingrese los datos solicitados para actualizar los datos.</p><br/>
+      <!--p class="m-none text-semibold h6">ACLARATORIA: El bot&oacute;n se activar&aacute; solo cuando se cumplan todas las condiciones</p-->
+    </div>
+    <form class="form-horizontal">
+      <fieldset class="mb-xl">
+        <!-- Clave Actual -->
+        <!--div class="form-group">
+          <label class="col-md-4 col-md-offset-1 control-label">Nombre</label>
+          <div class="col-md-4">
+            <div class="input-group">
+              <div class="input-group-addon">
+                <span class="fa fa-user"></span>
+              </div>
+            <div class="input-group input-group-icon">
+              <input type="text" class="form-control" id="profileNewPassword" ng-model="nombre">
+              <span class="input-group-addon">
+                <span class="icon">
+                  <i ng-show="nombrenew()" class="fa fa-check tiene-exito"></i>
+
+                </span>
+              </span>
+            </div>
+            </div>
+          </div>
+        </div-->
+        <!-- Clave Nueva -->
+        <div class="form-group">
+          <label class="col-md-4 col-md-offset-1 control-label">Correo Electrónico</label>
+          <div class="col-md-4">
+            <div class="input-group">
+              <div class="input-group-addon">
+                <span class="fa fa-envelope"></span>
+              </div>
+            <div class="input-group input-group-icon">
+              <input type="text" class="form-control" id="profileNewPassword" ng-model="email">
+              <span class="input-group-addon">
+                <span class="icon">
+                  <i ng-show="emailnew()" class="fa fa-check tiene-exito"></i>
+                  <!--i ng-show="email.length > 0" class="fa fa-times tiene-error"></i-->
+                </span>
+              </span>
+            </div>
+            </div>
+          </div>
+        </div>
+        <!-- Clave Confirmacion -->
+        <div class="form-group">
+          <label class="col-md-4 col-md-offset-1 control-label">Telefono</label>
+          <div class="col-md-4">
+            <div class="input-group">
+              <div class="input-group-addon">
+                <span class="fa fa-phone"></span>
+              </div>
+            <div class="input-group input-group-icon">
+              <input type="text" class="form-control" id="profileNewPasswordRepeat" ng-model="telefono">
+              <span class="input-group-addon">
+                <span class="icon">
+                  <i ng-show="telefononew()" class="fa fa-check tiene-exito"></i>
+                  <!--i ng-show="claveConfirma.length > 0 && !(claveConfirmaOk());" class="fa fa-times tiene-error"></i-->
+                </span>
+              </span>
+            </div>
+           </div>
+          </div>
+        </div>
+      </fieldset>
+      <div class="panel-footer">
+        <div class="row" style="margin-right:120px;">
+          <div class="col-md-3 col-md-offset-6 margen-adicional">
+            <div ng-click="enviar()" class="btn btn-primary btn-block">Actualizar</div>
+          </div>
+          <div class="col-md-3 margen-adicional">
+            <button type="reset" class="btn btn-default btn-block">Limpiar</button>
+          </div>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>

@@ -1,0 +1,109 @@
+.blue{color:#3158A9}
+
+.bigger {
+    transform:scale(2.0,2.0);
+    -ms-transform:scale(2.0,2.0); /* IE 9 */
+    -moz-transform:scale(2.0,2.0); /* Firefox */
+    -webkit-transform:scale(2.0,2.0); /* Safari and Chrome */
+    -o-transform:scale(2.0,2.0); /* Opera */
+}
+
+.edit{
+    cursor:pointer;
+    cursor:hand;
+}
+
+.spacer {
+    margin-top: 40px; /* define margin as you see fit */
+}
+
+.resumen {
+    background: #f6f6f6;
+}
+
+th.header {
+  position: inherit !important;
+}
+
+.margen-adicional {
+  margin-top:10px;
+}
+
+.tiene-exito {
+  color:#3c763d;
+}
+
+.tiene-error {
+  color: #a94442;
+}
+
+.label-yusmary {
+  background-color: #d9534f;
+}
+
+html.fixed .inner-wrapper {
+  padding-top: 30px;
+}
+
+#logo-panel {
+  height: 40px;
+  margin-right: 10px;
+}
+
+header.panel-heading {
+  padding: 10px;
+}
+
+th.header {
+  height: 40px;
+}
+
+.ng-table, .table-responsive {
+  margin-top: 10px;
+}
+
+.ng-table-pagination {
+  margin: 10px 0;
+}
+
+ul.pager {
+ margin: 10px 0px; 
+}
+
+.header-right {
+  height: 54px;
+}
+
+.header {
+  border-top: 0px;
+  border-bottom: 3px solid #053390;
+}
+
+.panel-footer {
+  padding: 5px 15px;
+}
+
+.text-mayus {
+  text-transform: uppercase;
+}
+
+.bg-disabled {
+  background-color: #cccccc;
+}
+
+.panel-featured-disabled {
+  border-color: #cccccc;
+}
+
+#spinnner {
+  z-index:20001;
+}
+
+#the-spinner {
+  background-color: white;
+  opacity: 0.3;
+  position: absolute;
+  width: 100%;
+  height:100%;
+  z-index:20000;
+}

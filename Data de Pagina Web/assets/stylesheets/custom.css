@@ -1,0 +1,26 @@
+.blue{color:#3158A9}
+
+.bigger {
+    transform:scale(2.0,2.0);
+    -ms-transform:scale(2.0,2.0); /* IE 9 */
+    -moz-transform:scale(2.0,2.0); /* Firefox */
+    -webkit-transform:scale(2.0,2.0); /* Safari and Chrome */
+    -o-transform:scale(2.0,2.0); /* Opera */
+}
+
+.edit{
+    cursor:pointer;
+    cursor:hand;
+}
+
+.spacer {
+    margin-top: 40px; /* define margin as you see fit */
+}
+
+.resumen {
+    background: #f6f6f6;
+}
+
+th.header {
+  position: inherit !important;
+}

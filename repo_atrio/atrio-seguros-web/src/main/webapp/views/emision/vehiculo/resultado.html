@@ -1,0 +1,57 @@
+<div id="w1-cliente" class="tab-pane">
+  <p>Su proceso de emisi&oacute;n de polizas ha finalizado correctamente, a continuaci&oacute;n se muestran los documentos y el resumen de lo realizado.</p>
+  <br/>
+  <h3 class="text-center">Poliza N&uacute;mero: <strong>{{$parent.ambienteResultado.poliza}}</strong></h3>
+  <div class="text-center">
+    <!--a target="_blank" href="{{$parent.ambienteResultado.url}}" class="btn btn-primary" ng-class="{true: 'disabled'}[ambienteResultado.url === undefined || ambienteResultado.url == 'NO']"><i class="fa fa-file-pdf-o"></i> Descargar P&oacute;liza</a-->
+    <a target="_blank" href="{{poliza.clink}}"  ng-repeat="poliza in ambienteResultado.url" class="btn btn-primary" ng-class="{true: 'disabled'}[poliza.clink === undefined || poliza.clink == 'NO']"><i class="fa fa-file-pdf-o"></i> Descargar {{poliza.descrip}}</a>
+  </div>
+
+  <div class="row" ng-show="ambienteResultado.anexos.length > 0">
+    <br>  <br>
+    <h4 class="text-center">Anexos</h4>
+    <div class="col-md-4" ng-repeat="anexo in ambienteResultado.anexos">
+      <div ng-show="ambienteResultado.url != 'NO'">
+	<a href="{{anexo.url}}" target="_blank">
+          <section class="panel panel-featured-left panel-featured-primary">
+            <div class="panel-body">
+              <div class="widget-summary widget-summary-xs">
+		<div class="widget-summary-col widget-summary-col-icon">
+                  <div class="summary-icon bg-primary">
+                    <i class="fa fa-file-pdf-o"></i>
+                  </div>
+		</div>
+		<div class="widget-summary-col">
+                  <div class="summary">
+                    <h4 class="title">Descargar {{anexo.descrip}}</h4>
+                  </div>
+		</div>
+              </div>
+            </div>
+          </section>
+	</a>
+      </div>
+      <div ng-hide="ambienteResultado.url != 'NO'">
+          <section class="panel panel-featured-left panel-featured-disabled">
+            <div class="panel-body">
+              <div class="widget-summary widget-summary-xs">
+		<div class="widget-summary-col widget-summary-col-icon">
+                  <div class="summary-icon bg-disabled">
+                    <i class="fa fa-file-pdf-o"></i>
+                  </div>
+		</div>
+		<div class="widget-summary-col">
+                  <div class="summary">
+                    <h4 class="title">{{anexo.descrip}}</h4>
+                  </div>
+		</div>
+              </div>
+            </div>
+          </section>
+      </div>
+    </div>
+  </div>
+  <!--
+      <h3 class="text-center">Financiamiento N&uacute;mero: <strong>XXXXX</strong></h3>
+      -->
+</div>

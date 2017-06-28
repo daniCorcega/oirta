@@ -1,0 +1,113 @@
+<div id="w1-cliente" class="tab-pane">
+  <div class="row" cambio-fondo="auto">
+    <section = "panel form-wizard" id="w1">
+      <header class="panel-heading">
+	<div class="panel-actions">
+	</div>
+	<h2 class="panel-title">
+	  <img src="assets/images/automovil.png" id="logo-panel"> Zona de Descarga
+	</h2>
+      </header>
+    </section>
+    <div class="tab-content">
+  <div>
+    <div class="col-md-9">
+      <div class="btn-group" role="group" aria-label="...">
+  </div>
+    </div>
+
+
+  <accordion-group ng-repeat="filter in filters" is-open="filter.open"> <accordion-heading> <i class="pull-left fa" ng-class="{'fa-minus': filter.open, 'fa-plus': !filter.open}"></i><span>{{filter.name}}</span> </accordion-heading>
+
+
+  </div>
+  <div class="tab-content">
+  <div class="table-responsive">
+      <div class="row">
+    <div class="col-md-12">
+
+      <!--accordion close-others="status.oneAtATime">
+        <accordion-group is-open="filter.open">
+
+          <accordion-heading><a href=""><i class="fa fa-user "></i> Persona</a></accordion-heading>
+          <div class="row">
+            <div class="col-sm-12 zoom">
+              <div ng-repeat="documento in documentos | filter:{grupo: 'persona'}" >
+              <ul>
+                 <li>
+                  <h5>
+              <a target="_blank" href="{{documento.uri}}" ng-click="descargarpoliza(emision.idepol,'POL')"><strong>{{documento.nombre}}</strong>&nbsp;<i class="fa fa-file-pdf-o fa-1x" style="font-size:20px;"   title="Descargar" align="center"></i></a>
+                  </h5>
+                 </li>
+                </ul>
+            </div>
+            </div>
+          </div>
+        </accordion-group>
+      </accordion-->
+
+
+
+  <accordion close-others="status.oneAtATime">
+        <accordion-group is-open="filter.open">
+          <accordion-heading ><a href=""><i class="fa fa-car"></i> Automovil</a></accordion-heading>
+          <div class="row">
+            <div class="col-sm-12">
+              <div ng-repeat="documento in documentos | filter:{grupo: 'automovil'}" is-open="filter.open">
+             <ul>
+                 <li>
+                  <h5>
+              <a target="_blank" href="{{documento.uri}}"  tooltip="Descargar" tooltip-trigger tooltip-animation="false" tooltip-placement="top"><strong>{{documento.nombre}}</strong>&nbsp;<i class="fa fa-file-pdf-o fa-1x" style="font-size:20px;"   align="center"></i></a>
+                  &nbsp;&nbsp; &nbsp; <!--a href="" tooltip="Enviar Cotización por Correo" tooltip-trigger tooltip-animation="false" tooltip-placement="top" ng-click="enviarDocumento(documento.nombre,documento.uri)" tooltip="tooltip" title="Enviar Cotización por Correo"><i class="fa fa-envelope" style="font-size:20px;" align="center"></i></a></center-->
+              </span>
+                  </h5>
+                  </li>
+                </ul>
+            </div>
+          </div>
+           </div>
+        </accordion-group>
+      </accordion>
+
+
+  <!--accordion close-others="status.oneAtATime">
+        <accordion-group is-open="filter.open">
+          <accordion-heading><a href=""><i class="fa fa-home"></i> Hogar</a></accordion-heading>
+          <div class="row">
+            <div class="col-sm-12">
+              <div ng-repeat="documento in documentos | filter:{grupo: 'hogar'}" is-open="filter.open">
+              <ul>
+                 <li>
+                  <h5>
+              <a target="_blank" href="{{documento.uri}}" ng-click="descargarpoliza(emision.idepol,'POL')"><strong>{{documento.nombre}}</strong>&nbsp;<i class="fa fa-file-pdf-o fa-1x" style="font-size:20px;"   title="Descargar" align="center"></i></a>
+                  </h5>
+                  </li>
+                </ul>
+            </div>
+          </div>
+           </div>
+        </accordion-group>
+      </accordion-->
+
+
+  <!--accordion close-others="status.oneAtATime">
+        <accordion-group is-open="filter.open">
+          <accordion-heading><a href=""><i class="fa fa-building"></i> Empresa</a></accordion-heading>
+          <div class="row">
+            <div class="col-sm-12">
+              <div ng-repeat="documento in documentos | filter:{grupo: 'empresa'}" is-open="filter.open">
+              <ul>
+                 <li>
+                  <h5>
+              <a target="_blank" href="{{documento.uri}}" ng-click="descargarpoliza(emision.idepol,'POL')"><strong>{{documento.nombre}}</strong>&nbsp;<i class="fa fa-file-pdf-o fa-1x" style="font-size:20px;"   title="Descargar" align="center"></i></a>
+                  </h5>
+                  </li>
+                </ul>
+            </div>
+          </div>
+          </div>
+        </accordion-group>
+      </accordion-->
+  </div>
+ </div>
+ </div>

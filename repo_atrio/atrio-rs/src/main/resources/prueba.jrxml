@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="prueba" pageWidth="612" pageHeight="792" whenNoDataType="AllSectionsNoDetail" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="eca45887-77d6-428f-901b-aaba7928f959">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="20"/>
+	<queryString>
+		<![CDATA[SELECT P.* FROM CT_PRINCIPAL P WHERE p.nrosolic = 100329]]>
+	</queryString>
+	<field name="NROSOLIC" class="java.math.BigDecimal"/>
+	<field name="TIPOID" class="java.lang.String"/>
+	<field name="NUMID" class="java.math.BigDecimal"/>
+	<field name="NOMBRE" class="java.lang.String"/>
+	<field name="APELLIDO" class="java.lang.String"/>
+	<field name="FECNAC" class="java.sql.Timestamp"/>
+	<field name="SEXO" class="java.lang.String"/>
+	<field name="EDOCIVIL" class="java.lang.String"/>
+	<field name="CODESTADO" class="java.lang.String"/>
+	<field name="CODCIUDAD" class="java.lang.String"/>
+	<field name="CODMUNICIPIO" class="java.lang.String"/>
+	<field name="CODURBANIZACION" class="java.lang.String"/>
+	<field name="DIRECCION" class="java.lang.String"/>
+	<field name="EMAIL" class="java.lang.String"/>
+	<field name="PROFESION" class="java.lang.String"/>
+	<field name="TELEFONO1" class="java.lang.String"/>
+	<field name="TELEFONO2" class="java.lang.String"/>
+	<field name="FECSOLIC" class="java.sql.Timestamp"/>
+	<field name="STSSOLIC" class="java.lang.String"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="30" splitType="Stretch">
+			<staticText>
+				<reportElement x="0" y="0" width="572" height="20" uuid="7eab8457-1f24-4ec7-babf-856893adba45"/>
+				<textElement textAlignment="Center">
+					<font size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[COTIZACIÓN VEHÍCULO]]></text>
+			</staticText>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="60" splitType="Stretch">
+			<image scaleImage="RealSize">
+				<reportElement x="0" y="0" width="100" height="49" uuid="da6a8977-3307-4966-8ae1-71c0cf020c73"/>
+				<imageExpression><![CDATA["logo.png"]]></imageExpression>
+			</image>
+			<textField>
+				<reportElement x="437" y="29" width="135" height="20" uuid="de701a10-d6de-460d-a3ad-63b34ea5e28f"/>
+				<textElement textAlignment="Right" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{FECSOLIC}]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageHeader>
+	<columnHeader>
+		<band height="90" splitType="Stretch">
+			<rectangle>
+				<reportElement x="0" y="0" width="572" height="90" uuid="b2cb6ef2-89fa-428d-b8be-0dd3bbe47829"/>
+			</rectangle>
+			<textField>
+				<reportElement x="104" y="4" width="31" height="20" uuid="777eaa7e-efb8-47dc-b7a3-542b360209d3"/>
+				<textFieldExpression><![CDATA[$F{TIPOID}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="104" y="24" width="200" height="20" uuid="82eea2b1-2f36-48e7-860d-9e97217b1d69"/>
+				<textFieldExpression><![CDATA[$F{APELLIDO}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="404" y="24" width="100" height="20" uuid="3ee03de7-94ff-484e-9ea4-5955eaecc399"/>
+				<textFieldExpression><![CDATA[$F{NOMBRE}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="104" y="44" width="100" height="20" uuid="6b3cade3-537d-4de8-9f58-08653514474f"/>
+				<textFieldExpression><![CDATA[$F{FECNAC}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="404" y="44" width="100" height="20" uuid="63c1a6b3-4c6b-4f74-8035-cc588bde881a"/>
+				<textFieldExpression><![CDATA[$F{SEXO}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="104" y="64" width="100" height="20" uuid="3169fdf1-3371-48e1-b94a-c1dce510627c"/>
+				<textFieldExpression><![CDATA[$F{TELEFONO1}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="404" y="64" width="100" height="20" uuid="5371a5a9-5839-480a-ab13-ef7fabc1abcf"/>
+				<textFieldExpression><![CDATA[$F{TELEFONO2}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="4" y="4" width="100" height="20" uuid="ee890b66-69d2-4313-9d59-d4898484e854"/>
+				<text><![CDATA[N° Cédula:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="4" y="24" width="100" height="20" uuid="b90ff130-af2e-4adb-9986-24c37df15a5c"/>
+				<text><![CDATA[Apellidos:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="304" y="24" width="100" height="20" uuid="7887d188-8461-4ba8-9bde-86ecdf26475e"/>
+				<text><![CDATA[Nombre:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="4" y="44" width="100" height="20" uuid="b52fe14f-7714-4b54-b91b-6733d4a60f31"/>
+				<text><![CDATA[Fecha Nacimiento:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="304" y="44" width="100" height="20" uuid="904a5ab2-919b-45ce-8979-a361184d446e"/>
+				<text><![CDATA[Sexo:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="4" y="64" width="100" height="20" uuid="fbe135c0-c4dc-4006-95d1-0c2539bd54eb"/>
+				<text><![CDATA[Teléfono 1:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="304" y="64" width="100" height="20" uuid="240e742b-7c77-48a9-b5cc-28aba890aec4"/>
+				<text><![CDATA[Teléfono 2:]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="135" y="4" width="100" height="20" uuid="d84e1688-8484-4a2e-a75e-4c236e7ba5dd"/>
+				<textFieldExpression><![CDATA[$F{NUMID}]]></textFieldExpression>
+			</textField>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="125" splitType="Stretch"/>
+	</detail>
+	<columnFooter>
+		<band height="45" splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band height="54" splitType="Stretch"/>
+	</pageFooter>
+	<summary>
+		<band height="42" splitType="Stretch"/>
+	</summary>
+</jasperReport>

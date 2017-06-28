@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:h="http://java.sun.com/jsf/html" lang="es" class="fixed">
+  <h:head>
+
+    <!-- Basic -->
+    <meta charset="UTF-8" />
+    <title>Atrio Seguros</title>
+    <meta name="keywords" content="HTML5 Admin Template" />
+    <meta name="description" content="Porto Admin - Responsive HTML5 Template" />
+    <meta name="author" content="okler.net" />
+
+    <!-- Mobile Metas -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+
+    <link rel="shortcut icon" href="favicon.ico" />
+
+    <!-- Web Fonts  -->
+    <link href="http://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700,800|Shadows+Into+Light" rel="stylesheet" type="text/css" />
+
+    <!-- Vendor CSS -->
+    <link rel="stylesheet" href="assets/vendor/bootstrap/css/bootstrap.css" />
+    <link rel="stylesheet" href="assets/vendor/font-awesome/css/font-awesome.css" />
+    <link rel="stylesheet" href="assets/vendor/magnific-popup/magnific-popup.css" />
+    <link rel="stylesheet" href="assets/vendor/bootstrap-datepicker/css/datepicker3.css" />
+    <link rel="stylesheet" href="assets/vendor/jquery-ui/css/ui-lightness/jquery-ui-1.10.4.custom.css" />
+    <!-- Theme CSS -->
+    <link rel="stylesheet" href="assets/stylesheets/theme.css" />
+
+    <!-- Skin CSS -->
+    <link rel="stylesheet" href="assets/stylesheets/skins/default.css" />
+
+    <!-- Theme Custom CSS -->
+    <link rel="stylesheet" href="assets/stylesheets/theme-custom.css" />
+
+    <!-- Head Libs -->
+    <script src="assets/vendor/modernizr/modernizr.js"></script>
+
+    <!-- Custom -->
+    <link rel="stylesheet" href="assets/stylesheets/custom.css" />
+
+  </h:head>
+  <h:body>
+    <section class="body">
+      <!-- start: header -->
+      <header class="header">
+	<div class="logo-container">
+	  <a href="/" class="logo"> <img src="assets/images/logo.png" height="50" alt="Porto Admin" />
+	  </a>
+	  <div class="visible-xs toggle-sidebar-left" data-toggle-class="sidebar-left-opened" data-target="html" data-fire-event="sidebar-left-opened">
+	    <i class="fa fa-bars" aria-label="Toggle sidebar"></i>
+	  </div>
+	</div>
+
+	<!-- start: search & user box -->
+	<div class="header-right">
+
+	  <span class="separator"></span>
+
+	  <div id="userbox" class="userbox" ng-controller="DropdownCtrl" dropdown="dropdown" is-open="status.isopen">
+	    <a href="#" class="dropdown-toggle" dropdown-toggle="dropdown-toggle" ng-click="toggleDropdown()">
+	      <figure class="profile-picture">
+		    <img src="assets/images/!logged-user.jpg" alt="Joseph Doe" class="img-circle" data-lock-picture="assets/images/!logged-user.jpg" />
+	      </figure>
+	      <div class="profile-info" data-lock-name="John Doe" data-lock-email="johndoe@okler.com">
+		<span class="name">#{userBean.displayName}</span> <span class="role">#{userBean.role}</span>
+	      </div> <i class="fa custom-caret"></i>
+	    </a>
+
+	    <div class="dropdown-menu">
+		  <h:form>
+	      <ul class="list-unstyled">
+		<li class="divider"></li>
+                <!--
+		<li><a role="menuitem" tabindex="-1" href="pages-user-profile.html"><i class="fa fa-user"></i> My Profile</a></li>
+		<li><a role="menuitem" tabindex="-1" href="#" data-lock-screen="true"><i class="fa fa-lock"></i> Lock Screen</a></li>
+                -->
+                <li><h:commandLink action="#{userBean.logout}"><i class="fa fa-power-off"></i> Salir</h:commandLink></li>
+	      </ul>
+		  </h:form>
+	    </div>
+	  </div>
+	</div>
+	<!-- end: search & user box -->
+      </header>
+      <!-- end: header -->
+
+      <div class="inner-wrapper">
+	<!-- start: sidebar -->
+	<aside id="sidebar-left" class="sidebar-left">
+
+	  <div class="sidebar-header">
+	    <div class="sidebar-title">Men&#250; Principal</div>
+	    <div class="sidebar-toggle hidden-xs" data-toggle-class="sidebar-left-collapsed" data-target="html" data-fire-event="sidebar-left-toggle">
+	      <i class="fa fa-bars" aria-label="Toggle sidebar"></i>
+	    </div>
+	  </div>
+
+	  <div class="nano">
+	    <div class="nano-content">
+	      <nav id="menu" class="nav-main" role="navigation">
+		<ul class="nav nav-main">
+		  <li><a href="#"> <i class="fa fa-home" aria-hidden="true"></i> <span>Inicio</span>
+		  </a></li>
+		  <li class="nav-parent"><a> <i class="fa fa-edit" aria-hidden="true"></i> <span>Cotizador</span>
+		    </a>
+		    <ul class="nav nav-children">
+		      <li><a href="#/cotizacion/vehiculo"> Autom&#243;vil </a></li>
+		      <li><a href="#/cotizacion/lista"> Cotizaciones Previas </a></li>
+		      <!--
+                      <li><a href="#/view1"> Salud </a></li>
+		      <li><a href="#/view1"> Hogar </a></li>
+		      <li><a href="#/cotizaciones"> Consultar </a></li>
+                      -->
+		    </ul>                    
+                  </li>
+                  <!-- 
+                  <li class="nav-parent"><a> <i class="fa fa-mail-forward" aria-hidden="true"></i> <span>Emisi&#243;n</span>
+                    </a>
+                    <ul class="nav nav-children">
+	              <li><a href="#/emision/vehiculo"> Autom&#243;vil </a></li>
+                    </ul>
+                  </li>
+                  -->
+	        </ul>
+              </nav>
+            </div>
+
+          </div>
+
+        </aside>
+        <!-- end: sidebar -->
+
+        <section role="main" class="content-body">
+          <header class="page-header">
+            <!--
+            <h2>{{title}}</h2>
+            -->
+            <div class="right-wrapper pull-right">
+	        <!--
+			<ol class="breadcrumbs">
+	          <li><a href="index.html"> <i class="fa fa-home"></i>
+	          </a></li>
+	          <li></li>
+	        </ol>
+			-->
+	        <a class="sidebar-right-toggle" data-open="sidebar-right"><i class="fa fa-chevron-left"></i></a> 
+            </div>
+          </header>
+
+          <!-- start: page -->
+          <ui-view></ui-view>
+          <!-- end: page -->
+        </section>
+      </div>
+
+      <aside id="sidebar-right" class="sidebar-right">
+        <div class="nano">
+          <div class="nano-content">
+            <a href="#" class="mobile-close visible-xs"> Collapse <i class="fa fa-chevron-right"></i>
+            </a>
+
+            <div class="sidebar-right-wrapper">
+
+	      <div class="sidebar-widget widget-calendar">
+	        <h6>Calendario</h6>
+	        <div data-plugin-datepicker="data-plugin-datepicker" data-date-language="es" data-plugin-skin="dark"></div>
+                <!--
+	        <ul>
+	          <li><time datetime="2014-04-19T00:00+00:00">04/19/2014</time> <span>Company Meeting</span></li>
+	        </ul>
+                -->
+	      </div>
+              <!--
+	      <div class="sidebar-widget widget-friends">
+	        <h6>Friends</h6>
+	        <ul>
+	          <li class="status-online">
+	            <figure class="profile-picture">
+		      <img src="assets/images/!sample-user.jpg" alt="Joseph Doe" class="img-circle" />
+	            </figure>
+	            <div class="profile-info">
+		      <span class="name">Joseph Doe Junior</span> <span class="title">Hey, how are you?</span>
+	            </div>
+	          </li>
+	          <li class="status-online">
+	            <figure class="profile-picture">
+		      <img src="assets/images/!sample-user.jpg" alt="Joseph Doe" class="img-circle" />
+	            </figure>
+	            <div class="profile-info">
+		      <span class="name">Joseph Doe Junior</span> <span class="title">Hey, how are you?</span>
+	            </div>
+	          </li>
+	          <li class="status-offline">
+	            <figure class="profile-picture">
+		      <img src="assets/images/!sample-user.jpg" alt="Joseph Doe" class="img-circle" />
+	            </figure>
+	            <div class="profile-info">
+		      <span class="name">Joseph Doe Junior</span> <span class="title">Hey, how are you?</span>
+	            </div>
+	          </li>
+	          <li class="status-offline">
+	            <figure class="profile-picture">
+		      <img src="assets/images/!sample-user.jpg" alt="Joseph Doe" class="img-circle" />
+	            </figure>
+	            <div class="profile-info">
+		      <span class="name">Joseph Doe Junior</span> <span class="title">Hey, how are you?</span>
+	            </div>
+	          </li>
+	        </ul>
+	      </div>
+              -->
+            </div>
+          </div>
+        </div>
+      </aside>
+    </section>
+
+    <!-- Vendor -->
+    <!--<script src="assets/vendor/jquery/jquery.js"></script>-->
+    <!--<script src="assets/vendor/jquery-browser-mobile/jquery.browser.mobile.js"></script>-->
+    <!--<script src="assets/vendor/bootstrap/js/bootstrap.js"></script>-->
+    <!--<script src="assets/vendor/nanoscroller/nanoscroller.js"></script>-->
+    <!--<script src="assets/vendor/bootstrap-datepicker/js/bootstrap-datepicker.js"></script>-->
+    <!--<script src="assets/vendor/magnific-popup/magnific-popup.js"></script>-->
+    <!--<script src="assets/vendor/jquery-placeholder/jquery.placeholder.js"></script>-->
+
+    <!-- Theme Base, Components and Settings -->
+    <!--<script src="assets/javascripts/theme.js"></script>-->
+
+    <!-- Theme Custom -->
+    <!--<script src="assets/bower_components/angular/angular.js"></script>-->
+    <!--<script src="assets/bower_components/angular-route/angular-route.js"></script>-->
+    <!--<script src="assets/bower_components/angular-resource/angular-resource.js"></script>-->
+    <!--<script src="assets/javascripts/theme.custom.js"></script>-->
+    <!--<script src="cotizador/vehiculo/cotizador-vehiculo.js"></script>-->
+    <!--<script src="emision/emision.js"></script>-->
+    <!--<script src="siniestros/siniestros.js"></script>-->
+
+    <!-- Theme Initialization Files -->
+    <!--<script src="assets/javascripts/theme.init.js"></script>-->
+
+    <script src="bower_components/requirejs/require.js" data-main="scripts/main.js"></script>
+  </h:body>
+</html>

@@ -1,0 +1,136 @@
+<div id="w1-cliente" class="tab-pane">
+  <h4>Datos del Conductor Habitual 1</h4>
+  <div class="form-group">
+    
+    <label class="col-md-8 control-label" ng-show="ambienteCliente.cliente.tipoId.substring(0,1) == 'V' || ambienteCliente.cliente.tipoId.substring(0,1) == 'E' || ambienteCliente.cliente.tipoId.substring(0,1) == 'P'">Desea agregar un conductor habitual adem&aacute;s del cliente: <strong>{{ambienteCliente.cliente.nombre.split(' ')[0]}} {{ambienteCliente.cliente.apellidos ? ambienteCliente.cliente.apellidos.split(' ')[0]:''}}</strong></label>
+    <label class="col-md-8 control-label" ng-hide="ambienteCliente.cliente.tipoId.substring(0,1) == 'V' || ambienteCliente.cliente.tipoId.substring(0,1) == 'E' || ambienteCliente.cliente.tipoId.substring(0,1) == 'P'">Desea agregar un conductor habitual</label>
+    
+    <div class="col-md-3">
+      <input id="true" type="radio" name="conductor1" value="S" required ng-model="$parent.ambienteConductores.conductor1.habilitado" ng-checked="$parent.ambienteConductores.conductor1.habilitado == 'S'" ng-disabled="ambienteResultado.numcert != undefined" > Si
+      <input id="false" type="radio" name="conductor1" value="N" ng-click="desactivarConductor1()" required ng-model="$parent.ambienteConductores.conductor1.habilitado" ng-checked="$parent.ambienteConductores.conductor1.habilitado == 'N'" ng-disabled="ambienteResultado.numcert != undefined" > No
+    </div>
+  </div>
+  <div class="form-group">
+    <label class="col-md-3 control-label">C&eacute;dula o RIF</label>
+
+    <div class="col-md-3">
+      <select class="form-control" name="conductor1TipoId" ng-model="$parent.ambienteConductores.conductor1.tipoId" ng-options="tipoId for tipoId in subTiposId"  ng-change="iniciarConductor(1)" ng-disabled="$parent.ambienteConductores.conductor1.habilitado == 'N' || ambienteResultado.numcert != undefined" required>
+        <option value="">-- seleccione --</option>
+      </select>
+
+    </div>
+    <div class="col-md-5">
+      <input type="text" class="form-control" name="conductor1NumId" ng-model="$parent.ambienteConductores.conductor1.numId" ng-blur="validarConductor(1)" ng-enter="validarConductor(1)" solo-numeros required ng-disabled="$parent.ambienteConductores.conductor1.habilitado == 'N' || ambienteResultado.numcert != undefined" data-plugin-maxlength="" maxlength="9">
+    </div>
+  </div>
+  <div class="form-group">
+    <label class="col-md-3 control-label">Nombre</label>
+
+    <div class="col-md-8">
+      <input type="text" class="form-control" name="conductor1Nombre" ng-model="$parent.ambienteConductores.conductor1.nombre" required ng-disabled="$parent.ambienteConductores.conductor1.acsel || $parent.ambienteConductores.conductor1.habilitado == 'N' || ambienteResultado.numcert != undefined" data-plugin-maxlength="" maxlength="50">
+
+    </div>
+  </div>
+  <div class="form-group" ng-disabled="$parent.ambienteConductores.conductor1.habilitado == 'N'">
+    <label class="col-md-3 control-label">Apellidos</label>
+
+    <div class="col-md-8">
+      <input type="text" class="form-control" name="conductor1Apellidos" ng-model="$parent.ambienteConductores.conductor1.apellidos" required ng-disabled="$parent.ambienteConductores.conductor1.acsel || $parent.ambienteConductores.conductor1.habilitado == 'N' || ambienteResultado.numcert != undefined"  data-plugin-maxlength="" maxlength="60">
+    </div>
+  </div>
+
+  <div class="form-group">
+    <label class="col-md-3 control-label">Sexo</label>
+    <div class="col-md-3">
+      <select name="conductor1Sexo" class="form-control" ng-model="$parent.ambienteConductores.conductor1.sexo" required ng-disabled="$parent.ambienteConductores.conductor1.acsel || $parent.ambienteConductores.conductor1.habilitado == 'N' || ambienteResultado.numcert != undefined"  ng-options="sexo for sexo in $parent.sexos">
+        <option value="">-- seleccione --</option>
+      </select>
+    </div>
+
+    <label class="col-md-2 control-label">Parentesco</label>
+    <div class="col-md-3">
+      <select class="form-control" name="conductor1Parentesco" ng-model="$parent.ambienteConductores.conductor1.parentesco" required ng-disabled="$parent.ambienteConductores.conductor1.habilitado == 'N' || $parent.ambienteResultado.numcert != undefined"  ng-options="parentesco.descrip for parentesco in ambienteConductores.parentescos | parentescosSexo:ambienteConductores.conductor1.sexo:false">
+        <option value="">-- seleccione --</option>
+      </select>
+    </div>
+  </div> 
+
+  <div class="form-group">
+    <label class="col-md-3 control-label">Fecha de Nac.</label>
+
+    <div class="col-md-3">
+      <div class="input-group">
+	<input name="conductor1FecNacimiento" type="text" data-provide="datepicker" class="form-control" ng-model="$parent.ambienteConductores.conductor1.fechaNacimiento" data-date-format="dd/mm/yyyy"
+               data-date-language="es" id="date" placeholder="__/__/____" required ng-disabled="ambienteConductores.conductor1.acsel || ambienteConductores.conductor1.habilitado == 'N' || ambienteResultado.numcert != undefined" data-date-end-date="-18y" data-date-start-date="-150y" data-date-autoclose="true">
+        <span class="input-group-addon btn" ng-click="clicked();" > <i class="fa fa-calendar"></i></span> 
+      </div>
+    </div>
+  </div>
+
+
+  <h4>Datos del Conductor Habitual 2</h4>
+  <div class="form-group">
+    <label class="col-md-8 control-label">Desea agregar un segundo conductor habitual adicional</label>
+    
+    <div class="col-md-3">
+      <input id="true" type="radio" name="conductor2" value="S" required ng-click="activarConductor2()" ng-model="$parent.ambienteConductores.conductor2.habilitado" ng-checked="$parent.ambienteConductores.conductor2.habilitado == 'S'" ng-disabled="ambienteResultado.numcert != undefined" > Si
+      <input id="false" type="radio" name="conductor2" value="N" ng-click="limpiarConductor(2)" required ng-model="$parent.ambienteConductores.conductor2.habilitado" ng-checked="$parent.ambienteConductores.conductor2.habilitado == 'N'" ng-disabled="ambienteResultado.numcert != undefined" > No
+    </div>
+  </div>
+  <div class="form-group">
+    <label class="col-md-3 control-label">C&eacute;dula o RIF</label>
+
+    <div class="col-md-3">
+      <select class="form-control" name="conductor2TipoId" ng-model="$parent.ambienteConductores.conductor2.tipoId" ng-options="tipoId for tipoId in subTiposId"  ng-change="iniciarConductor(2)" ng-disabled="$parent.ambienteConductores.conductor2.habilitado == 'N' || ambienteResultado.numcert != undefined" required>
+        <option value="">-- seleccione --</option>
+      </select>
+
+    </div>
+    <div class="col-md-5">
+      <input type="text" class="form-control" name="conductor2NumId" ng-model="$parent.ambienteConductores.conductor2.numId" ng-blur="validarConductor(2)" ng-enter="validarConductor(2)" solo-numeros required ng-disabled="$parent.ambienteConductores.conductor2.habilitado == 'N' || ambienteResultado.numcert != undefined" data-plugin-maxlength="" maxlength="9">
+    </div>
+  </div>
+  <div class="form-group">
+    <label class="col-md-3 control-label">Nombre</label>
+
+    <div class="col-md-8">
+      <input type="text" class="form-control" name="condcutor2Nombre" ng-model="$parent.ambienteConductores.conductor2.nombre" required ng-disabled="$parent.ambienteConductores.conductor2.acsel || $parent.ambienteConductores.conductor2.habilitado == 'N' || ambienteResultado.numcert != undefined" data-plugin-maxlength="" maxlength="50">
+
+    </div>
+  </div>
+  <div class="form-group" ng-disabled="$parent.ambienteConductores.conductor2.habilitado == 'N'">
+    <label class="col-md-3 control-label">Apellidos</label>
+
+    <div class="col-md-8">
+      <input type="text" class="form-control" name="conductor2Apellidos" ng-model="$parent.ambienteConductores.conductor2.apellidos" required ng-disabled="$parent.ambienteConductores.conductor2.acsel || $parent.ambienteConductores.conductor2.habilitado == 'N' || ambienteResultado.numcert != undefined"  data-plugin-maxlength="" maxlength="60">
+    </div>
+  </div>
+  <div class="form-group">
+    <label class="col-md-3 control-label">Sexo</label>
+    <div class="col-md-3">
+      <select name="conductor2Sexo" class="form-control" ng-model="$parent.ambienteConductores.conductor2.sexo" required ng-disabled="$parent.ambienteConductores.conductor2.acsel || $parent.ambienteConductores.conductor2.habilitado == 'N' || ambienteResultado.numcert != undefined"  ng-options="sexo for sexo in $parent.sexos">
+        <option value="">-- seleccione --</option>
+      </select>
+    </div>
+
+    <label class="col-md-2 control-label">Parentesco</label>
+    <div class="col-md-3">
+      <select class="form-control" name="conductor2Parentesco" ng-model="$parent.ambienteConductores.conductor2.parentesco" required ng-disabled="$parent.ambienteConductores.conductor2.habilitado == 'N' || $parent.ambienteResultado.numcert != undefined" ng-options="parentesco.descrip for parentesco in ambienteConductores.parentescos | parentescosSexo:ambienteConductores.conductor2.sexo:false">
+        <option value="">-- seleccione --</option>
+      </select>
+    </div>
+  </div>
+
+  <div class="form-group">
+    <label class="col-md-3 control-label">Fecha de Nac.</label>
+
+    <div class="col-md-3">
+      <div class="input-group">
+	<input name="conductor2FecNacimiento" type="text" data-provide="datepicker" class="form-control" ng-model="$parent.ambienteConductores.conductor2.fechaNacimiento" data-date-format="dd/mm/yyyy"
+               data-date-language="es" id="date" placeholder="__/__/____" required ng-disabled="$parent.ambienteConductores.conductor2.acsel || ambienteConductores.conductor2.habilitado == 'N' || ambienteResultado.numcert != undefined" data-date-end-date="-18y" data-date-start-date="-150y" data-date-autoclose="true">
+        <span class="input-group-addon btn" ng-click="clicked();" > <i class="fa fa-calendar"></i></span> 
+      </div>
+    </div>
+  </div>
+
+</div>

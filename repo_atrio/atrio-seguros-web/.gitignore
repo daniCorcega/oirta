@@ -1,0 +1,17 @@
+.classpath
+target/
+.settings/
+.project
+src/main/webapp/.idea/
+package.json
+node_modules/
+bower_components/
+npm-debug.log
+.idea/
+.externalToolBuilders/
+*#*#
+*.#*
+*~
+.DS_Store
+src/main/webapp/build/
+src/main/webapp/www/

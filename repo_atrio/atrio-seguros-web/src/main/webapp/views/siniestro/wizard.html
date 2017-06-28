@@ -1,0 +1,45 @@
+<div class="row" cambio-fondo="auto"> 
+  <div class="col-lg-12">
+    <section class="panel form-wizard" id="w1">
+      <header class="panel-heading">
+	<h2 class="panel-title">
+	  <img src="assets/images/automovil.png" height="50px" /> Declaración de Siniestros
+	</h2>
+      </header>
+      <div class="panel-body panel-body-nopadding">
+	<div class="wizard-tabs">
+	  <ul class="wizard-steps">
+	    <li class="active"><a href="#w1-buscar_vehiculo" data-toggle="tab" class="text-center"> <span class="badge">1</span><span class="hidden-xs">Buscar Vehículo</a></li>
+            <li><a href="#w1-titular_contacto_vehiculo" data-toggle="tab" class="text-center"> <span class="badge">2</span><span class="hidden-xs">Datos del</span>Titular, Contacto y Vehículo</a></li>
+	    <li><a href="#w1-conductor_siniestro" data-toggle="tab" class="text-center"> <span class="badge">3</span> Datos del conductor y siniestro</a></li>
+	    <li><a href="#w1-danos" data-toggle="tab" class="text-center"> <span class="badge">4</span><span class="hidden-xs">Detalle del Siniestro y daños</a></li>
+	    <li><a href="#w1-resumen" data-toggle="tab" class="text-center"> <span class="badge">5</span> Resumen</a></li>
+	  </ul>
+	</div>
+        <form class="form-horizontal" novalidate="novalidate">
+          <div class="tab-content">
+            <ui-view autoscroll="true">
+            </ui-view>
+          </div>
+        </form>
+      </div>
+      <div class="panel-footer">
+        <ul class="pager">
+          <li class="previous disabled"><a><i class="fa fa-angle-left"></i> Anterior</a></li>
+          <li class="finish hidden pull-right">
+            <span ng-show="pasoActivo == 4">
+              <span ng-show="ambienteResultado.numsin != undefined"><a>Ver Declaraci&oacute;n</a></span>
+              <span ng-show="ambienteResultado.numsin == undefined"><a>Declarar</a></span>
+            </span>
+            <span ng-show="pasoActivo !=4 ">              
+              <a>Finalizar</a>
+              </span>
+          </li>          
+          <li class="next">
+              <a>Siguiente <i class="fa fa-angle-right"></i></a>
+          </li>
+        </ul>
+      </div>
+    </section>
+  </div>
+</div>

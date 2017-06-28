@@ -1,0 +1,4 @@
+define([
+       './urls',
+       './utils'
+], function(){});

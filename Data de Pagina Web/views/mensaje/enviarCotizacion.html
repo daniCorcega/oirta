@@ -1,0 +1,28 @@
+<div modal="showModal">
+  <div class="panel-heading">
+    <h4>Enviar Cotizaci&oacute;n</h4>
+  </div>
+
+    <div class="panel-body">
+      <div class="modal-wrapper">
+	<div class="modal-icon modal-block-info" >
+	  <i class="fa fa-send"></i>
+	</div>
+	<div class="modal-text">
+	  <p>Introduzca el correo el&eacute;ctronico al que desea enviar la cotizaci&oacute;n</p>
+          <div class="col-md-8">
+            <input type="email" placeholder="correo@direccion.dominio" class="form-control" name="email" ng-model="email" required>
+          </div>
+	</div>
+      </div>
+    </div>
+    <footer class="panel-footer">
+      <div class="row">
+	<div class="col-md-12 text-right">
+	  <button class="btn" ng-click="cerrar()">Cancelar</button>
+	  <button class="btn btn-info" ng-click="enviar()">Enviar</button>
+	</div>
+      </div>
+    </footer>
+  </section>
+</div>

@@ -1,0 +1,199 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="cotizacion-vehiculo" pageWidth="612" pageHeight="900" whenNoDataType="AllSectionsNoDetail" columnWidth="528" leftMargin="42" rightMargin="42" topMargin="42" bottomMargin="28" uuid="1fffb278-e268-4898-8cbe-92c4ac5e47b8">
+	<property name="ireport.zoom" value="2.415765000000001"/>
+	<property name="ireport.x" value="144"/>
+	<property name="ireport.y" value="726"/>
+	<style name="Normal" isDefault="true" vAlign="Middle" fontName="SansSerif" fontSize="8">
+		<box leftPadding="5" rightPadding="5"/>
+	</style>
+	<style name="Título" style="Normal" hAlign="Center" vAlign="Middle" fontName="SansSerif" fontSize="12" isBold="true" isItalic="false" isUnderline="false" isStrikeThrough="false"/>
+	<style name="Titulo Campo" style="Normal" isBold="true" pdfFontName="Helvetica-Bold">
+		<box leftPadding="5" rightPadding="5"/>
+	</style>
+	<style name="Titulo Sección" style="Normal" mode="Opaque" backcolor="#CCCCCC" hAlign="Center" isBold="true" pdfFontName="Helvetica-Bold">
+		<box>
+			<pen lineWidth="0.25"/>
+			<topPen lineWidth="1.0" lineColor="#000000"/>
+			<leftPen lineWidth="1.0" lineColor="#000000"/>
+			<bottomPen lineWidth="1.0" lineColor="#000000"/>
+			<rightPen lineWidth="1.0" lineColor="#000000"/>
+		</box>
+	</style>
+	<parameter name="SUBREPORT_DIR" class="java.lang.String" isForPrompting="false">
+		<defaultValueExpression><![CDATA[""]]></defaultValueExpression>
+	</parameter>
+	<parameter name="NROSOLICITUD" class="java.lang.Integer">
+		<parameterDescription><![CDATA[]]></parameterDescription>
+		<defaultValueExpression><![CDATA[100329]]></defaultValueExpression>
+	</parameter>
+	<queryString>
+		<![CDATA[SELECT P.*,
+       ACSEL.PR_WEB_AUTO.nombre_usuario(CTP.Codemisor) nombre_emisor,
+       ACSEL.PR_WEB_AUTO.nombre_usuario(CTP.Codinter) nombre_intermediario
+  FROM CT_PRINCIPAL P, CT_POLIZA CTP
+ WHERE p.nrosolic = ctp.nrosolic
+   AND p.nrosolic = $P{NROSOLICITUD}]]>
+	</queryString>
+	<field name="NROSOLIC" class="java.math.BigDecimal"/>
+	<field name="TIPOID" class="java.lang.String"/>
+	<field name="NUMID" class="java.math.BigDecimal"/>
+	<field name="NOMBRE" class="java.lang.String"/>
+	<field name="APELLIDO" class="java.lang.String"/>
+	<field name="FECNAC" class="java.sql.Timestamp"/>
+	<field name="SEXO" class="java.lang.String"/>
+	<field name="EDOCIVIL" class="java.lang.String"/>
+	<field name="CODESTADO" class="java.lang.String"/>
+	<field name="CODCIUDAD" class="java.lang.String"/>
+	<field name="CODMUNICIPIO" class="java.lang.String"/>
+	<field name="CODURBANIZACION" class="java.lang.String"/>
+	<field name="DIRECCION" class="java.lang.String"/>
+	<field name="EMAIL" class="java.lang.String"/>
+	<field name="PROFESION" class="java.lang.String"/>
+	<field name="TELEFONO1" class="java.lang.String"/>
+	<field name="TELEFONO2" class="java.lang.String"/>
+	<field name="FECSOLIC" class="java.sql.Timestamp"/>
+	<field name="STSSOLIC" class="java.lang.String"/>
+	<field name="CODUSUARIO" class="java.lang.String"/>
+	<field name="USERNAME" class="java.lang.String"/>
+	<field name="NOMBRE_EMISOR" class="java.lang.String"/>
+	<field name="NOMBRE_INTERMEDIARIO" class="java.lang.String"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="50" splitType="Stretch">
+			<image scaleImage="RealSize">
+				<reportElement x="0" y="0" width="100" height="49" uuid="eee75f42-3a9f-454a-a9e9-4acf8f403eac"/>
+				<imageExpression><![CDATA["logo.png"]]></imageExpression>
+			</image>
+			<staticText>
+				<reportElement style="Título" x="100" y="15" width="298" height="20" uuid="1c0f6f6c-709c-4e91-b6cd-67eb74f6f945"/>
+				<text><![CDATA[COTIZACIÓN DE AUTOMÓVIL]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="Titulo Campo" x="398" y="15" width="50" height="15" uuid="0140bed1-eb28-49f8-aae8-4d7f743f2bec"/>
+				<textElement textAlignment="Right"/>
+				<text><![CDATA[N°:]]></text>
+			</staticText>
+			<textField>
+				<reportElement style="Normal" x="448" y="15" width="80" height="15" uuid="9a86a406-e577-44d3-b615-ce04d77f8c8f"/>
+				<textElement textAlignment="Right"/>
+				<textFieldExpression><![CDATA[$F{NROSOLIC}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement style="Titulo Campo" x="398" y="0" width="50" height="15" uuid="78f6b3e3-9c0f-48dd-a850-593e520c8c70"/>
+				<textElement textAlignment="Right"/>
+				<text><![CDATA[Fecha:]]></text>
+			</staticText>
+			<textField pattern="dd/MM/yyyy">
+				<reportElement style="Normal" x="448" y="0" width="80" height="15" uuid="8a5d710d-2c2c-458f-b030-2ccd5ee142e4"/>
+				<textElement textAlignment="Right"/>
+				<textFieldExpression><![CDATA[$F{FECSOLIC}]]></textFieldExpression>
+			</textField>
+		</band>
+	</title>
+	<detail>
+		<band height="52" splitType="Stretch">
+			<subreport>
+				<reportElement x="0" y="0" width="528" height="50" uuid="c9193ce7-15f1-4088-aa3a-ec68aa6eb6cc"/>
+				<subreportParameter name="NROSOLICITUD">
+					<subreportParameterExpression><![CDATA[$P{NROSOLICITUD}]]></subreportParameterExpression>
+				</subreportParameter>
+				<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
+				<subreportExpression><![CDATA[$P{SUBREPORT_DIR} + "_datos-solicitante.jasper"]]></subreportExpression>
+			</subreport>
+		</band>
+		<band height="42">
+			<subreport>
+				<reportElement x="0" y="0" width="528" height="40" uuid="5c12fc92-0a6d-40ed-8c56-6e04b246f0d3"/>
+				<subreportParameter name="NROSOLICITUD">
+					<subreportParameterExpression><![CDATA[$P{NROSOLICITUD}]]></subreportParameterExpression>
+				</subreportParameter>
+				<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
+				<subreportExpression><![CDATA[$P{SUBREPORT_DIR} + "_datos-vehiculo.jasper"]]></subreportExpression>
+			</subreport>
+		</band>
+		<band height="42">
+			<subreport>
+				<reportElement x="0" y="0" width="528" height="42" uuid="75e23c9b-cfae-4b0f-8840-9dde520a1eb4"/>
+				<subreportParameter name="NROSOLICITUD">
+					<subreportParameterExpression><![CDATA[$P{NROSOLICITUD}]]></subreportParameterExpression>
+				</subreportParameter>
+				<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
+				<subreportExpression><![CDATA[$P{SUBREPORT_DIR} + "_plan_seleccionado.jasper"]]></subreportExpression>
+			</subreport>
+		</band>
+		<band height="44">
+			<subreport>
+				<reportElement x="0" y="3" width="528" height="40" uuid="8a16413b-c359-4c73-bdc4-1d729560e37b"/>
+				<subreportParameter name="NROSOLICITUD">
+					<subreportParameterExpression><![CDATA[$P{NROSOLICITUD}]]></subreportParameterExpression>
+				</subreportParameter>
+				<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
+				<subreportExpression><![CDATA[$P{SUBREPORT_DIR} + "_financiamiento.jasper"]]></subreportExpression>
+			</subreport>
+		</band>
+		<band height="60">
+			<subreport>
+				<reportElement x="0" y="5" width="528" height="50" uuid="2b003413-bf3e-4167-9b3f-23dd9aae0aef"/>
+				<subreportParameter name="NROSOLICITUD">
+					<subreportParameterExpression><![CDATA[$P{NROSOLICITUD}]]></subreportParameterExpression>
+				</subreportParameter>
+				<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
+				<subreportExpression><![CDATA[$P{SUBREPORT_DIR} + "_coberturas.jasper"]]></subreportExpression>
+			</subreport>
+		</band>
+	</detail>
+	<pageFooter>
+		<band height="110">
+			<textField>
+				<reportElement style="Normal" x="59" y="70" width="267" height="10" uuid="e71fe396-ae06-49cf-b4ed-650a0029fbbf"/>
+				<textElement>
+					<font size="6"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{NOMBRE_EMISOR}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement style="Normal" mode="Opaque" x="0" y="70" width="59" height="10" uuid="82e61e37-be76-4e3b-a5ba-2ac22787391e"/>
+				<textElement textAlignment="Left">
+					<font size="6" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Usuario:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="Normal" x="0" y="90" width="528" height="20" uuid="49acbcdf-6180-4533-bd74-8efff82107c4"/>
+				<textElement textAlignment="Justified">
+					<font size="6"/>
+				</textElement>
+				<text><![CDATA[Atrio Seguros - R.I.F. J-00298026-5 - Todos los derechos Reservados Inscrita en la Superintendencia de la Actividad Aseguradora bajo el Nro. 98 | Dirección: Av. Libertador, Entre Av. Ávila y calle Santa Ana Edif. Xerox, piso 11. Urb. Bello Campo. Municipio Chacao. Caracas, Venezuela]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="Normal" x="0" y="0" width="528" height="70" uuid="bb86897d-ced8-425f-a76d-3f290a21911f"/>
+				<textElement textAlignment="Justified" markup="none">
+					<font size="6" isBold="false"/>
+				</textElement>
+				<text><![CDATA[La presente cotización tiene una vigencia de diez (10)días hábiles contados a partir  de la presente fecha, y ha sido calculada en función de los datos suministrados y al valor referencial en el mercado asegurador. Ahora bien, al solicitar la emisión de la póliza, tanto la suma asegurada, como la tasa, podrían ser ajustadas en consideración a la documentación consignada, la inspección del vehículo, y las políticas de suscripción vigentes en la empresa.
+
+NOTA IMPORTANTE:  1) La Asistencial Vial es vàlida para vehìculos con una antiguedad de treinta (30) años y un màximo de tres (3) eventos por año poliza.
+                                     2) Para ser beneficiario de la cobertura de accesorios, estos deben ser expresados en la cotización y emisión del cuadro póliza.
+
+REQUISITOS
+1. Planilla de Solicitud de Seguro 2. Copia de la cedula de identidad vigente, o del pasaporte, 3. Copia de la licencia de conducir vigente, 4. Copia del Certificado de Registro del Vehículo y del Carnet de Circulación, 5. Copia del documento de compra venta, de ser el caso, 7. Inspección del Vehículo.]]></text>
+			</staticText>
+			<textField>
+				<reportElement style="Normal" x="59" y="80" width="267" height="10" uuid="42e4aeb3-ab96-4f47-bcba-bc380da8218a"/>
+				<textElement>
+					<font size="6"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{NOMBRE_INTERMEDIARIO}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement style="Normal" mode="Opaque" x="0" y="80" width="59" height="10" uuid="a83f99ff-0dfb-41e1-b070-5aa7eb199621"/>
+				<textElement textAlignment="Left">
+					<font size="6" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Intermediario:]]></text>
+			</staticText>
+		</band>
+	</pageFooter>
+</jasperReport>

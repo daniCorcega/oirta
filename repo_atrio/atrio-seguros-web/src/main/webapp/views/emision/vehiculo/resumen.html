@@ -1,0 +1,275 @@
+<div class="row">
+  <div class="col-lg-12" >
+    <section class="panel">
+      <header class="panel-heading">
+        <h5 class="panel-title">Datos del Cliente</h5>
+      </header>
+      <div class="panel-body">
+        <div class="table-responsive">
+          <table class="table table-striped mb-none">
+            <tr>
+              <th class="center">Nro. Cotizaci&oacute;n</th>
+              <th class="center">C&eacute;dula</th>
+              <th class="center">Nombre y Apellido</th>
+              <th class="center">Fecha de Nacimiento</th>
+            </tr>
+
+            <tr>
+              <td class="center"> {{$parent.ambienteCotizaciones.cotizacion.nrosolic}}</td>
+              <td class="center"> {{$parent.ambienteCliente.cliente.tipoId.substring(0,1)}} - {{$parent.ambienteCliente.cliente.numId}}</td>
+              <td class="center">{{$parent.ambienteCliente.cliente.nombre}} {{$parent.ambienteCliente.cliente.apellidos}} </td>
+              <td class="center">{{$parent.ambienteCliente.cliente.fechaNacimiento}}</td>
+              <tr>
+		<th class="center">Ocupaci&oacute;n</th>
+		<th class="center">Teléfono 1</th>
+		<th class="center">Teléfono 2</th>
+		<th class="center">Email</th>
+              </tr>
+              <tr>
+		<td class="center">{{$parent.ambienteCliente.cliente.profesion.descrip}}</td>
+		<td class="center">({{$parent.ambienteCliente.cliente.codArea1.codtelefono}}) {{$parent.ambienteCliente.cliente.telefono1}}</td>
+		<td class="center">({{$parent.ambienteCliente.cliente.codArea2.codtelefono}}) {{$parent.ambienteCliente.cliente.telefono2}}</td>
+		<td class="center">{{$parent.ambienteCliente.cliente.email}}</td>
+              </tr>
+              <tr>
+		<th class="center" colspan="4">Direcci&oacute;n</th>
+              </tr>
+              <tr>
+		<td colspan="4">
+                  {{$parent.ambienteCliente.cliente.estado.descestado}},
+                  <span ng-show="{{$parent.ambienteCliente.cliente.ciudad}}">{{$parent.ambienteCliente.cliente.ciudad.descciudad}}, </span>
+                  <span ng-show="{{$parent.ambienteCliente.cliente.municipio}}">{{$parent.ambienteCliente.cliente.municipio.descmunicipio}}, </span>
+                  <span ng-show="{{$parent.ambienteCliente.cliente.urbanizacion}}">{{$parent.ambienteCliente.cliente.urbanizacion.descurbanizacion}}, </span>
+                  {{$parent.ambienteCliente.cliente.direccion}}
+		</td>
+              </tr>
+          </table>
+        </div>
+      </div>
+    </section>
+  </div>
+  <div class="col-lg-12" >
+    <section class="panel">
+      <header class="panel-heading">
+        <h5 class="panel-title">Datos del Tomador</h5>
+      </header>
+      <div class="panel-body">
+        <div class="table-responsive">
+          <table class="table table-striped mb-none">
+            <tr>
+              <th class="center">Nro. Cotizaci&oacute;n</th>
+              <th class="center">C&eacute;dula</th>
+              <th class="center">Nombre y Apellido</th>
+              <th class="center">Fecha de Nacimiento</th>
+            </tr>
+
+            <tr>
+              <td class="center"> {{$parent.ambienteCotizaciones.cotizacion.nrosolic}}</td>
+              <td class="center"> {{$parent.ambienteTomador.tomador.tipoId.substring(0,1)}} - {{$parent.ambienteTomador.tomador.numId}}</td>
+              <td class="center">{{$parent.ambienteTomador.tomador.nombre}} {{$parent.ambienteTomador.tomador.apellidos}} </td>
+              <td class="center">{{$parent.ambienteTomador.tomador.fechaNacimiento}}</td>
+              <tr>
+		<th class="center">Ocupaci&oacute;n</th>
+		<th class="center">Teléfono 1</th>
+		<th class="center">Teléfono 2</th>
+		<th class="center">Email</th>
+              </tr>
+              <tr>
+		<td class="center">{{$parent.ambienteTomador.tomador.profesion.descrip}}</td>
+		<td class="center">({{$parent.ambienteTomador.tomador.codArea1.codtelefono}}) {{$parent.ambienteTomador.tomador.telefono1}}</td>
+		<td class="center">({{$parent.ambienteTomador.tomador.codArea2.codtelefono}}) {{$parent.ambienteTomador.tomador.telefono2}}</td>
+		<td class="center">{{$parent.ambienteTomador.tomador.email}}</td>
+              </tr>
+              <tr>
+		<th class="center" colspan="4">Direcci&oacute;n</th>
+              </tr>
+              <tr>
+		<td colspan="4">
+                  {{$parent.ambienteTomador.tomador.estado.descestado}},
+                  <span ng-show="{{$parent.ambienteTomador.tomador.ciudad}}">{{$parent.ambienteTomador.tomador.ciudad.descciudad}}, </span>
+                  <span ng-show="{{$parent.ambienteTomador.tomador.municipio}}">{{$parent.ambienteTomador.tomador.municipio.descmunicipio}}, </span>
+                  <span ng-show="{{$parent.ambienteTomador.tomador.urbanizacion}}">{{$parent.ambienteTomador.tomador.urbanizacion.descurbanizacion}}, </span>
+                  {{$parent.ambienteTomador.tomador.direccion}}
+		</td>
+              </tr>
+          </table>
+        </div>
+      </div>
+    </section>
+  </div>
+  <div class="col-lg-12" >
+    <section class="panel">
+      <header class="panel-heading">
+        <h5 class="panel-title">Datos del Automóvil</h5>
+      </header>
+      <div class="panel-body">
+        <div class="table-responsive">
+          <table class="table table-striped mb-none">
+            <thead>
+              <tr>
+                <th class="center">Año</th>
+                <th class="center">Marca</th>
+                <th class="center">Modelo</th>
+                <th class="center" colspan="2">Versión</th>
+                <th class="center">Vehículo 0 Km</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td class="text-center">{{$parent.ambienteVehiculo.vehiculo.anoveh}}</td>
+                <td class="text-center">{{$parent.ambienteVehiculo.vehiculo.descmarca}}</td>
+                <td class="text-center">{{$parent.ambienteVehiculo.vehiculo.descmodelo}}</td>
+                <td class="text-center" colspan="2">{{$parent.ambienteVehiculo.vehiculo.descversion}}</td>
+                <td class="center"><i class='fa blue bigger {{$parent.ambienteVehiculo.vehiculo.cerokm | checkmark}}' title="{{ $parent.ambienteVehiculo.vehiculo.cerokm | sino}} es 0 kms"></i>
+                  <div ng-show="$parent.ambienteVehiculo.vehiculo.cerokm">
+                    (Comprado el {{$parent.ambienteVehiculo.vehiculo.fechaFactura}})
+                  </div>
+                </td>
+              </tr>
+            </tbody>
+            <thead>
+              <tr>
+                <th class="center" colspan="2">Serial Carroceria</th>
+                <th class="center" colspan="2">Serial Motor</th>
+                <th class="center">Color</th>
+                <th class="center">Uso</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td class="text-center" colspan="2">{{$parent.ambienteVehiculo.vehiculo.carroceria}}</td>
+                <td class="text-center" colspan="2">{{$parent.ambienteVehiculo.vehiculo.motor}}</td>
+                <td class="text-center">{{$parent.ambienteVehiculo.vehiculo.color}}</td>
+                <td class="text-center">{{$parent.ambienteVehiculo.vehiculo.uso.descrip}}</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+  </div>
+  <div class="col-lg-12" >
+    <section class="panel">
+      <header class="panel-heading">
+        <h5 class="panel-title">Datos de Conductores Habituales</h5>
+      </header>
+      <div class="panel-body">
+        <div class="table-responsive">
+          <table class="table table-striped mb-none">
+            <thead>
+              <tr>
+                <th class="center">C&eacute;dula</th>
+                <th class="center">Nombres y Apellidos</th>
+                <th class="center">Sexo</th>
+                <th class="center">Parentesco</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr ng-show="ambienteCliente.cliente.tipoId.substring(0,1) != 'J' && ambienteCliente.cliente.tipoId.substring(0,1) != 'G'">
+                <td class="text-center">{{ ambienteCliente.cliente.tipoId.substring(0,1)}} - {{ ambienteCliente.cliente.numId }}</td>
+                <td class="text-center">{{ ambienteCliente.cliente.nombre }} {{ ambienteCliente.cliente.apellidos}}</td>
+                <td class="text-center">{{ ambienteCliente.cliente.sexo }}</td>
+                <td class="text-center"> TITULAR </td>
+              </tr>
+              <tr ng-show="ambienteConductores.conductor1.habilitado == 'S'">
+                <td class="text-center">{{ ambienteConductores.conductor1.tipoId.substring(0,1)}} - {{ $parent.ambienteConductores.conductor1.numId }}</td>
+                <td class="text-center">{{ $parent.ambienteConductores.conductor1.nombre }} {{ ambienteConductores.conductor1.apellidos}}</td>
+                <td class="text-center">{{ ambienteConductores.conductor1.sexo }}</td>
+                <td class="text-center">{{ ambienteConductores.conductor1.parentesco.descrip }}</td>
+              </tr>
+              <tr ng-show="ambienteConductores.conductor2.habilitado == 'S'">
+                <td class="text-center">{{$parent.ambienteConductores.conductor2.tipoId.substring(0,1)}} - {{ $parent.ambienteConductores.conductor2.numId }}</td>
+                <td class="text-center">{{ $parent.ambienteConductores.conductor2.nombre }} {{ ambienteConductores.conductor2.apellidos}}</td>
+                <td class="text-center">{{ ambienteConductores.conductor2.sexo }}</td>
+                <td class="text-center">{{ ambienteConductores.conductor2.parentesco.descrip }}</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+  </div>
+  <div class="col-lg-12" >
+  <section class="panel">
+  <header class="panel-heading">
+  <h5 class="panel-title">Forma de Pago &nbsp; <button class="btn btn-primary" ng-click="pago()">
+    <i class="fa fa-credit-card" aria-hidden="true"></i>   Deseas cambiar la forma de pago? </button></h5>
+
+
+
+  <!-- <div class="row">
+    <div class="col-md-offset-3">
+      <button class="btn btn-primary" ng-click="pago()">Deseas cambiar la forma de pago?</button>
+    </div>
+  </div> -->
+  </header>
+  <div class="panel-body">
+  <div class="table-responsive">
+  <table class="table table-striped mb-none">
+  <thead>
+  <tr>
+  <th class="center">Nombre</th>
+  <th class="center">Inicial</th>
+  <th class="center">N de Giros</th>
+  <th class="center">Monto x Giros</th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr>
+    <td class="center">{{ambienteCotizaciones.cotizacion.financiamiento.nombre_plan }}</td>
+    <td class="center">{{ambienteCotizaciones.cotizacion.financiamiento.inicial_prima | currency:"" | monedaVenezolana}}</td>
+    <td class="center">{{ambienteCotizaciones.cotizacion.financiamiento.cantgiros | num }}</td>
+    <td class="center">{{ambienteCotizaciones.cotizacion.financiamiento.mtogiro | currency:"" | monedaVenezolana }}</td>
+  </tr>
+  </tbody>
+  </table>
+  </div>
+  </div>
+  </section>
+  </div>
+  <div class="col-lg-12" >
+    <section class="panel">
+      <header class="panel-heading">
+        <h5 class="panel-title">Plan Seleccionado</h5>
+      </header>
+      <div class="panel-body">
+        {{ambienteCotizaciones.cotizacion.nombre_plan}}
+      </div>
+    </section>
+  </div>
+  <div class="col-lg-12" >
+    <section class="panel">
+      <header class="panel-heading">
+        <h5 class="panel-title">Coberturas</h5>
+      </header>
+      <div class="panel-body">
+        <div class="table-responsive">
+          <table class="table table-striped mb-none">
+            <thead>
+              <tr>
+                <th class="center"></th>
+                <th class="text-right">Suma Asegurada Bs.</th>
+                <th class="text-right">Deducible Bs.</th>
+                <th class="text-right">Prima Bs.</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr ng-repeat="cobertura in ambienteCotizaciones.cotizacion.coberturas">
+                <td>{{cobertura.desccobert}}</td>
+                <td class="text-right">{{cobertura.sumaaseg | currency:"" | monedaVenezolana}}</td>
+                <td class="text-right">{{cobertura.mtodeduciblesin | currency:"" | monedaVenezolana}}</td>
+                <td class="text-right">{{cobertura.prima | currency:"" | monedaVenezolana}}</td>
+              </tr>
+              <tr>
+                <td class="center"></td>
+                <td class="center"></td>
+                <td class="text-right"><strong>Prima Total</strong></td>
+                <td class="text-right"> <strong>{{ambienteCotizaciones.cotizacion.prima | currency:"" | monedaVenezolana}}</strong></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+  </div>
+</div>

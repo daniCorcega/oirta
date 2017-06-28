@@ -1,0 +1,49 @@
+<div class="row" cambio-fondo="auto">
+  <div id="w1-cliente" class="tab-pane">
+    <section = "panel form-wizard" id="w1">
+      <header class="panel-heading">
+	<div class="panel-actions">
+          <!--
+	  <a href="#" class="fa fa-caret-down"></a> <a href="#" class="fa fa-times"></a>
+          -->
+	</div>
+	<h2 class="panel-title">
+	  <img src="assets/images/automovil.png" height="50px"> Lista de Cotizaciones
+	</h2>
+      </header>
+    </section>
+    <div class="tab-content table-responsive">
+      <div class="text-right">
+        <div class="btn-group" role="group" aria-label="...">
+          <button ng-click="tableParams.filter({'stssolic':''})" type="button" class="btn btn-default">Todas</button>
+          <button ng-click="tableParams.filter({'stssolic':'EMI'})" type="button" class="btn btn-default">Emitidas</button>
+          <button ng-click="tableParams.filter({'stssolic':'VAL'})" type="button" class="btn btn-default">Válidas</button>
+          <button ng-click="tableParams.filter({'stssolic':'ANU'})" type="button" class="btn btn-default">Caducadas</button>
+        </div>
+      </div>
+      <br/>
+
+      <table ng-table="tableParams" class="table">
+	<tr ng-repeat="cotizacion in $data">
+          <td data-title="'Nro.'" sortable="'nrosolic'">{{cotizacion.nrosolic}}</td>
+          <td data-title="'Fecha'" sortable="'fecsolic'">{{cotizacion.fecsolic}}</td>
+          <td data-title="'Solicitante'" sortable="'solicitante'">{{cotizacion.solicitante}}</td>
+          <td data-title="'Prima'" sortable="'prima'" class="text-right">{{cotizacion.prima | currency:"" | monedaVenezolana}}</td>
+          <td class="text-center" data-title="'Estatus'" sortable="'stssolic'">
+            <span ng-show="cotizacion.stssolic == 'VAL'" class="label label-info">Válida</span>
+            <span ng-show="cotizacion.stssolic == 'EMI'" class="label label-success">Emitido</span>
+            <span ng-show="cotizacion.stssolic == 'ANU'" class="label label-danger">Caducada</span>
+            
+          </td>
+          <td data-title="'Marca'" sortable="'descmarca'">{{cotizacion.descmarca}}</td>
+          <td data-title="'Modelo'" sortable="'descmodelo'">{{cotizacion.descmodelo}}</td>
+          <td data-title="'Año'" sortable="'anoveh'">{{cotizacion.anoveh}}</td>
+          <td data-title="'Acciones'">
+            <a href="/atrio-web/api/v1/reports?nrosolicitud={{cotizacion.nrosolic}}"><i class="fa fa-file-pdf-o" title="Descargar Cotización"></i></a>
+            <a href="" ng-click="enviarCotizacion(cotizacion.nrosolic);" ><i class="fa fa-envelope" title="Enviar Cotización por Correo"></i></a>
+          </td>
+        </tr>
+      </table>
+    </div>
+  </div>
+</div>

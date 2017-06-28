@@ -1,0 +1,42 @@
+<div id="w1-cliente" class="tab-pane">
+  <h4>Seleccione una Cotizaci&oacute;n</h4>
+  
+  <div ng-show="mostrarEmpleado() >= 0" class="row">
+    <div class="col-md-9">
+      <div class="btn-group" role="group" aria-label="...">
+	<a ng-click="cambiarCotizaciones(1)" class="btn btn-default" ng-disabled="ambienteResultado.numcert != undefined" ng-class="{true: 'active'}[ambienteCotizaciones.cotizaciones == 0   || ambienteCotizaciones.cotizaciones == 1 || ambienteCotizaciones.cotizaciones == undefined]">Mis Cotizaciones</a>
+	<a ng-click="cambiarCotizaciones(2)" class="btn btn-default" ng-disabled="ambienteResultado.numcert != undefined" ng-class="{true: 'active'}[ambienteCotizaciones.cotizaciones == 2]">Todas las Cotizaciones</a>
+      </div>
+    </div>
+    <div class="col-md-3" ng-show="ambienteCotizaciones.cotizaciones == 2">
+      <div class="input-group input-group-icon">
+	<input type="text" class="form-control" ng-model="$parent.ambienteCotizaciones.datosFiltro.solicitante" ng-change="filtrar2()" placeholder="Solicitante">
+   <input type="text" class="form-control" ng-model="$parent.ambienteCotizaciones.datosFiltro.nrosolic" ng-change="filtrar3()" placeholder="Nro.">
+	<span class="input-group-addon">
+    <span class="icon"><i class="fa fa-search"></i></span>
+  <span class="input-group-addon">
+    <span class="icon"><i class="fa fa-search"></i></span>
+      </div>
+    
+  </div>
+  <table ng-table="tableParams" class="table table-responsive">
+    <tr ng-repeat="cotizacion in $data" ng-class="cotizacionSeleccionada(cotizacion.nrosolic)">
+      <td data-title="'Nro.'" sortable="'nrosolic'"><center>{{cotizacion.nrosolic}}</center></td>
+      <td data-title="'Fecha'" sortable="'fecsolic'"><center>{{cotizacion.fecsolic}}</center></td>
+      <td data-title="'Solicitante'" sortable="'solicitante'"><span title="{{cotizacion.nombre}} {{cotizacion.apellido}}"><center>{{cotizacion.solicitante}}</center></span></td>
+      <!--span ng-show="ambienteCotizaciones.cotizaciones == 2">
+      <td data-title="'Intermediario'" sortable="'intermediario'"><span title="{{cotizacion.codinter}}"><center>{{cotizacion.codinter}}</center></span></td>      
+      </span-->
+      <td data-title="'Prima'" sortable="'prima'" class="text-right"><center>{{cotizacion.prima | currency:"" | monedaVenezolana}}</center></td>
+      <td data-title="'Marca'" sortable="'descmarca'"><center>{{cotizacion.descmarca}}</center></td>
+      <td data-title="'Modelo'" sortable="'descmodelo'"><center>{{cotizacion.descmodelo}}</center></td>
+      <td data-title="'Año'" sortable="'anoveh'"><center>{{cotizacion.anoveh}}</center></td>
+      <td data-title="'Acciones'">
+        <center><a href="/atrio-web/api/v1/reports?nrosolicitud={{cotizacion.nrosolic}}"><i class="fa fa-file-pdf-o" tooltip="Descargar Cotización" tooltip-trigger tooltip-animation="false" tooltip-placement="top" style="font-size:20px;" align="center"></i></a>
+        <span ng-show="ambienteResultado.numcert == undefined">
+          <a href="" ng-click="seleccionarCotizacion(cotizacion.nrosolic)"><i class="fa fa-check" tooltip="Emitir Cotización" tooltip-trigger tooltip-animation="false" tooltip-placement="top" style="font-size:20px;" align="center"></i></a></center>
+        </span>
+      </td>
+    </tr>    
+  </table>
+</div>

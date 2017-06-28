@@ -1,0 +1,180 @@
+<div class="row" cambio-fondo="auto">
+  <div ng-class="{true: 'col-lg-9'}[pasoActivo != 0 && pasoActivo != 5 && pasoActivo != 6]">
+    <section = "panel form-wizard" id="w1">
+      <header class="panel-heading">
+	<div class="panel-actions">
+          <!--
+	  <a href="#" class="fa fa-caret-down"></a> <a href="#" class="fa fa-times"></a>
+          -->
+	</div>
+	<h2 class="panel-title">
+	  <img src="assets/images/automovil.png" height="50px">Emisi&oacute;n de Autom&oacute;vil
+	</h2>
+      </header>
+      <!-- Comentado pruebas de pago -->
+      <div class="panel-body panel-body-nopadding">
+	<div class="wizard-tabs">
+	  <ul class="wizard-steps">
+	    <li class="active">
+	      <a href="w1-cotizaciones" data-toggle="tab" class="text-center">
+		<span class="badge hidden-xs">1</span>
+                Cotizaci&oacute;n a Emitir
+	      </a>
+	    </li>
+	    <li>
+	      <a href="w1-vehiculo" data-toggle="tab" class="text-center">
+		<span class="badge hidden-xs">2</span>
+		Datos del Veh&iacute;culo
+	      </a>
+	    </li>
+	    <li>
+	      <a href="w1-cliente" data-toggle="tab" class="text-center">
+		<span class="badge hidden-xs">3</span>
+		Datos del Cliente
+	      </a>
+	    </li>
+	    <li>
+	      <a href="w1-tomador" data-toggle="tab" class="text-center">
+		<span class="badge hidden-xs">4</span>
+		Datos del Tomador</a>
+	    </li>
+	    <li>
+	      <a href="w1-resumen" data-toggle="tab" class="text-center">
+		<span class="badge hidden-xs">5</span>
+		Conductores</a>
+	    </li>
+	    <li>
+	      <a href="w1-resumen" data-toggle="tab" class="text-center">
+		<span class="badge hidden-xs">6</span>
+		Resumen</a>
+	    </li>
+	  </ul>
+	</div>
+
+            <!-- Fin Comentado pruebas de pago -->
+<!--
+      </header>
+      <div class="panel-body panel-body-nopadding">
+	<div class="wizard-tabs">
+	  <ul class="wizard-steps">
+	    <li class="active">
+	      <a href="w1-cotizaciones" data-toggle="tab" class="text-center">
+		<span class="badge hidden-xs">1</span>
+                Cotizaci&oacute;n a Emitir
+	      </a>
+	    </li>
+	    <li>
+	      <a href="w1-vehiculo" data-toggle="tab" class="text-center">
+		<span class="badge hidden-xs">2</span>
+		Datos del Veh&iacute;culo
+	      </a>
+	    </li>
+	    <li>
+	      <a href="w1-cliente" data-toggle="tab" class="text-center">
+		<span class="badge hidden-xs">3</span>
+		Datos del Cliente
+	      </a>
+	    </li>
+	    <li>
+	      <a href="w1-tomador" data-toggle="tab" class="text-center">
+		<span class="badge hidden-xs">4</span>
+		Datos del Tomador</a>
+	    </li>
+      <li>
+      <a href="w1-pago" data-toggle="tab" class="text-center">
+    <span class="badge hidden-xs">5</span>
+    Forma de Pago</a>
+    </li>
+	    <li>
+	      <a href="w1-resumen" data-toggle="tab" class="text-center">
+		<span class="badge hidden-xs">6</span>
+		Conductores</a>
+	    </li>
+	    <li>
+	      <a href="w1-resumen" data-toggle="tab" class="text-center">
+		<span class="badge hidden-xs">7</span>
+		Resumen</a>
+	    </li>
+	  </ul>
+	</div-->
+
+	<form class="form-horizontal" novalidate="novalidate">
+	  <div class="tab-content">
+	    <br/>
+            <ui-view autoscroll="true">
+            </ui-view>
+	    <br/>
+	  </div>
+	</form>
+      </div>
+      <div class="panel-footer">
+	<ul class="pager">
+	  <li class="previous disabled"><a><i class="fa fa-angle-left"></i> Anterior</a></li>
+	  <li class="finish hidden pull-right cursor-pointer">
+            <a ng-show="pasoActivo == 5">
+
+		<span ng-show="ambienteResultado.numcert != undefined">Ver Emisi&oacute;n</span>
+		<span ng-show="ambienteResultado.numcert == undefined">Emitir</a></span>
+
+            </a>
+            <a ng-show="pasoActivo !=5 ">
+              Finalizar
+            </a>
+          </li>
+	  <li class="next"><a>Siguiente <i class="fa fa-angle-right"></i></a></li>
+	</ul>
+      </div>
+    </section>
+  </div>
+
+
+  <div id="resumen" class="col-lg-3" ng-class="{true: 'hide'}[pasoActivo == 0 || pasoActivo == 5 || pasoActivo == 6]">
+    <section class="panel">
+      <div class="panel-body">
+	<h5>Resumen</h5>
+	<ul class="list-unstyled">
+	  <li>
+	    <h6>Datos del Veh&iacute;culo</h6>
+	    <ul>
+	      <li>{{ambienteVehiculo.vehiculo.anoveh}}</li>
+	      <li>{{ambienteVehiculo.vehiculo.descmarca}}</li>
+	      <li>{{ambienteVehiculo.vehiculo.descmodelo}}</li>
+	      <li>{{ambienteVehiculo.vehiculo.descversion}}</li>
+	      <li ng-show="ambienteVehiculo.vehiculo.placa">{{ambienteVehiculo.vehiculo.placa}}</li>
+	      <li ng-show="ambienteVehiculo.vehiculo.carroceria">{{ambienteVehiculo.vehiculo.carroceria}}</li>
+	      <li ng-show="ambienteVehiculo.vehiculo.motor">{{ambienteVehiculo.vehiculo.motor}}</li>
+	      <li ng-show="ambienteVehiculo.vehiculo.color">{{ambienteVehiculo.vehiculo.color}}</li>
+	      <li ng-show="ambienteVehiculo.vehiculo.uso">{{ambienteVehiculo.vehiculo.uso.descrip}}</li>
+	    </ul>
+	  </li>
+	  <li ng-hide="ambienteCliente.cliente.nombre == null">
+	    <h6>Datos del Cliente</h6>
+	    <ul>
+        <li ng-show="ambienteCliente.cliente.nombre || ambienteCliente.cliente.appellido">{{ambienteCliente.cliente.nombre}} {{ambienteCliente.cliente.apellido}}</li>
+	      <li ng-show="ambienteCliente.cliente.fechaNacimiento">{{ambienteCliente.cliente.fechaNacimiento}}</li>
+	      <li ng-show="ambienteCliente.cliente.codArea1 && ambienteCliente.cliente.telefono1">({{ambienteCliente.cliente.codArea1.codtelefono}}) {{ambienteCliente.cliente.telefono1}}</li>
+	      <li ng-show="ambienteCliente.cliente.codArea2 && ambienteCliente.cliente.telefono2">({{ambienteCliente.cliente.codArea2.codtelefono}}) {{ambienteCliente.cliente.telefono2}}</li>
+	      <li ng-show="ambienteCliente.cliente.email">{{ambienteCliente.cliente.email}}</li>
+	      <li ng-show="ambienteCliente.cliente.profesion">{{ambienteCliente.cliente.profesion.descrip}}</li>
+	      <li ng-show="ambienteCliente.cliente.estado">{{ambienteCliente.cliente.estado.descestado}}</li>
+	      <li ng-show="ambienteCliente.cliente.beneficiario">{{ambienteCliente.cliente.beneficiario}}</li>
+	    </ul>
+	  </li>
+	  <li ng-hide="ambienteTomador.tomador.nombre == null">
+	    <h6>Datos del Tomador</h6>
+	    <ul>
+              <li ng-show="ambienteTomador.tomador.nombre || ambienteTomador.tomador.appellido">{{ambienteTomador.tomador.nombre}} {{ambienteTomador.tomador.apellido}}</li>
+	      <li ng-show="ambienteTomador.tomador.fechaNacimiento">{{ambienteTomador.tomador.fechaNacimiento}}</li>
+	      <li ng-show="ambienteTomador.tomador.codArea1 && ambienteTomador.tomador.telefono1">({{ambienteTomador.tomador.codArea1.codtelefono}}) {{ambienteTomador.tomador.telefono1}}</li>
+	      <li ng-show="ambienteTomador.tomador.codArea2 && ambienteTomador.tomador.telefono2">({{ambienteTomador.tomador.codArea2.codtelefono}}) {{ambienteTomador.tomador.telefono2}}</li>
+	      <li ng-show="ambienteTomador.tomador.email">{{ambienteTomador.tomador.email}}</li>
+	      <li ng-show="ambienteTomador.tomador.profesion">{{ambienteTomador.tomador.profesion.descrip}}</li>
+	      <li ng-show="ambienteTomador.tomador.estado">{{ambienteTomador.tomador.estado.descestado}}</li>
+	    </ul>
+	  </li>
+
+	</ul>
+      </div>
+    </section>
+  </div>
+</div>

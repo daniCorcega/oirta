@@ -1,0 +1,11 @@
+<div id="w1-cliente" class="tab-pane">
+  <p>Su proceso de emisi&oacute;n de polizas ha finalizado correctamente, a continuaci&oacute;n se muestran los documentos y el resumen de lo realizado.</p>
+  <br/>
+  <h3 class="text-center">Poliza N&uacute;mero: <strong>{{$parent.ambienteResultado.poliza}}</strong></h3>
+  <div class="text-center">
+    <a target="_blank" href="{{$parent.ambienteResultado.url}}" class="btn btn-primary" ng-class="{true: 'disabled'}[ambienteResultado.url === undefined]"><i class="fa fa-file-pdf-o"></i> Descargar P&oacute;liza</a>
+    </div>
+  <!--
+      <h3 class="text-center">Financiamiento N&uacute;mero: <strong>XXXXX</strong></h3>
+  -->
+</div>

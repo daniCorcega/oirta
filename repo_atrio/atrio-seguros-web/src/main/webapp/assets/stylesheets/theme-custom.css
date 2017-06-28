@@ -1,0 +1,253 @@
+/* Add here all your CSS customizations */
+/* Page Header */
+/* AZUL 100%: #053390
+   AZUL 80%: #3258A9
+   AZUL 65%: #5A77BC
+*/
+.page-header h2 {
+	border-bottom-color: #43B02A;
+}
+
+.header .logo {
+	margin: 4px 0 0 15px;
+}
+
+/* Base */
+a, .btn-link {
+	color: #053390;
+}
+
+a:hover, a:focus, .btn-link:hover, .btn-link:focus {
+	color: #053390;
+}
+
+/* Buttons */
+body .btn-primary {
+	color: #ffffff;
+	text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.25);
+	background-color: #053390;
+	border-color: #053390;
+}
+
+body .btn-primary:hover {
+	border-color: #3258A9 !important;
+	background-color: #3258A9;
+}
+
+/* Header */
+.header {
+	border-top: 3px solid #053390;
+}
+
+/* Sidebar Left */
+.sidebar-left .sidebar-header .sidebar-toggle:hover i {
+	color: #5A77BC;
+}
+
+ul.nav-main li.nav-parent>a:after {
+	color: white;
+}
+
+ul.nav-main li a {
+	color: white;
+}
+
+/* Layout Base - Page Header */
+.page-header {
+	background: #053390;
+	border-left: 1px solid #3258A9;
+}
+
+ul.nav-main>li>a:hover, ul.nav-main>li>a:focus {
+	background-color: #5A77BC;
+}
+
+ul.nav-main>li.nav-expanded>a {
+	background: #5A77BC;
+}
+
+ul.nav-main li .nav-children {
+	background: #3258A9;
+}
+
+ul.nav-main li .nav-children li.nav-active>a {
+	color: #6E8CB9;
+}
+
+ul.nav-main li .nav-children li a:hover, ul.nav-main li .nav-children li a:focus
+	{
+	background: #5A77BC;
+}
+
+/* Nano Scroller Plugin */
+html.no-overflowscrolling .nano>.nano-pane>.nano-slider {
+	background: #5A77BC;
+}
+
+/* Layout Base - Sidebar Left */
+.sidebar-left {
+	box-shadow: -5px 0 0 #3258A9 inset;
+}
+
+.sidebar-left .sidebar-header .sidebar-toggle {
+	background-color: #053390;
+}
+
+.sidebar-left .sidebar-header .sidebar-toggle i {
+	color: white;
+}
+
+.sidebar-left .sidebar-header {
+	color: white;
+}
+
+.sidebar-left {
+	background: #053390;
+}
+
+.wizard-tabs ul>li.active .badge {
+	background-color: #43B02A;
+}
+
+html.sidebar-left-collapsed.fixed .sidebar-left .nano {
+	background: #053390;
+	box-shadow: -5px 0 0 #3258A9 inset;
+}
+
+.previous a, .next a, .cursor-pointer {
+	cursor: pointer;
+}
+
+.fondo-auto {
+	background: url("../images/fondo-auto.png") no-repeat right bottom fixed;
+}
+
+/* Sign Screens - Wrappers */
+.body-sign .panel-sign .panel-title-sign .title {
+	background-color: #053390;
+}
+
+.body-sign .panel-sign .panel-body {
+	border-top-color: #053390;
+}
+
+.login-tipo-id {
+  line-height: 1.33 !important;
+}
+
+#resumen .panel-body{
+  overflow-x: scroll;
+}
+
+.fondo-home {
+    background: url("../images/fondo-home.jpg") no-repeat right 270px;
+    background-size: 100%;
+    min-height: 500px;
+}
+
+.verde-atrio, .verde-atrio2:hover {
+    color: #B1FAC0;
+}
+
+.verde-atrio2, .verde-atrio:hover {
+    color: #0EA347;
+}
+.naranja-atrio, .naranja-atrio2:hover {
+    color: #FDCEAF;
+}
+
+.naranja-atrio2, .naranja-atrio:hover {
+    color: #E45927;
+}
+
+.separador-izquierda {
+    border-left: 2px solid #d1d1d1;
+}
+
+
+th.header {
+  position: inherit !important;
+  background: white;
+  padding: 8px;
+
+.margen-adicional {
+  margin-top:10px;
+}
+
+.tiene-exito {
+  color:#3c763d;
+}
+
+.tiene-error {
+  color: #a94442;
+}
+
+.label-yusmary {
+  background-color: #d9534f;
+}
+
+html.fixed .inner-wrapper {
+  padding-top: 40px;
+}
+
+#logo-panel {
+  height: 40px;
+  margin-right: 10px;
+}
+
+header.panel-heading {
+  padding: 10px;
+}
+
+th.header {
+  height: 30px;
+}
+
+.ng-table {
+  margin-top: 10px;
+}
+
+.ng-table-pagination {
+  margin: 10px 0;
+}
+
+ul.pager {
+ margin: 10px 0px; 
+}
+
+.header-right {
+  height: 54px;
+}
+
+.header {
+  border-top: 0px;
+  border-bottom: 3px solid #053390;
+}
+
+.panel-footer {
+  padding: 5px 15px;
+}
+
+.text-mayus {
+  text-transform: uppercase;
+}
+
+.bg-disabled {
+  background-color: #cccccc;
+}
+
+.panel-featured-disabled {
+  border-color: #cccccc;
+}
+
+#spinnner {
+  z-index:20001;
+}
+
+#the-spinner {
+  background-color: white;
+  opacity: 0.4;
+  position: absolute;
+  width: 100%;
+  height:100%;
+}

@@ -1,0 +1,78 @@
+<div class="row" cambio-fondo="auto">
+  <div id="w1-cliente" class="tab-pane">
+    <section = "panel form-wizard" id="w1">
+      <header class="panel-heading">
+	<div class="panel-actions">
+          <!--
+	  <a href="#" class="fa fa-caret-down"></a> <a href="#" class="fa fa-times"></a>
+          -->
+	</div>
+	<h2 class="panel-title">
+  <!--
+	  <img src="assets/images/automovil.png" id="logo-panel"> 
+-->
+    Consulta Facturas
+	</h2>
+      </header>
+    </section>
+    <div class="tab-content">
+      <div class="row">
+	<div class="col-md-9 text-left">
+	 
+	</div>
+	
+	<div class="col-md-3" align-text="center">   
+    <div class="form-group" align-text="center">
+      <div class="input-group input-group-icon" align-text="center">
+              <input type="text" class="form-control" ng-model="datosFiltro.factura" ng-change="filtrar()" placeholder="Factura">
+              <input type="text" class="form-control" ng-model="datosFiltro.fecha_factura" ng-change="filtrar2()" placeholder="Fecha">
+              <span class="input-group-addon">
+    <span class="icon"><i class="fa fa-search"></i></span>
+              <span class="input-group-addon">
+    <span class="icon"><i class="fa fa-search"></i></span>
+    
+          </span>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <select class="form-control" ng-model="datosFiltro.estatus" ng-options="estatus.descrip for estatus in estatuses" ng-change="filtrar()">
+      </select>
+    </div>
+  </div>    
+      </div>
+      <div class="table-responsive">
+  <table ng-table="tableParams" class="table">
+    <tr ng-repeat="proveedores in $data">
+            <td data-title="'Nro Factura'" class="text-center" sortable="'factura'">{{proveedores.factura}}</td>
+            <td data-title="'Nro Control'" class="text-center" sortable="'numcontrol'">{{proveedores.numcontrol}}</td>
+            <td data-title="'Fecha Factura'" class="text-center" sortable="'fecha_factura'">{{proveedores.fecha_factura}}</td>
+            <td class="text-center" data-title="'Estatus'" class="text-center" sortable="'estatus_factura'">
+              <span ng-show="proveedores.estatus_factura == 'PAG'" class="label label-info">Pagado</span>
+              <span ng-show="proveedores.estatus_factura == 'OPT'" class="label label-success">Aprobación Pago</span>
+              <span ng-show="proveedores.estatus_factura == 'ANU'" class="label label-danger">Anulada</span>
+            </td>
+             <td data-title="'Monto Factura'" sortable="'monto_factura'" class="text-center">{{proveedores.monto_factura}}</td>
+             <td data-title="'Base Imponible'" sortable="'base_imponible'" class="text-center">{{proveedores.base_imponible}}</td>
+             <td data-title="'IVA'" sortable="'iva'" class="text-center">{{proveedores.iva}}</td>
+             <td data-title="'Acciones'">
+             <!--
+              <span ng-show="cotizacion.stssolic == 'VAL' && mostrarEmisor() >= 0">
+    <a href="" ng-click="emitir(cotizacion.nrosolic)"><i class="fa fa-mail-forward" title="Emitir"></i></a>
+              </span>
+        
+              <a href="/atrio-web/api/v1/reports?nrosolicitud={{cotizacion.nrosolic}}"><i class="fa fa-file-pdf-o" title="Descargar Cotización"></i></a>
+              <a href="" ng-click="enviarCotizacion(cotizacion.nrosolic);" ><i class="fa fa-envelope" title="Enviar Cotización por Correo"></i></a-->
+              <span ng-show="proveedores.compriva !== null">
+              <a ng-click="descargarRetencion(proveedores.numoblig,'RETIVA')"><i class="fa fa-file-pdf-o" title="Descargar IVA" align="left"></i></a>
+              </span>
+              <span ng-show="proveedores.comprislr !== null">
+              <a ng-click="descargarRetencion(proveedores.numoblig,'RETISLR')"><i class="fa fa-file-pdf-o" title="Descargar ISLR" align="left"></i></a>
+              </span>
+            </td>
+          </tr>
+  </table>
+      </div>
+    </div>
+  </div>
+</div>
